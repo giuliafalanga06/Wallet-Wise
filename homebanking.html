@@ -10,14 +10,55 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: rgb(219, 231, 243);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
-/*ciao*/
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+        }
+
+        .top-bar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .top-bar .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-bar .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
         .menu {
             display: flex;
             flex-direction: column;
             width: 60px;
             overflow: hidden;
             transition: width 0.3s;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f4f4f4;
+            border-right: 1px solid #dbdbdb;
         }
 
         .menu:hover {
@@ -28,7 +69,7 @@
             display: flex;
             align-items: center;
             padding: 10px;
-            color: rgb(0, 0, 0);
+            color: #000;
             cursor: pointer;
             border-bottom: 1px solid #dbdbdb;
         }
@@ -39,9 +80,10 @@
             margin-right: 10px;
         }
 
-        .menu-item:hover{
-            opacity: 60%;
+        .menu-item:hover {
+            opacity: 0.6;
         }
+
         .menu-item span {
             opacity: 0;
             white-space: nowrap;
@@ -56,7 +98,22 @@
 </head>
 
 <body>
+    <div class="top-bar">
+        <div class="logo">
+            <img src="./images/un_logo_con_W_W.png" alt="App Logo">
+            <span>My App</span>
+        </div>
+        <div class="profile">
+            <img src="images/fotoProfilo.png" alt="User Profile">
+            <span>John Doe</span>
+        </div>
+    </div>
+
     <nav class="menu">
+        <div class="menu-item">
+            <img src="images/cards-svgrepo-com.svg" alt="Card Icon">
+            <span>Home</span>
+        </div>
         <div class="menu-item">
             <img src="images/cards-svgrepo-com.svg" alt="Card Icon">
             <span>Le mie carte</span>
@@ -67,7 +124,7 @@
         </div>
         <div class="menu-item">
             <img src="images/cards-svgrepo-com.svg" alt="Card Icon">
-            <span>Conto corrente</span>
+            <span>Obbiettivi</span>
         </div>
     </nav>
 </body>
