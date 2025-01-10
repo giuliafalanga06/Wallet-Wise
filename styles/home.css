@@ -182,21 +182,21 @@ body.dark-theme {
 }
 
 .sidebar__img {
-  position: relative;
+ /* position: relative;*/
   width: 50px;
   height: 50px;
-  background-color: var(--first-color);
+/* background-color: var(--first-color);*/
   border-radius: 50%;
   overflow: hidden;
   display: grid;
   justify-items: center;
 }
 
-.sidebar__img img {
+/* .sidebar__img img {
   position: absolute;
-  /* width: 36px;
-  bottom: -1px; */
-}
+  width: 50px;
+  bottom: -1px; 
+} */
 
 .sidebar__info h3 {
   font-size: var(--normal-font-size);
