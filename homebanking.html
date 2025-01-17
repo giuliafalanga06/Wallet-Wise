@@ -4,12 +4,15 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+      <!--=============== JQUERY ===============-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
       <!--=============== REMIXICONS ===============-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
 
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="styles/home.css">
-
+      <link rel="stylesheet" href="styles/cards.css">
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
    <body>
@@ -48,20 +51,20 @@
                   <div class="sidebar__list">
                      <a href="#" class="sidebar__link active-link">
                         <i class="ri-pie-chart-2-fill"></i>
-                        <span>Dashboard</span>
+                        <span>Home</span>
                      </a>
                      
-                     <a href="#" class="sidebar__link">
+                     <a id="wallet" class="sidebar__link">
                         <i class="ri-wallet-3-fill"></i>
                         <span>My Wallet</span>
                      </a>
 
-                     <a href="#" class="sidebar__link">
+                     <a id="recentTransactions" class="sidebar__link">
                         <i class="ri-arrow-up-down-line"></i>
                         <span>Recent Transactions</span>
                      </a>
 
-                     <a href="#" class="sidebar__link">
+                     <a id="statistics" class="sidebar__link">
                         <i class="ri-bar-chart-box-fill"></i>
                         <span>Statistics</span>
                      </a>
@@ -104,9 +107,35 @@
       <!--=============== MAIN ===============-->
       <main class="main container" id="main">
          <h1>Sidebar Menu</h1>
+
+         <div class="section">
+            <h2>Le mie carte</h2>
+            <div id="cards">
+               
+            </div>
+         </div>
+
+         <div class="section">
+            <h2>2</h2>
+            
+         </div>
+
+         <div class="section">
+            <h2>3</h2>
+            
+         </div>
+
+         <div class="section">
+            <h2>4</h2>
+            
+         </div>
+
+         
+
       </main>
       
       <!--=============== MAIN JS ===============-->
       <script src="src/home.js"></script>
+      <script src="src/card.js"></script>
    </body>
 </html>
