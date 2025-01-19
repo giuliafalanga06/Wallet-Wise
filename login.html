@@ -54,6 +54,7 @@ body{
     right: -30px;
     bottom: -80px;
 }
+
 form{
     height: 460px;
     width: 400px;
@@ -103,7 +104,6 @@ input{
     color: #8b8b8b;
 }
 button{
-    margin-top: 50px;
     width: 100%;
     background-color:  rgba(140, 140, 140, 0.07);
     color: #080710;
@@ -113,6 +113,16 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.buttons-container button {
+    width: 48%; 
+}
+
 .social{
   margin-top: 30px;
   display: flex;
@@ -152,7 +162,11 @@ button{
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password">
 
-        <button>Log In</button>
+        <div class="buttons-container">
+            <button type="button" onclick="location.href='homebanking.html'">Log in</button>
+            <button type="button" onclick="location.href='#'">Sign up</button>
+        </div>
+        
        
     </form>
 </body>

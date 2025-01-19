@@ -35,7 +35,7 @@
          <div class="sidebar__container">
             <div class="sidebar__user">
                <div>
-                  <img  class="sidebar__img" src="images/image-.jpg" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTofG8ztxXbOG0LINKzNcGGQRuGNiQXxvktkg&s">
+                  <img  class="sidebar__img" src="images/un_logo_con_W_W.png" alt="user">
                </div>
    
                <div class="sidebar__info">
@@ -49,22 +49,22 @@
                   <h3 class="sidebar__title">MANAGE</h3>
 
                   <div class="sidebar__list">
-                     <a href="#" class="sidebar__link active-link">
+                     <a href="#" id="home" class="sidebar__link active-link" data-section = "home">
                         <i class="ri-pie-chart-2-fill"></i>
                         <span>Home</span>
                      </a>
                      
-                     <a id="wallet" class="sidebar__link">
+                     <a id="wallet" class="sidebar__link" data-section = "wallet">
                         <i class="ri-wallet-3-fill"></i>
                         <span>My Wallet</span>
                      </a>
 
-                     <a id="recentTransactions" class="sidebar__link">
+                     <a id="recentTransactions" class="sidebar__link" data-section = "transactions">
                         <i class="ri-arrow-up-down-line"></i>
                         <span>Recent Transactions</span>
                      </a>
 
-                     <a id="statistics" class="sidebar__link">
+                     <a id="statistics" class="sidebar__link " data-section = "statistics">
                         <i class="ri-bar-chart-box-fill"></i>
                         <span>Statistics</span>
                      </a>
@@ -75,7 +75,7 @@
                   <h3 class="sidebar__title">SETTINGS</h3>
 
                   <div class="sidebar__list">
-                     <a href="#" class="sidebar__link">
+                     <a href="#" class="sidebar__link" >
                         <i class="ri-settings-3-fill"></i>
                         <span>Settings</span>
                      </a>
@@ -96,10 +96,10 @@
                   </i>
                </button>
 
-               <button class="sidebar__link">
-                  <i class="ri-logout-box-r-fill"></i>
-                  <span>Log Out</span>
-               </button>
+                  <button class="sidebar__link" onclick="window.location.href='index.html'">
+                    <i class="ri-logout-box-r-fill"></i>
+                    <span>Log Out</span>
+                  </button>
             </div>
          </div>
       </nav>
@@ -108,24 +108,23 @@
       <main class="main container" id="main">
          <h1>Sidebar Menu</h1>
 
-         <div class="section">
-            <h2>Le mie carte</h2>
-            <div id="cards">
-               
+         <div class="section home">
+            <div>
+               <h2>Home</h2>
             </div>
          </div>
 
-         <div class="section">
-            <h2>2</h2>
-            
+         <div class="section wallet">
+            <h2>Le mie carte</h2>
+            <div id="cards"></div>
          </div>
 
-         <div class="section">
+         <div class="section transactions">
             <h2>3</h2>
             
          </div>
 
-         <div class="section">
+         <div class="section statistics">
             <h2>4</h2>
             
          </div>

@@ -237,6 +237,7 @@ body.dark-theme {
 }
 
 .sidebar__link {
+  cursor: pointer;
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, max-content);
