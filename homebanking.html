@@ -1,135 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expandable Menu</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: rgb(219, 231, 243);
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
+      <!--=============== JQUERY ===============-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-        .top-bar {
-            display: flex;
-            align-items: center;
-            height: 7%;
-            justify-content: space-between;
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            padding: 10px 20px;
-        }
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
 
-        .top-bar .logo {
-            display: flex;
-            align-items: center;
-        }
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="styles/home.css">
+      <link rel="stylesheet" href="styles/cards.css">
+      <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
+   </head>
+   <body>
+      <!--=============== HEADER ===============-->
+      <header class="header" id="header">
+         <div class="header__container">
+            <a href="#" class="header__logo">
+                <img id="logo" src="images/un_logo_con_W_W.png" alt="logo">
+               <span>Wallet Wise</span>
+            </a>
+            
+            <button class="header__toggle" id="header-toggle">
+               <i class="ri-menu-line"></i>
+            </button>
+         </div>
+      </header>
 
-        .top-bar .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
+      <!--=============== SIDEBAR ===============-->
+      <nav class="sidebar" id="sidebar">
+         <div class="sidebar__container">
+            <div class="sidebar__user">
+               <div>
+                  <img  class="sidebar__img" src="images/image-.jpg" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTofG8ztxXbOG0LINKzNcGGQRuGNiQXxvktkg&s">
+               </div>
+   
+               <div class="sidebar__info">
+                  <h3>Sgaramella Antonio</h3>
+                  <span>sgara06.anto@gmail.com</span>
+               </div>
+            </div>
 
-        .top-bar .profile {
-            display: flex;
-            align-items: center;
-        }
+            <div class="sidebar__content">
+               <div>
+                  <h3 class="sidebar__title">MANAGE</h3>
 
-        .top-bar .profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+                  <div class="sidebar__list">
+                     <a href="#" class="sidebar__link active-link">
+                        <i class="ri-pie-chart-2-fill"></i>
+                        <span>Home</span>
+                     </a>
+                     
+                     <a id="wallet" class="sidebar__link">
+                        <i class="ri-wallet-3-fill"></i>
+                        <span>My Wallet</span>
+                     </a>
 
-        .menu {
-            display: flex;
-            flex-direction: column;
-            width: 60px;
-            overflow: hidden;
-            transition: width 0.3s;
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #ffffff;
-            border-right: 1px solid #dbdbdb;
-        }
+                     <a id="recentTransactions" class="sidebar__link">
+                        <i class="ri-arrow-up-down-line"></i>
+                        <span>Recent Transactions</span>
+                     </a>
 
-        .menu:hover {
-            width: 200px;
-        }
+                     <a id="statistics" class="sidebar__link">
+                        <i class="ri-bar-chart-box-fill"></i>
+                        <span>Statistics</span>
+                     </a>
+                  </div>
+               </div>
 
-        .menu-item {
-            display: flex;
-            align-items:center;
-            padding: 10px;
-            color: #000;
-            cursor: pointer;
-            border-bottom: 1px solid #dbdbdb;
-        }
+               <div>
+                  <h3 class="sidebar__title">SETTINGS</h3>
 
-        .menu-item img {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        .menu-item:hover {
-            opacity: 0.6;
-        }
-
-        .menu-item span {
-            opacity: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            transition: opacity 0.3s;
-        }
-
-        .menu:hover .menu-item span {
-            opacity: 1;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="top-bar">
-        <div class="logo">
-            <img src="./images/un_logo_con_W_W.png" alt="App Logo">
-            <span>My App</span>
-        </div>
-        <div class="profile">
-            <img src="images/fotoProfilo.png" alt="User Profile">
-            <span>John Doe</span>
-        </div>
-    </div>
-
-    <nav class="menu">
-        <div class="menu-item">
-            <img src="images/cards-svgrepo-com.svg" alt="Card Icon">
-            <span>Home</span>
-        </div>
-        <div class="menu-item">
-            <img src="images/cards-svgrepo-com.svg" alt="Card Icon">
-            <span>Le mie carte</span>
-        </div>
-        <div class="menu-item">
-            <img src="images/cards-svgrepo-com.svg" alt="Card Icon">
-            <span>Fondo cassetto</span>
-        </div>
-        <div class="menu-item">
-            <img src="images/cards-svgrepo-com.svg" alt="Card Icon">
-            <span>Obbiettivi</span>
-        </div>
-    </nav>
+                  <div class="sidebar__list">
+                     <a href="#" class="sidebar__link">
+                        <i class="ri-settings-3-fill"></i>
+                        <span>Settings</span>
+                     </a>
 
 
-</body>
+                     <a href="#" class="sidebar__link">
+                        <i class="ri-notification-2-fill"></i>
+                        <span>Notifications</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
 
+            <div class="sidebar__actions">
+               <button>
+                  <i class="ri-moon-clear-fill sidebar__link sidebar__theme" id="theme-button">
+                     <span>Theme</span>
+                  </i>
+               </button>
+
+               <button class="sidebar__link">
+                  <i class="ri-logout-box-r-fill"></i>
+                  <span>Log Out</span>
+               </button>
+            </div>
+         </div>
+      </nav>
+
+      <!--=============== MAIN ===============-->
+      <main class="main container" id="main">
+         <h1>Sidebar Menu</h1>
+
+         <div class="section">
+            <h2>Le mie carte</h2>
+            <div id="cards">
+               
+            </div>
+         </div>
+
+         <div class="section">
+            <h2>2</h2>
+            
+         </div>
+
+         <div class="section">
+            <h2>3</h2>
+            
+         </div>
+
+         <div class="section">
+            <h2>4</h2>
+            
+         </div>
+
+         
+
+      </main>
+      
+      <!--=============== MAIN JS ===============-->
+      <script src="src/home.js"></script>
+      <script src="src/card.js"></script>
+   </body>
 </html>
