@@ -1,4 +1,4 @@
-/*=============== SHOW SIDEBAR ===============*/
+/*---SHOW SIDEBAR ---*/
 $(document).ready(function(){
 
     $(".section").hide();
@@ -23,7 +23,7 @@ $(document).ready(function(){
      }
      showSidebar('header-toggle','sidebar', 'header', 'main')
      
-     /*=============== LINK ACTIVE ===============*/
+     /*---LINK ACTIVE ---*/
      const sidebarLink = document.querySelectorAll('.sidebar__list a');
      function linkColor(){
          sidebarLink.forEach(l => l.classList.remove('active-link'));
@@ -39,7 +39,7 @@ $(document).ready(function(){
      sidebarLink.forEach(l => l.addEventListener('click', viewSection));
      
     
-     /*=============== DARK LIGHT THEME ===============*/ 
+     /*---DARK LIGHT THEME ---*/ 
      const themeButton = document.getElementById('theme-button')
      const darkTheme = 'dark-theme'
      const iconTheme = 'ri-sun-fill'

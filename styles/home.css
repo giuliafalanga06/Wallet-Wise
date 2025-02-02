@@ -1,11 +1,13 @@
-/*=============== GOOGLE FONTS ===============*/
+/*  CSS HOME ---*/
+
+/*---GOOGLE FONTS ---*/
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200..1000&display=swap");
 
-/*=============== VARIABLES CSS ===============*/
+/*---VARIABLES CSS ---*/
 :root {
   --header-height: 3.5rem;
 
-  /*========== Colors ==========*/
+  /*--- Colors ---*/
   /*Color mode HSL(hue, saturation, lightness)*/
   --first-color: hsl(193, 86%, 34%);
   --title-color: hsl(228, 18%, 16%);
@@ -13,23 +15,23 @@
   --body-color: hsl(228, 100%, 99%);
   --shadow-color: hsla(228, 80%, 4%, .1);
   --card-color: hsla(193, 86%, 34%, 0.542);
-  /*========== Font and typography ==========*/
+  /*--- Font and typography ---*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Nunito Sans", system-ui;
   --normal-font-size: .938rem;
   --smaller-font-size: .75rem;
   --tiny-font-size: .75rem;
 
-  /*========== Font weight ==========*/
+  /*--- Font weight ---*/
   --font-regular: 400;
   --font-semi-bold: 600;
 
-  /*========== z index ==========*/
+  /*--- z index ---*/
   --z-tooltip: 10;
   --z-fixed: 100;
 }
 
-/*========== Responsive typography ==========*/
+/*--- Responsive typography ---*/
 @media screen and (min-width: 1150px) {
   :root {
     --normal-font-size: 1rem;
@@ -37,7 +39,7 @@
   }
 }
 
-/*=============== BASE ===============*/
+/*---BASE ---*/
 * {
   box-sizing: border-box;
   padding: 0;
@@ -66,7 +68,7 @@ button {
   all: unset;
 }
 
-/*=============== VARIABLES DARK THEME ===============*/
+/*---VARIABLES DARK THEME ---*/
 body.dark-theme {
   --first-color: hsl(193, 86%, 34%);
   --title-color: hsl(228, 18%, 96%);
@@ -76,10 +78,10 @@ body.dark-theme {
   --card-color: hsla(193, 86%, 34%, 0.378);
 }
 
-/*========== 
+/*--- 
 	Color changes in some parts of 
 	the website, in dark theme
-==========*/
+---*/
 .dark-theme .sidebar__content::-webkit-scrollbar {
   background-color: hsl(228, 16%, 30%);
 }
@@ -88,7 +90,7 @@ body.dark-theme {
   background-color: hsl(228, 16%, 40%);
 }
 
-/*=============== REUSABLE CSS CLASSES ===============*/
+/*---REUSABLE CSS CLASSES ---*/
 .container {
   margin-inline: 1.5rem;
 }
@@ -97,7 +99,7 @@ body.dark-theme {
   padding-top: 5rem;
 }
 
-/*=============== HEADER ===============*/
+/*---HEADER ---*/
 .header {
   position: fixed;
   top: 0;
@@ -146,7 +148,7 @@ body.dark-theme {
   width: auto;
 }
 
-/*=============== SIDEBAR ===============*/
+/*---SIDEBAR ---*/
 .sidebar {
   position: fixed;
   left: -120%;
@@ -297,7 +299,7 @@ body.dark-theme {
   background-color: var(--first-color);
 }
 
-/*=============== BREAKPOINTS ===============*/
+/*---BREAKPOINTS ---*/
 /* For small devices */
 @media screen and (max-width: 360px) {
   .header__container {
