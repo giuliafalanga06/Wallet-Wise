@@ -1,4 +1,4 @@
-INSERT INTO User (Id, FirstName, LastName, BirthDate, Email, PhoneNumber, HashedPassword) VALUES
+INSERT INTO Owner (Id, FirstName, LastName, BirthDate, Email, PhoneNumber, HashedPassword) VALUES
 (1, 'John', 'Doe', '1985-01-01', 'john.doe@example.com', '1234567890', 'hashedpassword1'),
 (2, 'Jane', 'Smith', '1990-02-02', 'jane.smith@example.com', '0987654321', 'hashedpassword2'),
 (3, 'Alice', 'Johnson', '1988-03-03', 'alice.johnson@example.com', '1231231234', 'hashedpassword3'),
@@ -20,7 +20,7 @@ INSERT INTO Type (Id, Name, Description) VALUES
 (2, 'Entertainment', 'Expenses on entertainment'),
 (3, 'Utilities', 'Utility bills');
 
-INSERT INTO Card (Id, Iban, Balance, Expiration, UserId, StatusId) VALUES
+INSERT INTO Card (Id, Iban, Balance, Expiration, ownerId, StatusId) VALUES
 (1, 'IBAN001', 1000.00, '2025-12-31', 1, 1),
 (2, 'IBAN002', 500.00, '2025-12-31', 1, 1),
 (3, 'IBAN003', 2000.00, '2026-12-31', 2, 1),

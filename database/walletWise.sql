@@ -1,4 +1,7 @@
-CREATE TABLE User (
+CREATE DATABASE walletWise;
+USE walletWise;
+
+CREATE TABLE Owner (
     Id INT PRIMARY KEY,
     FirstName VARCHAR(255),
     LastName VARCHAR(255),
@@ -24,9 +27,9 @@ CREATE TABLE Card (
     Iban VARCHAR(255),
     Balance DECIMAL(10, 2),
     Expiration DATE,
-    UserId INT,
+    ownerId INT,
     StatusId INT,
-    FOREIGN KEY (UserId) REFERENCES User(Id),
+    FOREIGN KEY (ownerId) REFERENCES owner(Id),
     FOREIGN KEY (StatusId) REFERENCES Status(Id)
 );
 
