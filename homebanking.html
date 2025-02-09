@@ -13,6 +13,7 @@
       <!-----CSS ----->
       <link rel="stylesheet" href="styles/home.css">
       <link rel="stylesheet" href="styles/cards.css">
+      <link rel="stylesheet" href="styles/goals.css">
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
    <body>
@@ -134,23 +135,29 @@
          <div class="section goals">
             <h2>Savings goals</h2>
             <div>
-               <h3>Set a goal</h3>
-               <!-- vedo una grafica che mi illustra a che punto sono del mio obbiettivo -->
-               <div>
-                  <div class="obbiettivi">
-                     <h4>Goal</h4>
-                     <input class="in-goal" type="text" placeholder="Enter your goal">
-                  </div>
-                  <div>
-                     <h4>Amount</h4>
-                     <input class="in-goal" type="number" placeholder="Enter the amount">
-                  </div>
-                  <div>
-                     <h4>Deadline</h4>
-                     <input class="in-goal" type="date" placeholder="Enter the deadline">
-                  </div>
-                  <button class="btn-goal">Set a goal</button>
+        
+               <span class="newGoalBtn">
+                  <button class="btn">+</button>
+                  Savings goal
+               </span>
+
+               <div class="newGoal">
+                  <h3>Set a new Savings Goal</h3>
+
+                  <form class="goalForm" method="post" action="php/savingsGoals.php">
+
+                  <input type="text" name='name' placeholder="Goal name" class="goalName">
+                  <input type="textarea" placeholder="Goal description" class="goalDescription">
+                   <input type="number" placeholder="Monthly amount" class="goalMonthlyAmount">
+                  <input type="number" placeholder="Goal amount" class="goalAmount">
+                  <input type="date" class="goalDate">
+            
+                  <input type="submit"  value="Save" class="saveGoal">
+
+                  </form>
                </div>
+              
+                 
             </div>
             
          </div>

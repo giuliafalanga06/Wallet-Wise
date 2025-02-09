@@ -1,0 +1,50 @@
+.btn {
+    height: 30px;
+    width: 30px;  
+    font-size: 20px;
+    border-radius: 50px;
+    background-color: var(--first-color);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+  }
+
+.newGoalBtn{
+    position: fixed;
+    top: 150px;  
+    right: 50px; 
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.newGoal{
+    position: relative;
+    width: 90vh;
+    height: 50vh;
+    box-shadow: 0 2px 24px var(--shadow-color);
+    background-color: var(--body-color) ;
+    margin: auto;
+    margin-top: 80px;
+    border-radius: 25px;
+    padding: 4vh;
+}
+
+.saveGoal{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 15px;
+    background-color: var(--first-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+input{
+    background-color: var(--body-color);
+}
+
+
+

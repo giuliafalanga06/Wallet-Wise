@@ -21,6 +21,8 @@ $(document).ready(function(){
             })
         }
      }
+
+
      showSidebar('header-toggle','sidebar', 'header', 'main')
      
      /*---LINK ACTIVE ---*/
@@ -69,6 +71,6 @@ $(document).ready(function(){
          localStorage.setItem('selected-icon', getCurrentIcon())
      })
     
-    
+
 
 });

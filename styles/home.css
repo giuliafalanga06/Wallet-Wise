@@ -390,24 +390,3 @@ body.dark-theme {
     padding-left: 114px;
   }
 }
-.obbiettivi{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-}
-.in-goal{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-}
-.btn-goal{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-}
