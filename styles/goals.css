@@ -20,7 +20,7 @@
 
 .newGoal{
     position: relative;
-    width: 90vh;
+    width: 50vw;
     height: 50vh;
     box-shadow: 0 2px 24px var(--shadow-color);
     background-color: var(--body-color) ;

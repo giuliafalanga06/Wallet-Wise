@@ -102,13 +102,12 @@
         }
 
         .form__button {
+            text-decoration: none;
+            color: white;
             display: block;
-            width: 100%;
+            text-align: center;
             padding: 0.75rem;
-            outline: none;
-            border: none;
             background: linear-gradient(135deg, var(--first-color), var(--second-color));
-            color: #fff;
             font-size: var(--normal-font-size);
             border-radius: 0.5rem;
             cursor: pointer;
@@ -119,6 +118,13 @@
         .form__button:hover {
             box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
         }
+
+        .form__button:visited,
+        .form__button:active {
+            color: white;
+            /* Evita cambiamenti di colore */
+        }
+
 
         .form__toggle {
             background: none;
@@ -146,7 +152,7 @@
             <input type="password" class="form__input" placeholder=" ">
             <label class="form__label">Password</label>
         </div>
-        <button class="form__button">Log In</button>
+        <a href="homebanking.html" class="form__button">Log In</a>
         <button class="form__toggle" onclick="toggleForms()">Don't have an account? Register</button>
     </div>
 
@@ -164,7 +170,7 @@
             <input type="password" class="form__input" placeholder=" ">
             <label class="form__label">Password</label>
         </div>
-        <button class="form__button">Sign Up</button>
+        <a href="homebanking.html" class="form__button">Sign Up</a>
         <button class="form__toggle" onclick="toggleForms()">Already have an account? Log in</button>
     </div>
 

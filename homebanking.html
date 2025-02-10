@@ -11,9 +11,11 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
 
       <!-----CSS ----->
+      <link rel="stylesheet" href="styles/input.css">
       <link rel="stylesheet" href="styles/home.css">
       <link rel="stylesheet" href="styles/cards.css">
       <link rel="stylesheet" href="styles/goals.css">
+      
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
    <body>
@@ -135,7 +137,6 @@
          <div class="section goals">
             <h2>Savings goals</h2>
             <div>
-        
                <span class="newGoalBtn">
                   <button class="btn">+</button>
                   Savings goal
@@ -146,15 +147,19 @@
 
                   <form class="goalForm" method="post" action="php/savingsGoals.php">
 
-                  <input type="text" name='name' placeholder="Goal name" class="goalName">
-                  <input type="textarea" placeholder="Goal description" class="goalDescription">
-                   <input type="number" placeholder="Monthly amount" class="goalMonthlyAmount">
-                  <input type="number" placeholder="Goal amount" class="goalAmount">
-                  <input type="date" class="goalDate">
-            
+                     <div class="form__div">
+                        <input type="text" style='width: 10vw; height: 2vh'class="form__input" placeholder=" ">
+                     <label class="form__label" >Goal name</label>
+                     </div>
+                     
+           
+                  <input type="textarea" placeholder="Goal descasnt" class="goalMonthlyAmount">
+                  <input type="number" placeholder="G class="go>
+                  
                   <input type="submit"  value="Save" class="saveGoal">
 
                   </form>
+                  <p><?php echo $a ?></p>
                </div>
               
                  
