@@ -147,20 +147,33 @@
 
                <div class="newGoal">
                   <h3>Set a new Savings Goal</h3>
-
+               
                   <form class="goalForm" method="post" action="php/savingsGoals.php">
-
-                     <div class="form__div">
-                        <input type="text" style='width: 10vw; height: 2vh'class="form__input" placeholder=" ">
-                     <label class="form__label" >Goal name</label>
+                     <div style="display: flex; gap: 1rem; align-items: flex-end;">
+                        <div class="form__div" style="flex: 1; max-width: 30%;">
+                           <input type="text" class="form__input" placeholder=" ">
+                           <label class="form__label">Goal Name</label>
+                        </div>
+               
+                        <div class="form__div" style="flex: 2; max-width: 70%;">
+                           <input type="text" class="form__input" placeholder=" ">
+                           <label class="form__label">Goal Description</label>
+                        </div>
                      </div>
-                     
-                     <p>$a</p>
-                  <input type="textarea" placeholder="Goal descasnt" class="goalMonthlyAmount">
-                  <input type="number" placeholder="G class="go>
-                 
-                  <input type="submit"  value="Save" class="saveGoal">
-                     
+               
+                     <div style="display: flex; gap: 1rem;">
+                        <div class="form__div" style="flex: 1;">
+                           <input type="number" class="form__input" placeholder=" ">
+                           <label class="form__label">Goal Amount</label>
+                        </div>
+               
+                        <div class="form__div" style="flex: 1;">
+                           <input type="date" class="form__input">
+                           <label class="form__label">Target Date</label>
+                        </div>
+                     </div>
+               
+                     <input type="submit" value="Save" class="saveGoal">
                   </form>
                </div>
               
