@@ -1,9 +1,7 @@
 /*---SHOW SIDEBAR ---*/
 $(document).ready(function(){
 
-    $(".section").hide();
-    $(".home").show();
-   
+
     const showSidebar = (toggleId, sidebarId, headerId, mainId) =>{
         const toggle = document.getElementById(toggleId),
               sidebar = document.getElementById(sidebarId),
@@ -23,22 +21,7 @@ $(document).ready(function(){
      }
      showSidebar('header-toggle','sidebar', 'header', 'main')
      
-     /*---LINK ACTIVE ---*/
-     const sidebarLink = document.querySelectorAll('.sidebar__list a');
-     function linkColor(){
-         sidebarLink.forEach(l => l.classList.remove('active-link'));
-         this.classList.add('active-link');
-     }
-    
-     function viewSection(){
-        $(".section").hide();
-        var section = $(this).attr("data-section");
-        $("."+section).show();
-     }
-     sidebarLink.forEach(l => l.addEventListener('click', linkColor));
-     sidebarLink.forEach(l => l.addEventListener('click', viewSection));
-     
-    
+
      /*---DARK LIGHT THEME ---*/ 
      const themeButton = document.getElementById('theme-button')
      const darkTheme = 'dark-theme'

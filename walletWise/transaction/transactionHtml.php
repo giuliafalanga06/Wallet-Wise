@@ -173,7 +173,7 @@
                         </div>
                      </div>
                
-                     <input type="submit" value="Save" class="saveGoal">
+                     <input type="submit" value="Save" name="submit" class="saveGoal">
                   </form>
                </div>
               

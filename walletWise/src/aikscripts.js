@@ -16,10 +16,6 @@ setInterval(() => {
 }, 2000)
 
 
-function preloader () {
-    $("#preloader").css("display","none");
-    $("body").css("overflow-y", "scroll");
-}
 
 $(".nav_list > a").mouseover( (e) => {$(e.target).next().addClass("border_active")}); 
     
