@@ -120,30 +120,16 @@
                   Savings goal
                </span>
 
-               <!-----memorizzazione dei goal creati con la form ----->
-               <div class="goalList">
-                  <div class="goal">
-                     <div class="goal__info">
-                        <h3>Goal Name</h3>
-                        <p>Goal Description</p>
-                     </div>
-                     <div class="goal__amount">
-                        <h3>Goal Amount</h3>
-                        <p>€ 1000</p>
-                     </div>
-                     <div class="goal__date">
-                        <h3>Target Date</h3>
-                        <p>01/01/2023</p>
-                     </div>
-                     <div class="goal__actions">
-                        <button class="btn">Edit</button>
-                        <button class="btn">Delete</button>
-                     </div>
+               <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            
+
+               <div class="goalsList">
+                  <div class="singleGoal" >
+                     <h3 class="goal-name">New Car</h3>
+                     <canvas id="goalChart"></canvas>
                   </div>
+                  
                </div>
-
-
-               
 
                <div class="newGoal">
                   <h3>Set a new Savings Goal</h3>
@@ -189,23 +175,5 @@
       <!-----MAIN JS ----->
       <script src="../src/home.js"></script>
       <script src="../src/savingsGoals.js"></script>
-   </body>
-</html>                    <label class="form__label">Target Date</label>
-                        </div>
-                     </div>
-               
-                     <input type="submit" value="Save" name="submit" class="saveGoal">
-                  </form>
-               </div>
-              
-                 
-            </div>
-            
-         </div>
-      </main>
-      
-      <!-----MAIN JS ----->
-      <script src="src/home.js"></script>
-      <script src="src/card.js"></script>
    </body>
 </html>

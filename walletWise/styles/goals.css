@@ -1,16 +1,3 @@
-/*---GOALS---*/
-.goal{
-    position: relative;
-    width: 75vw;
-    height: 10vh;
-    box-shadow: 0 2px 24px var(--shadow-color);
-    background-color: var(--body-color) ;
-    margin: auto;
-    margin-top: 50px;
-    border-radius: 25px;
-    padding: 4vh;
-}
-/*---FORM NEW GOALS*/
 .btn {
     height: 30px;
     width: 30px;  
@@ -43,7 +30,6 @@
     padding: 4vh;
 }
 
-
 .saveGoal{
     position: absolute;
     bottom: 20px;
@@ -59,6 +45,33 @@
 input{
     background-color: var(--body-color);
 }
-
-
+.singleGoal{
+    position: relative;
+    width: 50vw;
+    height: 50vh;
+    box-shadow: 0 2px 24px var(--shadow-color);
+    background-color: var(--body-color) ;
+    margin: auto;
+    margin-top: 80px;
+    border-radius: 25px;
+    padding: 4vh;
+}
+.goalsList{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.goal-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+ }
+ 
+ #goal-chart {
+    width: 200px !important;
+    height: 200px !important;
+    display: block;
+    margin: auto;
+}
 
