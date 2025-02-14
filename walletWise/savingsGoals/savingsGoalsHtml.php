@@ -126,9 +126,10 @@
                <div class="goalsList">
                   <div class="singleGoal" >
                      <h3 class="goal-name">New Car</h3>
-                     <canvas id="goalChart"></canvas>
-                  </div>
-                  
+                     <div>
+                        <canvas id="coursesDoughnutChart" width="700" height="250"></canvas>
+                     </div>
+                  </div> 
                </div>
 
                <div class="newGoal">
