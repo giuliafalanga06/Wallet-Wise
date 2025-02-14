@@ -1,25 +1,34 @@
 <?php
-    
+    /*
+    INSERT INTO DrawerFund (goal, Description, startdate) VALUES (goalAmount, goalDescription, targetDate)
+
+    */
 
     //se il tasto submit viene cliccato
     if (isset($_POST['submit'])) {
         //connessione al database
-        require 'dbConnection.php';
+        
+    
         //prendo i dati inseriti dall'utente
         $userId = $_SESSION['userId'];
-        $goalName = $_POST['goalName'];
-        $goalDescription = $_POST['goalDescription'];
-        $goalAmount = $_POST['goalAmount'];
-        $targetDate = $_POST['targetDate'];
+        $goalName = $_POST['name'];
+        $goalDescription = $_POST['description'];
+        $goalAmount = $_POST['amount'];
+        $targetDate = $_POST['date'];
         //inserisco i dati nel database
-        $sql = "INSERT INTO DrawerFund ( goal, Description, startdate) VALUES ( '$goalAmount','$goalDescription',  '$targetDate')";
-        $result = $conn->query($sql);
-        //se l'inserimento è andato a buon fine
-        if ($result) {
-            echo "Goal saved successfully";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+
+   
+    } 
+    $sql = 'SELECT * FROM DrawerFund ';
+        //$sql = "INSERT INTO DrawerFund ( goal, Description, startdate) VALUES ( $goalAmount,$goalDescription,  $targetDate)";
+        $conn = mysqli_connect('localhost','walletwise','','my_walletwise');
+        $query = mysqli_query($conn, $sql);
+
+        $rows = mysqli_fetch_all($query);
+
+        $valori = '';
+        foreach ($rows as $row) {
+            $valori.= $row['description'];
         }
-        $conn->close();
-    }
+
 ?>

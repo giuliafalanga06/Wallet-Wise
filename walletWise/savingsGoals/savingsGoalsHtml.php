@@ -15,9 +15,8 @@
 
       <!-----CSS ----->
       <link rel="stylesheet" href="../styles/input.css">
-      <link rel="stylesheet" href="../styles/home.css">
       <link rel="stylesheet" href="../styles/goals.css">
-      
+      <link rel="stylesheet" href="../styles/home.css">
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
    <body>
@@ -122,39 +121,46 @@
 
                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             
-
                <div class="goalsList">
-                  <div class="singleGoal" >
-                     <h3 class="goal-name">New Car</h3>
-                     <canvas id="goalChart"></canvas>
+                  <div class="singleGoal" style="position: absolute; top: 20px; left: 20px;">
+                     <h3 class="goal-name">Buy a New Car</h3>
+                     <div class="goal-progress">
+                        <canvas width='120px' height='40' id="coursesDoughnutChart"></canvas>
+                     </div>
+                        <button class='saveGoal moreDetailsBtn'>More Details</button>
+                        <div class="goal-details" style="display: none; margin-top: 10px;">
+                           <p><strong>End Date:</strong> 31/12/2025</p>
+                           <p><strong>Total Saved:</strong> $5,000</p>
+                           <p><strong>Target Amount:</strong> $20,000</p>
+                        </div>
                   </div>
-                  
                </div>
 
                <div class="newGoal">
                   <h3>Set a new Savings Goal</h3>
                
+                  <?php $valori ?>
                   <form class="goalForm" method="post" action="#">
                      <div style="display: flex; gap: 1rem; align-items: flex-end;">
                         <div class="form__div" style="flex: 1; max-width: 30%;">
-                           <input type="text" class="form__input" placeholder=" ">
+                           <input type="text" name='name' class="form__input" placeholder=" ">
                            <label class="form__label">Goal Name</label>
                         </div>
                
                         <div class="form__div" style="flex: 2; max-width: 70%;">
-                           <input type="text" class="form__input" placeholder=" ">
+                           <input type="text"  name='description' class="form__input" placeholder=" ">
                            <label class="form__label">Goal Description</label>
                         </div>
                      </div>
                
                      <div style="display: flex; gap: 1rem;">
                         <div class="form__div" style="flex: 1;">
-                           <input type="number" class="form__input" placeholder=" ">
+                           <input type="number" name='amount' class="form__input" placeholder=" ">
                            <label class="form__label">Goal Amount</label>
                         </div>
                
                         <div class="form__div" style="flex: 1;">
-                           <input type="date" class="form__input">
+                           <input type="date" name='date' class="form__input">
                            <label class="form__label">Target Date</label>
                         </div>
                      </div>
