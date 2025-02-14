@@ -5,7 +5,10 @@ $(document).ready(function() {
     $('.newGoalBtn').click(function() {
         $('.newGoal').show();
     }); 
+
     $('.moreDetailsBtn').click(function(){
+
+        
         $(this).siblings('.goal-details').slideToggle();
      }); 
     const coursesData = {  

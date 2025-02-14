@@ -122,12 +122,13 @@
                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             
                <div class="goalsList">
-                  <div class="singleGoal" style="position: absolute; top: 20px; left: 20px;">
-                     <h3 class="goal-name">Buy a New Car</h3>
-                     <div class="goal-progress">
-                        <canvas width='120px' height='40' id="coursesDoughnutChart"></canvas>
-                     </div>
+                  <div class="singleGoal">
+                     <h3 class="goal-name">Buy a New Caraaaaaaaaaaaa</h3>                     
+                        <div class="goal-progress">
+                           <canvas  id="coursesDoughnutChart" style="width: 50px;"></canvas>
+                        </div>
                         <button class='saveGoal moreDetailsBtn'>More Details</button>
+                        
                         <div class="goal-details" style="display: none; margin-top: 10px;">
                            <p><strong>End Date:</strong> 31/12/2025</p>
                            <p><strong>Total Saved:</strong> $5,000</p>
