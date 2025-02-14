@@ -25,9 +25,9 @@
     box-shadow: 0 2px 24px var(--shadow-color);
     background-color: var(--body-color) ;
     margin: auto;
-    margin-top: 80px;
+    top: 80px;
     border-radius: 25px;
-    padding: 4vh;
+    padding: 4vh;   
 }
 
 .saveGoal{
@@ -45,17 +45,20 @@
 input{
     background-color: var(--body-color);
 }
+
 .singleGoal{
-    position: relative;
-    width: 30vw;
-    height: 15vh;
+    position: absolute;
+    width: 60vw;
+    top: 20px; left: 20px;
+    /*height: 15vh;*/
     box-shadow: 0 2px 24px var(--shadow-color);
     background-color: var(--body-color) ;
     margin: auto;
-    margin-top: 80px;
+    margin-top: 30px;
     border-radius: 25px;
     padding: 2vh;
 }
+
 .goalsList{
     position: absolute;
     display: flex;
@@ -63,20 +66,23 @@ input{
     gap: 20px;
     justify-content: center;
 }
+
+
 .goal-name {
     font-size: 1.2rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    padding: 10px;
  }
-#coursesDoughnutChart{
 
-    width: 75px;
+canvas{
+    width: 50px;
+    height: 50px;
     margin: auto;
 }
 
 .goal-progress{
     position: absolute;
-    bottom: 35px;
+    top: 0.05vh;
     right: 150px;
     padding: 8px 15px;
     color: white;
@@ -86,9 +92,19 @@ input{
 
 }
 
-.moreDetailsBtn{
-    position: absolute;
-    bottom: 50px;
-    right: 20px;
-
+.goal-details{
+    padding: 10px;
 }
+.moreDetailsBtn {
+    position: absolute;
+    top: 3vh;
+    right: 20px;
+    height: 20px;
+}
+/* .moreDetailsBtn{
+    position: absolute;
+    top: 3vh;
+    right: 20px;
+    height:3vh;
+} */
+

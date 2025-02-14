@@ -1,25 +1,25 @@
-$("body").css("overflow-y", "hidden");
+$("body").css("overflow-y", "auto");
 
 setInterval(() => {
     $("#bubble").children().first().css({"background": "linear-gradient(to right, hsl(136, 65%, 51%), hsl(192, 70%, 51%))", "transform": "translateY(-5px)"});
-    window.setTimeout( () => {
+    window.setTimeout(() => {
         $("#bubble").children().first().css({"background": "hsl(233, 8%, 62%)", "transform": "translateY(0)"});
         $("#bubble").children().first().next().css({"background": "linear-gradient(to right, hsl(136, 65%, 51%), hsl(192, 70%, 51%))", "transform": "translateY(-5px)"});
-    }, 500)
-    window.setTimeout( () => {
+    }, 500);
+    window.setTimeout(() => {
         $("#bubble").children().first().next().css({"background": "hsl(233, 8%, 62%)", "transform": "translateY(0)"});
         $("#bubble").children().last().css({"background": "linear-gradient(to right, hsl(136, 65%, 51%), hsl(192, 70%, 51%))", "transform": "translateY(-5px)"});
-    }, 1000)
-    window.setTimeout( () => {
+    }, 1000);
+    window.setTimeout(() => {
         $("#bubble").children().last().css({"background": "hsl(233, 8%, 62%)", "transform": "translateY(0)"});
-    }, 1500)
-}, 2000)
+    }, 1500);
+}, 2000);
 
 
-function preloader () {
-    $("#preloader").css("display","none");
-    $("body").css("overflow-y", "scroll");
-}
+// function preloader () {
+//     $("#preloader").css("display","none");
+//    // $("body").css("overflow-y", "scroll");
+// }
 
 $(".nav_list > a").mouseover( (e) => {$(e.target).next().addClass("border_active")}); 
     

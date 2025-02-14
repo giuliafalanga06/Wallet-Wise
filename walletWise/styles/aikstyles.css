@@ -7,6 +7,7 @@
 
 body {
     margin: 0;
+    overflow: auto;
     font-family: 'Public Sans';
 }
 
@@ -27,10 +28,14 @@ article>div:first-child>figure>img {
     left: 0;
     background-color: hsl(0, 0%, 100%);
     z-index: 1;
-    display: flex;
+    display: none; /* Hide preloader by default */
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+body.loading #preloader {
+    display: flex; /* Show preloader when body has loading class */
 }
 
 #bubble{
