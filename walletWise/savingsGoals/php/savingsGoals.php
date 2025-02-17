@@ -19,7 +19,7 @@
 
    
     } 
-    $sql = 'SELECT * FROM DrawerFund ';
+    /*$sql = 'SELECT * FROM DrawerFund ';
         //$sql = "INSERT INTO DrawerFund ( goal, Description, startdate) VALUES ( $goalAmount,$goalDescription,  $targetDate)";
         $conn = mysqli_connect('localhost','walletwise','','my_walletwise');
         $query = mysqli_query($conn, $sql);
@@ -29,6 +29,29 @@
         $valori = '';
         foreach ($rows as $row) {
             $valori.= $row['description'];
+        }*/
+        $servername = "localhost";
+        $dbname = "my_walletwise";
+        $DBusername = "walletwise";
+        $DBpassword = "";
+        function pdoConnection() {
+            require_once("config.php");
+    
+            try {
+                $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $DBusername, $DBpassword);
+            } catch (PDOException $e) {
+                return false;
+            }
+    
+            return $pdo;
         }
+        $pdo->prepare(query); 
+        ->execute();
+        ->bindValue("stringa di bind", variabile, PDO::PARAM_STRING);
+        /*"SELECT * FROM tabella WHERE campo = :gayAss"
+        ->bindValue(":gayAss", $gayAss, PDO::PARAM_STRING);*/
+        ->fetch();
+        ->fetchAll(); 
+        ->fetch(FETCH::ASSOCH);
 
 ?>
