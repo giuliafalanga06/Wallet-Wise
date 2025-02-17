@@ -1,7 +1,4 @@
-
-
-
-         <!DOCTYPE html>
+   <!DOCTYPE html>
    <html lang="en">
    <head>
       <meta charset="UTF-8">
@@ -63,7 +60,7 @@
                         <span>My Wallet</span>
                      </a>
 
-                     <a id="recentTransactions" class="sidebar__link"   href="../transaction/transactionHtml.php"data-section = "transactions">
+                     <a id="recentTransactions" class="sidebar__link "   href="../transaction/transactionHtml.php"data-section = "transactions">
                         <i class="ri-arrow-up-down-line"></i>
                         <span>Recent Transactions</span>
                      </a>

@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -41,7 +38,7 @@
          <div class="sidebar__container">
             <div class="sidebar__user">
                <div>
-                  <img  class="sidebar__img" src="images/un_logo_con_W_W.png" alt="user">
+                  <img  class="sidebar__img" src="../images/un_logo_con_W_W.png" alt="user">
                </div>
    
                <div class="sidebar__info">
@@ -55,22 +52,22 @@
                   <h3 class="sidebar__title">MANAGE</h3>
 
                   <div class="sidebar__list">
-                     <a href="#" id="home" class="sidebar__link active-link" data-section = "home">
+                     <a href="../home/homebankingHtml.php" id="home" class="sidebar__link " data-section = "home">
                         <i class="ri-pie-chart-2-fill"></i>
                         <span>Home</span>
                      </a>
                      
-                     <a id="wallet" class="sidebar__link" data-section = "wallet">
+                     <a id="wallet" class="sidebar__link " href="../wallet/walletHtml.php" data-section = "wallet">
                         <i class="ri-wallet-3-fill"></i>
                         <span>My Wallet</span>
                      </a>
 
-                     <a id="recentTransactions" class="sidebar__link" data-section = "transactions">
+                     <a id="recentTransactions" class="sidebar__link "   href="../transaction/transactionHtml.php"data-section = "transactions">
                         <i class="ri-arrow-up-down-line"></i>
                         <span>Recent Transactions</span>
                      </a>
 
-                     <a id="goals" class="sidebar__link " data-section = "goals">
+                     <a id="goals" class="sidebar__link active-link"  href="#" data-section = "goals">
                         <i class="ri-archive-drawer-fill"></i>
                         <span>Savings goals</span>
                      </a>
@@ -102,7 +99,7 @@
                   </i>
                </button>
 
-                  <button class="sidebar__link" onclick="window.location.href='index.html'">
+                  <button class="sidebar__link" onclick="window.location.href='../index.html'">
                     <i class="ri-logout-box-r-fill"></i>
                     <span>Log Out</span>
                   </button>
