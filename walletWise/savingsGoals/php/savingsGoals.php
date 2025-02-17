@@ -7,8 +7,9 @@
     //se il tasto submit viene cliccato
     if (isset($_POST['submit'])) {
         //connessione al database
-        
-    
+        include(realpath(__DIR__ . "/../../../walletWise/connectDB.php"));
+        $pdo = pdoConnection();
+
         //prendo i dati inseriti dall'utente
         $userId = $_SESSION['userId'];
         $goalName = $_POST['name'];
@@ -16,9 +17,19 @@
         $goalAmount = $_POST['amount'];
         $targetDate = $_POST['date'];
         //inserisco i dati nel database
-
-   
+        try {
+            $sql = "INSERT INTO DrawerFund (goal, Description, startdate) VALUES (:goalAmount, :goalDescription, :targetDate)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':goalAmount', $goalAmount);
+            $stmt->bindParam(':goalDescription', $goalDescription);
+            $stmt->bindParam(':targetDate', $targetDate);
+            $stmt->execute();
+            echo "Dati inseriti correttamente!";
+        } catch (Exception $e) {
+            echo "Errore: " . $e->getMessage();
+        }
     } 
+    
     /*$sql = 'SELECT * FROM DrawerFund ';
         //$sql = "INSERT INTO DrawerFund ( goal, Description, startdate) VALUES ( $goalAmount,$goalDescription,  $targetDate)";
         $conn = mysqli_connect('localhost','walletwise','','my_walletwise');
@@ -30,28 +41,26 @@
         foreach ($rows as $row) {
             $valori.= $row['description'];
         }*/
-        $servername = "localhost";
-        $dbname = "my_walletwise";
-        $DBusername = "walletwise";
-        $DBpassword = "";
-        function pdoConnection() {
-            require_once("config.php");
-    
-            try {
-                $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $DBusername, $DBpassword);
-            } catch (PDOException $e) {
-                return false;
+        include(realpath(__DIR__ . "/../../../walletWise/connectDB.php"));
+        $pdo = pdoConnection();
+
+        try {
+            $sql = "SELECT * FROM DrawerFund";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $valori = '';
+            foreach ($rows as $row) {
+                if (!isset($row['description'])) {
+                    throw new Exception("Colonna 'description' non trovata!");
+                }
+                $valori .= $row['description'];
             }
-    
-            return $pdo;
+            echo($valori);
+            echo "Dati estratti correttamente: " . $valori;
+        } catch (Exception $e) {
+            echo "Errore: " . $e->getMessage();
         }
-        $pdo->prepare(query); 
-        ->execute();
-        ->bindValue("stringa di bind", variabile, PDO::PARAM_STRING);
-        /*"SELECT * FROM tabella WHERE campo = :gayAss"
-        ->bindValue(":gayAss", $gayAss, PDO::PARAM_STRING);*/
-        ->fetch();
-        ->fetchAll(); 
-        ->fetch(FETCH::ASSOCH);
 
 ?>

@@ -120,7 +120,11 @@
                </span>
 
                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            
+
+               <?php 
+                  include(__DIR__ . "../../walletWise/savingsGoals/php/savingsGoals.php");
+               ?>
+
                <div class="goalsList">
                   <div class="singleGoal">
                      <h3 class="goal-name">Buy a New Caraaaaaaaaaaaa</h3>                     
@@ -182,5 +186,8 @@
       <!-----MAIN JS ----->
       <script src="../src/home.js"></script>
       <script src="../src/savingsGoals.js"></script>
+
+      <!-----MAIN PHP ----->
+
    </body>
 </html>
