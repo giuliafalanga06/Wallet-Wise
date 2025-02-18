@@ -1,16 +1,10 @@
 
 $(document).ready(function() {
     
-    $('.newGoal').hide();
-    $('.newGoalBtn').click(function() {
-        $('.newGoal').show();
-    }); 
-
-    $('.moreDetailsBtn').click(function(){
-
-        
+    $('.moreDetailsBtn').click(function(){        
         $(this).siblings('.goal-details').slideToggle();
      }); 
+
     const coursesData = {  
         datasets: [{ 
             data: [30, 70], 
@@ -22,8 +16,16 @@ $(document).ready(function() {
         type: 'doughnut', 
         data: coursesData, 
     }; 
-    const ctx = document.getElementById( 
+    const ctx = document.getElementsByClassName( 
         'coursesDoughnutChart').getContext('2d'); 
         
     new Chart(ctx, config); 
+    document.querySelector('.newGoalBtn').addEventListener('click', () => {
+        document.querySelector('.newGoal').style.display = 'block';
+        document.querySelector('.overlay').style.display = 'block';
+    });
+    
+    
+
+   
 });

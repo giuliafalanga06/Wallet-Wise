@@ -110,7 +110,7 @@
 
       <!-----MAIN ----->
       <main class="main container" id="main">
-
+      <div class="overlay"></div>
          <div class="section goals">
             <h2>Savings goals</h2>
             <div>
@@ -120,21 +120,14 @@
                </span>
 
                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            
+
+               <?php 
+                  include "php/savingsGoals.php";
+                  
+               ?>
+
                <div class="goalsList">
-                  <div class="singleGoal">
-                     <h3 class="goal-name">Buy a New Caraaaaaaaaaaaa</h3>                     
-                        <div class="goal-progress">
-                           <canvas  id="coursesDoughnutChart" style="width: 50px;"></canvas>
-                        </div>
-                        <button class='saveGoal moreDetailsBtn'>More Details</button>
-                        
-                        <div class="goal-details" style="display: none; margin-top: 10px;">
-                           <p><strong>End Date:</strong> 31/12/2025</p>
-                           <p><strong>Total Saved:</strong> $5,000</p>
-                           <p><strong>Target Amount:</strong> $20,000</p>
-                        </div>
-                  </div>
+                  <?php echo $valori; ?>
                </div>
 
                <div class="newGoal">
@@ -182,5 +175,8 @@
       <!-----MAIN JS ----->
       <script src="../src/home.js"></script>
       <script src="../src/savingsGoals.js"></script>
+
+      <!-----MAIN PHP ----->
+
    </body>
 </html>

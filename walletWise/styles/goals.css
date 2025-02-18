@@ -18,18 +18,32 @@
     gap: 5px;
 }
 
-.newGoal{
-    position: relative;
+.newGoal {
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
     width: 50vw;
     height: 50vh;
     box-shadow: 0 2px 24px var(--shadow-color);
-    background-color: var(--body-color) ;
-    margin: auto;
-    top: 80px;
+    background-color: var(--body-color);
     border-radius: 25px;
-    padding: 4vh;   
+    padding: 4vh;
+    z-index: 1000; 
+    display: none;
 }
 
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 999; 
+    display: none;
+}
 .saveGoal{
     position: absolute;
     bottom: 20px;
@@ -46,27 +60,13 @@ input{
     background-color: var(--body-color);
 }
 
-.singleGoal{
-    position: absolute;
-    width: 60vw;
-    top: 20px; left: 20px;
-    /*height: 15vh;*/
-    box-shadow: 0 2px 24px var(--shadow-color);
-    background-color: var(--body-color) ;
-    margin: auto;
-    margin-top: 30px;
-    border-radius: 25px;
-    padding: 2vh;
-}
-
-.goalsList{
-    position: absolute;
+.goalsList {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    flex-direction:row; 
+    gap: 20px; 
+    align-items: center; 
+    margin-top: 20px;
 }
-
 
 .goal-name {
     font-size: 1.2rem;
@@ -74,10 +74,11 @@ input{
     padding: 10px;
  }
 
-canvas{
-    width: 50px;
-    height: 50px;
+ canvas {
+    width: 150px;
+    height: 150px;
     margin: auto;
+    
 }
 
 .goal-progress{
@@ -85,26 +86,39 @@ canvas{
     top: 0.05vh;
     right: 150px;
     padding: 8px 15px;
-    color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-
+    z-index: 10; /* Canvas sopra gli altri elementi */
+}
+.singleGoal {
+    position: relative; 
+    width: 60vw;
+    box-shadow: 0 2px 24px var(--shadow-color);
+    background-color: var(--body-color);
+    border-radius: 25px;
+    padding: 2vh;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;  
+    justify-content: space-between; 
+}
+.goal-progress{
+    flex-shrink: 0; 
 }
 
-.goal-details{
-    padding: 10px;
+.goal-details {
+    display: none;
+    margin-top: 10px;
 }
+
 .moreDetailsBtn {
-    position: absolute;
-    top: 3vh;
-    right: 20px;
-    height: 20px;
+    background-color: var(--first-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
 }
-/* .moreDetailsBtn{
-    position: absolute;
-    top: 3vh;
-    right: 20px;
-    height:3vh;
-} */
+
 
