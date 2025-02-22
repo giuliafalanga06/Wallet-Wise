@@ -2,9 +2,12 @@
 $(document).ready(function() {
     
     $('.newGoal').hide();
+    $('.overlay').hide();
     $('.newGoalBtn').click(function() {
         $('.newGoal').show();
+        $('.overlay').show();
     }); 
+    
 
     $('.moreDetailsBtn').click(function(){
 
