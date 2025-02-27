@@ -1,8 +1,11 @@
 <?php
-    /*
-    INSERT INTO DrawerFund (goal, Description, startdate) VALUES (goalAmount, goalDescription, targetDate)
+//se il nome e la data di inizio sono settate
+    // if (!isset($_POST['monthAmount']) && isset($_POST['startDate']) && isset($_POST['goalAmount'])) {
+    //     $date = $_POST['startDate'];
+    //     $endDateMonth = $_POST['goalAmount']/ $_POST['monthAmount'];
+    //     date_add($date,date_interval_create_from_date_string($endDateMonth." months"));
+    // }
 
-    */
 
     //se il tasto submit viene cliccato
     // if (isset($_POST['submit'])) {
@@ -42,24 +45,30 @@
             $valori.= $row['description'];
         }*/
 
-        include(realpath(__DIR__ . "/../../../walletWise/connectDB.php"));
-        $pdo = pdoConnection();
+
+//------COLLEGAMENTO AL DATABASE ------
+        include realpath(__DIR__ . "/../../../walletWise/connectDB.php");
+        try {
+            $pdo = new PDO("mysql:host=localhost;dbname=my_walletwise", 'walletwise', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Attiva la gestione errori
+        } catch (PDOException $e) {
+            die("Errore di connessione: " . $e->getMessage()); // Mostra l'errore
+        }
         
         if (!$pdo) {
             die("Errore di connessione al database.");
         } else {
             echo "Connessione al database riuscita!<br>";
         }
-        
-
         $sql = "SELECT DATABASE()";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $dbName = $stmt->fetchColumn();
         echo "Connesso al database: " . $dbName . "<br>";
 
+//------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
         try {
-            $sql = "SELECT * FROM DrawerFund;";
+            $sql = "SELECT * FROM SavingsGoal;";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -95,5 +104,6 @@
 
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
+
 
 ?>

@@ -121,11 +121,8 @@
 
                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-               <?php 
-                  include "php/savingsGoals.php";
-                  
-               ?>
-
+               <?php include "php/savingsGoals.php";?>
+               
                <div class="goalsList">
                   <?php echo $valori; ?>
                </div>
@@ -134,8 +131,10 @@
                   <h3>Set a new Savings Goal</h3>
                
                   <?php $valori ?>
-                  <form class="goalForm" method="post" action="#">
+                  <form class="goalForm" method="post" action="php/formSavingsGoal.php">
+
                      <div style="display: flex; gap: 1rem; align-items: flex-end;">
+
                         <div class="form__div" style="flex: 1; max-width: 30%;">
                            <input type="text" name='name' class="form__input" placeholder=" ">
                            <label class="form__label">Goal Name</label>
@@ -149,13 +148,27 @@
                
                      <div style="display: flex; gap: 1rem;">
                         <div class="form__div" style="flex: 1;">
-                           <input type="number" name='amount' class="form__input" placeholder=" ">
+                           <input type="number" id='goalAmount' name='goalAmount' class="form__input" placeholder=" ">
                            <label class="form__label">Goal Amount</label>
+                        </div>
+
+                        <div class="form__div" style="flex: 1;">
+                           <input type="text" id='monthAmount' name='monthAmount' class="form__input" placeholder=" ">
+                           <label class="form__label">Month Amount</label>
+                        </div>
+               
+                        
+                     </div>
+
+                     <div style="display: flex; gap: 1rem;">
+                        <div class="form__div" style="flex: 1;">
+                           <input type="date" id='startDate'  name='startDate' class="form__input">
+                           <label class="form__label">Start Date</label>
                         </div>
                
                         <div class="form__div" style="flex: 1;">
-                           <input type="date" name='date' class="form__input">
-                           <label class="form__label">Target Date</label>
+                           <input type="date"  name='endDate' value="$date" class="form__input" disabled>
+                           <label class="form__label">End Date</label>
                         </div>
                      </div>
                

@@ -62,11 +62,46 @@ input{
 
 .goalsList {
     display: flex;
-    flex-direction:row; 
-    gap: 20px; 
-    align-items: center; 
-    margin-top: 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 50px;
+    /*max 3 elementi*/
+    justify-content: flex-start;
+    align-items: left;
+    margin: auto;
+    /*max-width: 100%;*/
 }
+
+.singleGoal {
+    width:80vh;
+    max-width: 800vw ;
+    min-width: 200px;
+    min-height: 150px;
+    box-shadow: 0 2px 24px var(--shadow-color);
+    background-color: var(--body-color);
+    border-radius: 25px;
+    padding: 2vh;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative; /* Mantiene la posizione del bottone */
+}
+
+.moreDetailsBtn {
+    background-color: var(--first-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px; /* Fissa il bottone in basso */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 
 .goal-name {
     font-size: 1.2rem;
@@ -91,18 +126,7 @@ input{
     cursor: pointer;
     z-index: 10; /* Canvas sopra gli altri elementi */
 }
-.singleGoal {
-    position: relative; 
-    width: 60vw;
-    box-shadow: 0 2px 24px var(--shadow-color);
-    background-color: var(--body-color);
-    border-radius: 25px;
-    padding: 2vh;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;  
-    justify-content: space-between; 
-}
+
 .goal-progress{
     flex-shrink: 0; 
 }
@@ -112,13 +136,5 @@ input{
     margin-top: 10px;
 }
 
-.moreDetailsBtn {
-    background-color: var(--first-color);
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 10px;
-    cursor: pointer;
-}
 
 
