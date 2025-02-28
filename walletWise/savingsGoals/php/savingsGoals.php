@@ -58,13 +58,13 @@
         if (!$pdo) {
             die("Errore di connessione al database.");
         } else {
-            echo "Connessione al database riuscita!<br>";
+            /*echo "Connessione al database riuscita!<br>";*/
         }
         $sql = "SELECT DATABASE()";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $dbName = $stmt->fetchColumn();
-        echo "Connesso al database: " . $dbName . "<br>";
+        /*echo "Connesso al database: " . $dbName . "<br>";*/
 
 //------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
         try {
@@ -82,17 +82,21 @@
                 $description = $row['Description'];
                 $goal = $row['Goal'];
                 $valori .= "<div class='singleGoal'>
-                                <h3 class='goal-name'>$description</h3>                     
-                                <div class='goal-progress'>
+                                <img src='../images/image-plane.jpg'>
+                                <h3 class='goal-name'>$description</h3>   
+
+                            <!--    <div class='goal-progress'>
                                     <canvas  class='coursesDoughnutChart' style='width: 50px;'></canvas>
                                 </div>
-                             <button class='saveGoal moreDetailsBtn'>More Details</button>
+                             <button class='saveGoal moreDetailsBtn'>More Details</button>-->
                         
-                             <div class='goal-details' style='display: none; margin-top: 10px;'>
+                            <!-- 
+                            <div class='goal-details' style='display: none; margin-top: 10px;'> 
                                 <p><strong>End Date:</strong> 31/12/2025</p>
                                 <p><strong>Total Saved:</strong> $5,000</p>
                                 <p><strong>Target Amount:</strong> $20,000</p>
-                            </div>
+                            </div> 
+                            -->
                   </div>";
             }
 

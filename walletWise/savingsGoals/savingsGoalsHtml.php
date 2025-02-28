@@ -15,7 +15,7 @@
 
       <!-----CSS ----->
       <link rel="stylesheet" href="../styles/input.css">
-      <link rel="stylesheet" href="../styles/goals.css">
+      <link rel="stylesheet" href="styles/savingsGoals.css">
       <link rel="stylesheet" href="../styles/home.css">
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
@@ -187,7 +187,7 @@
       
       <!-----MAIN JS ----->
       <script src="../src/home.js"></script>
-      <script src="../src/savingsGoals.js"></script>
+      <script src="js/savingsGoals.js"></script>
 
       <!-----MAIN PHP ----->
 
