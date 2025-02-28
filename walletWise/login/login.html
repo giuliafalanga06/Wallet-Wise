@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
@@ -119,21 +118,6 @@
             box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
         }
 
-        .form__button:visited,
-        .form__button:active {
-            color: white;
-            /* Evita cambiamenti di colore */
-        }
-
-
-        .form__toggle {
-            background: none;
-            border: none;
-            color: var(--first-color);
-            cursor: pointer;
-            font-size: var(--small-font-size);
-        }
-
         .hidden {
             display: none;
         }
@@ -144,33 +128,37 @@
 <body>
     <div class="form-container" id="login-form">
         <h1 class="form__title">Log In</h1>
-        <div class="form__div">
-            <input type="text" class="form__input" placeholder=" ">
-            <label class="form__label">Nome</label>
-        </div>
-        <div class="form__div">
-            <input type="password" class="form__input" placeholder=" ">
-            <label class="form__label">Password</label>
-        </div>
-        <a href="../home/homebankingHtml.php" class="form__button">Log In</a>
+        <form action="process.php" method="post">
+            <div class="form__div">
+                <input type="email" name="email" class="form__input" placeholder=" " required>
+                <label class="form__label">Email</label>
+            </div>
+            <div class="form__div">
+                <input type="password" name="password" class="form__input" placeholder=" " required>
+                <label class="form__label">Password</label>
+            </div>
+            <button type="submit" name="login" class="form__button">Log In</button>
+        </form>
         <button class="form__toggle" onclick="toggleForms()">Don't have an account? Register</button>
     </div>
 
     <div class="form-container hidden" id="signup-form">
         <h1 class="form__title">Sign Up</h1>
-        <div class="form__div">
-            <input type="text" class="form__input" placeholder=" ">
-            <label class="form__label">Nome</label>
-        </div>
-        <div class="form__div">
-            <input type="email" class="form__input" placeholder=" ">
-            <label class="form__label">Email</label>
-        </div>
-        <div class="form__div">
-            <input type="password" class="form__input" placeholder=" ">
-            <label class="form__label">Password</label>
-        </div>
-        <a href="../home/homebankingHtml.php" class="form__button">Sign Up</a>
+        <form action="process.php" method="post">
+            <div class="form__div">
+                <input type="text" name="name" class="form__input" placeholder=" " required>
+                <label class="form__label">Nome</label>
+            </div>
+            <div class="form__div">
+                <input type="email" name="email" class="form__input" placeholder=" " required>
+                <label class="form__label">Email</label>
+            </div>
+            <div class="form__div">
+                <input type="password" name="password" class="form__input" placeholder=" " required>
+                <label class="form__label">Password</label>
+            </div>
+            <button type="submit" name="signup" class="form__button">Sign Up</button>
+        </form>
         <button class="form__toggle" onclick="toggleForms()">Already have an account? Log in</button>
     </div>
 

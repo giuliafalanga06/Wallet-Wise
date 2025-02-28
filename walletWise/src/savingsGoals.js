@@ -6,6 +6,7 @@ $(document).ready(function() {
         $('.newGoal').show();
         $('.overlay').show();
     }); 
+    
 
     $('.moreDetailsBtn').click(function(){        
         $(this).siblings('.goal-details').slideToggle();

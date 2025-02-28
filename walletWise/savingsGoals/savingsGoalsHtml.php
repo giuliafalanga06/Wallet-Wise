@@ -122,7 +122,6 @@
                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                <?php include "php/savingsGoals.php";?>
-               
                <div class="goalsList">
                   <?php echo $valori; ?>
                </div>

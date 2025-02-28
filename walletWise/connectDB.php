@@ -1,5 +1,7 @@
 <?php 
+
 function pdoConnection() {
+
     $servername = "localhost";
     $dbname = "my_walletwise";
     $DBusername = "walletwise";
@@ -13,5 +15,6 @@ function pdoConnection() {
         die("Errore di connessione: " . $e->getMessage()); // Mostra l'errore
     }
 }
+
 
 ?>
