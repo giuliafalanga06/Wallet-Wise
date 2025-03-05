@@ -68,36 +68,29 @@
 
 //------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
         try {
-            $sql = "SELECT * FROM SavingsGoal;";
+            $sql = "SELECT * FROM SavingsGoal ORDER BY Id;";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             $valori = '';
             foreach ($rows as $row) {
-                if (!isset($row['Description'])) {
-                    echo "Colonna 'description' non trovata!";
+                if (!isset($row['Name'])) {
+                    echo "Colonna 'name' non trovata!";
                 }
 
-                $description = $row['Description'];
+                $name = $row['Name'];
                 $goal = $row['Goal'];
-                $valori .= "<div class='singleGoal'>
-                                <img src='../images/image-plane.jpg'>
-                                <h3 class='goal-name'>$description</h3>   
-
-                            <!--    <div class='goal-progress'>
-                                    <canvas  class='coursesDoughnutChart' style='width: 50px;'></canvas>
+                $id = $row['Id'];
+                $icon = $row['Icon'];
+                $valori .= "
+                            <a href='savingsGoalsDetails.php?id=$id'>
+                                <div class='singleGoal'>
+                                    <img src='../../$icon'>
+                                    <h3 class='goal-name'>$name</h3>   
                                 </div>
-                             <button class='saveGoal moreDetailsBtn'>More Details</button>-->
-                        
-                            <!-- 
-                            <div class='goal-details' style='display: none; margin-top: 10px;'> 
-                                <p><strong>End Date:</strong> 31/12/2025</p>
-                                <p><strong>Total Saved:</strong> $5,000</p>
-                                <p><strong>Target Amount:</strong> $20,000</p>
-                            </div> 
-                            -->
-                  </div>";
+                            </a>
+                ";
             }
 
 
@@ -108,6 +101,4 @@
 
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
-
-
 ?>

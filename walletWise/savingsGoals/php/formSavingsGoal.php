@@ -29,19 +29,21 @@
             $goal = $_POST['goalAmount'];
             $description = $_POST['description'];
             $startDate = $_POST['startDate'];
-           // $endDate = $_POST['endDate'];
             $name = $_POST['name'];
             $monthAmount = $_POST['monthAmount'];
-
+            $endDate = date('Y-m-d', strtotime($startDate . ' + ' . ceil($goal/$monthAmount) . ' months'));
+            
+            $icon = insertIcon($pdo);
             try {
-                $sql = "INSERT INTO SavingsGoal (Goal, Description, StartDate, EndDate, Name, monthAmount) VALUES (:goal, :description, :startDate, :endDate, :name, :monthAmount)";
+                $sql = "INSERT INTO SavingsGoal (Goal, Description, StartDate, EndDate, Name, monthAmount, Icon) VALUES (:goal, :description, :startDate, :endDate, :name, :monthAmount, :icon)";
                 $stmt = $pdo->prepare($sql);
                 $stmt->bindParam(':goal', $goal);
                 $stmt->bindParam(':description', $description);
                 $stmt->bindParam(':startDate', $startDate);
-                $stmt->bindParam(':endDate', $startDate);
+                $stmt->bindParam(':endDate', $endDate);
                 $stmt->bindParam(':name', $name);
                 $stmt->bindParam(':monthAmount', $monthAmount);
+                $stmt->bindParam(':icon', $icon);
                 $stmt->execute();
                 //echo "Dati inseriti correttamente!";
                 
@@ -52,4 +54,22 @@
             exit();
         }
 
+        function insertIcon($pdo): string{
+            if (isset($_POST['submit'])) {
+                $dir = getcwd();
+                if(is_dir( $dir)){
+                    $iconDir = opendir( $dir);
+                    $tmpName = $_FILES['icon']['tmp_name'];
+                    $explode = explode(".", $_FILES['icon']['name']);
+                    $ext = end($explode);
+                    $name = $pdo->lastInsertId().'.'.'png';
+                    $path = "images/" . $name;
+                    move_uploaded_file($tmpName, $path);
+                }
+            }
+            closeDir($iconDir);
+            return $path;
+        }
 ?>
+
+

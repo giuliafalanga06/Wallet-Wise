@@ -167,8 +167,8 @@
                         </div>
                
                         <div class="form__div" style="flex: 1;">
-                           <input type="date"  name='endDate' value="$date" class="form__input" disabled>
-                           <label class="form__label">End Date</label>
+                           <input type="file"  name='icon' value="" class="form__input">
+                           <label class="form__label">Icon</label>
                         </div>
                      </div>
                
