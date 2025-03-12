@@ -1,45 +1,57 @@
-
 $(document).ready(function() {
+    // Nascondi inizialmente la modale e l'overlay
     $('.newGoal').hide();
     $('.overlay').hide();
+
+    // Mostra la modale e l'overlay al click del bottone
     $('.newGoalBtn').click(function() {
         $('.newGoal').show();
         $('.overlay').show();
     }); 
 
-    $('.moreDetailsBtn').click(function(){        
-        $(this).siblings('.goal-details').slideToggle();
-     }); 
-
+    // Assicurati di avere valori numerici per goal e currentAmount
+    const goal = document.getElementsByClassName('goalAmount')[0] ||100;
+    goalTxt = goal.textContent
+    const currentAmount = document.getElementsByClassName('currentAmount')[0]|| 50;
+    currentAmountTxt = currentAmount.textContent
+    // Calcola i dati per il grafico
     const coursesData = {  
         datasets: [{ 
-            data: [30, 70], 
-            backgroundColor: ['red', 'green'], 
+            data: [100 - (currentAmountTxt / goalTxt * 100), currentAmountTxt / goalTxt * 100], 
+            backgroundColor: ['hsla(193, 86.10%, 33.90%, 0.18)','hsl(193, 86%, 34%)'], 
         }], 
     }; 
 
+    // Configurazione del grafico
     const config = { 
         type: 'doughnut', 
         data: coursesData, 
     }; 
-    const ctx = document.getElementsByClassName( 
-        'coursesDoughnutChart').getContext('2d'); 
-        
-    new Chart(ctx, config); 
+
+    // Seleziona il contesto del grafico
+    const ctx = document.getElementsByClassName('coursesDoughnutChart')[0];
+
+    // Crea il grafico
+    if (ctx) {
+        new Chart(ctx, config);
+    }
+
+    // Gestione del nuovo goal
     document.querySelector('.newGoalBtn').addEventListener('click', () => {
         document.querySelector('.newGoal').style.display = 'block';
         document.querySelector('.overlay').style.display = 'block';
     });
-    
-    
 
-    // const form = document.querySelector('form');
- 
-    //     if (!document.querySelector('#monthAmount').value && document.querySelector('#startDate').value && document.querySelector('#goalAmount').value) {
-    //         const startDate = new Date(document.querySelector('#startDate').value);
-    //         const endDateMonth = parseInt(document.querySelector('#goalAmount').value) / parseInt(document.querySelector('#monthAmount').value);
-    //         startDate.setMonth(startDate.getMonth() + endDateMonth);
-    //         document.querySelector('#endDate').value = startDate;
-    //     }
-   
+    // Calcolare la data di fine
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            if (!document.querySelector('#monthAmount').value && document.querySelector('#startDate').value && document.querySelector('#goalAmount').value) {
+                const startDate = new Date(document.querySelector('#startDate').value);
+                const endDateMonth = parseInt(document.querySelector('#goalAmount').value) / parseInt(document.querySelector('#monthAmount').value);
+                startDate.setMonth(startDate.getMonth() + endDateMonth);
+                document.querySelector('#endDate').value = startDate.toISOString().split('T')[0];
+            }
+        });
+    }
 });

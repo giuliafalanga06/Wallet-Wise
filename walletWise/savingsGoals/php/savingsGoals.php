@@ -48,12 +48,7 @@
 
 //------COLLEGAMENTO AL DATABASE ------
         include realpath(__DIR__ . "/../../../walletWise/connectDB.php");
-        try {
-            $pdo = new PDO("mysql:host=localhost;dbname=my_walletwise", 'walletwise', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Attiva la gestione errori
-        } catch (PDOException $e) {
-            die("Errore di connessione: " . $e->getMessage()); // Mostra l'errore
-        }
+        $pdo = pdoConnection();
         
         if (!$pdo) {
             die("Errore di connessione al database.");
@@ -75,18 +70,14 @@
 
             $valori = '';
             foreach ($rows as $row) {
-                if (!isset($row['Name'])) {
-                    echo "Colonna 'name' non trovata!";
-                }
-
                 $name = $row['Name'];
                 $goal = $row['Goal'];
                 $id = $row['Id'];
-                $icon = $row['Icon'];
+                $icon = $row['icon'];
                 $valori .= "
                             <a href='savingsGoalsDetails.php?id=$id'>
                                 <div class='singleGoal'>
-                                    <img src='../../$icon'>
+                                    <img src='https://walletwise.altervista.org/walletWise/images/$icon'>
                                     <h3 class='goal-name'>$name</h3>   
                                 </div>
                             </a>
