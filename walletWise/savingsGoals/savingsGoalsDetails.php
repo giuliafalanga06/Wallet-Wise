@@ -1,3 +1,37 @@
+<?php 
+
+include realpath(__DIR__ . '/../../walletWise/connectDB.php');
+$pdo = pdoConnection();
+if (!$pdo) {
+    die('Errore di connessione al database.');
+} else {
+    /*echo 'Connessione al database riuscita!<br>';*/
+}
+$sql = 'SELECT DATABASE()';
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$dbName = $stmt->fetchColumn();
+/*echo 'Connesso al database: ' . $dbName . '<br>';*/
+
+//------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
+
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM SavingsGoal WHERE Id = '$id';";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $name = $rows[0]['Name'];
+    $startDate = $rows[0]['StartDate'];
+    $endDate = $rows[0]['EndDate'];
+    $monthAmount = $rows[0]['MonthAmount'];
+    $goalAmount = $rows[0]['Goal'];
+    $icon =$rows[0]['icon']; 
+    $description = $rows[0]['Description'];
+    $valori = '';
+    $currentAmount = $rows[0]['CurrentAmount'];
+
+$html = "
 <!DOCTYPE html>
    <html lang='en'>
    <head>
@@ -109,7 +143,6 @@
       <main class='main container' id='main'>
       <div class='overlay'></div>
          <div class='section goals'>
-            <h2>Savings goals</h2>
             <div>
                <span class='newGoalBtn'>
                   <button class='btn'>+</button>
@@ -120,68 +153,20 @@
 
                <?php include 'php/savingsGoals.php';?>
                
-               <div class='goalsList'>
-                  <?php echo $valori; ?>
-               </div>
+                <img src='https://walletwise.altervista.org/walletWise/images/$icon' style=\"border-radius: 50%; width: 100px; height: 100px;\">
+                <h1>$name</h1>
+                <p>Description: $description</p>
+                <p>Start date: $startDate</p>
+                <p>End date: $endDate</p>
 
-               <div class='newGoal'>
-                  <h3>Set a new Savings Goal</h3>
-               
-                  <?php $valori ?>
-                  <form class='goalForm' method='post' action='php/formSavingsGoal.php' enctype='multipart/form-data'>
+                <p>Goal amount: <span class='goalAmount'>$goalAmount<span></p>
+                <p>Month amount: $monthAmount</p>
+                <p>Current amount: <span class='currentAmount'>$currentAmount</span></p>
 
-                     <div style='display: flex; gap: 1rem; align-items: flex-end;'>
-
-                        <div class='form__div' style='flex: 1; max-width: 30%;'>
-                           <input type='text' name='name' class='form__input' placeholder=' '>
-                           <label class='form__label'>Goal Name</label>
-                        </div>
-               
-                        <div class='form__div' style='flex: 2; max-width: 70%;'>
-                           <input type='text'  name='description' class='form__input' placeholder=' '>
-                           <label class='form__label'>Goal Description</label>
-                        </div>
-                     </div>
-               
-                     <div style='display: flex; gap: 1rem;'>
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='number' id='goalAmount' name='goalAmount' class='form__input' placeholder=' '>
-                           <label class='form__label'>Goal Amount</label>
-                        </div>
-
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='number' id='monthAmount' name='monthAmount' class='form__input' placeholder=' '>
-                           <label class='form__label'>Month Amount</label>
-                        </div>
-               
-                        
-                     </div>
-
-                     <div style='display: flex; gap: 1rem;'>
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='date' id='startDate'  name='startDate' class='form__input'>
-                           <label class='form__label'>Start Date</label>
-                        </div>
-               
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='file'  name='icon' value='' class='form__input'>
-                           <label class='form__label'>Icon</label>
-                        </div>
-                     </div>
-               
-                     <input type='submit' value='Save' name='submit' class='saveGoal'>
-                  </form>
-               </div>
-              
-                 
+                <canvas class='coursesDoughnutChart'></canvas>
             </div>
-            
          </div>
-
-
-
       </main>
-      
       <!-----MAIN JS ----->
       <script src='../src/home.js'></script>
       <script src='js/savingsGoals.js'></script>
@@ -190,3 +175,8 @@
 
    </body>
 </html>
+";
+
+echo $html;
+
+?>

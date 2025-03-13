@@ -18,6 +18,7 @@
 
 .form__input {
     position: absolute;
+    color: var(--text-color);
     top: 0;
     left: 0;
     width: 100%;
@@ -34,7 +35,6 @@
 
 .form__input:focus {
     border-color: var(--first-color);
-    /*box-shadow: 0 0 10px rgba(26, 115, 232, 0.5);*/
 }
 
 .form__label {
@@ -43,8 +43,8 @@
     top: 50%;
     transform: translateY(-50%);
     padding: 0 0.25rem;
-    background-color: #fff;
-    color: var(--input-color);
+    background-color:var(--body-color);
+    color: var(--text-color);
     font-size: var(--normal-font-size);
     transition: 0.3s;
 }

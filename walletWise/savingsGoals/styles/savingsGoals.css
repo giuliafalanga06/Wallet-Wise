@@ -11,7 +11,7 @@
 
 .newGoalBtn{
     position: fixed;
-    top: 150px;  
+    top: 17vh;  
     right: 50px; 
     display: flex;
     align-items: center;
@@ -32,7 +32,6 @@
     z-index: 1000; 
     display: none;
 }
-
 
 .overlay {
     position: fixed;
@@ -61,32 +60,35 @@ input{
 }
 
 .goalsList {
+    margin-top: 35px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    gap: 50px;
-    /*max 3 elementi*/
-    justify-content: flex-start;
-    align-items: left;
-    margin-top: 55500px;
-    /*max-width: 100%;*/
+    gap: 60px;
+    justify-content:flex-start;
+    align-items: center;
 }
 
 .singleGoal {
-    width:80vh;
-    max-width: 800vw ;
+    width:270px;
+    height: 150px;
+    max-width: 15vw ;
     min-width: 200px;
-    min-height: 150px;
     box-shadow: 0 2px 24px var(--shadow-color);
     background-color: var(--body-color);
     border-radius: 25px;
-    padding: 2vh;
-    margin-bottom: 20px;
+    padding: 3vh;
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
     flex-direction: column;
     position: relative; /* Mantiene la posizione del bottone */
+}
+
+.singleGoal img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
 
 .moreDetailsBtn {
@@ -102,11 +104,11 @@ input{
     transform: translateX(-50%);
 }
 
-
 .goal-name {
     font-size: 1.2rem;
     font-weight: bold;
-    padding: 10px;
+    width: 100%;
+    margin: 0;
  }
 
  canvas {
@@ -127,14 +129,15 @@ input{
     z-index: 10; /* Canvas sopra gli altri elementi */
 }
 
-.goal-progress{
-    flex-shrink: 0; 
+
+a{
+    color: var(--text-color);
+    text-decoration: none;
 }
 
-.goal-details {
-    display: none;
-    margin-top: 10px;
+@media screen and (max-width: 1150px) {
+    .newGoalBtn{
+        top:12vh;
+    }
 }
-
-
 
