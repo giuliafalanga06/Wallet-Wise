@@ -1,4 +1,12 @@
+<?php
+session_start();
 
+// Controlla se l'utente è loggato
+if (!isset($_SESSION["username"])) {
+    header("Location: login.html");
+    exit();
+}
+?>
        
 
 <!DOCTYPE html>
@@ -15,7 +23,7 @@
 
       <!-----CSS ----->
       <link rel="stylesheet" href="../styles/home.css">
-      
+      <link rel="stylesheet" href="styles/home.css">
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
    <body>
@@ -42,8 +50,8 @@
                </div>
    
                <div class="sidebar__info">
-                  <h3>Sgaramella Antonio</h3>
-                  <span>sgara06.anto@gmail.com</span>
+                  <h3><?php echo htmlspecialchars($_SESSION["username"]); ?></h3>
+                  <span><?php echo htmlspecialchars($_SESSION["email"] ?? ''); ?></span>
                </div>
             </div>
 
@@ -109,17 +117,26 @@
 
       <!-----MAIN ----->
       <main class="main container" id="main">
-
-      <div class="section home">
-            <h2>home</h2>
-            
+         <div class="section home">
+            <h2>Home</h2>
+            <br>
+               <div class="content">
+                  <div class="left-div">
+                     <div class="top-left">
+                        <p>SALDO : 10000000000000000000€</p>
+                     </div>
+                     <div class="bottom-left">
+                        <p>rate da pagare o già pagate dei savings goals per questo mese</p>
+                     </div>
+                  </div>
+                  <div class="right-div">
+                     <p>Grafici spese e guadagni del mese</p>
+                  </div>
+                  
+               </div>
          </div>
-
-
-
-
-
       </main>
+
       
       <!-----MAIN JS ----->
       <script src="../src/home.js"></script>

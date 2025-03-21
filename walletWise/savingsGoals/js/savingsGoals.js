@@ -9,6 +9,14 @@ $(document).ready(function() {
         $('.overlay').show();
     }); 
 
+    document.querySelector('.CancelGoal').addEventListener('click', function(event) {
+        event.preventDefault(); // Evita che si comporti come un link
+
+        document.querySelector('.newGoal').style.display = 'none';
+        document.querySelector('.overlay').style.display = 'none';
+    });
+    
+
     // Assicurati di avere valori numerici per goal e currentAmount
     const goal = document.getElementsByClassName('goalAmount')[0] ||100;
     goalTxt = goal.textContent
@@ -21,7 +29,6 @@ $(document).ready(function() {
             backgroundColor: ['hsla(193, 86.10%, 33.90%, 0.18)','hsl(193, 86%, 34%)'], 
         }], 
     }; 
-
     // Configurazione del grafico
     const config = { 
         type: 'doughnut', 

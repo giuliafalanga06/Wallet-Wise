@@ -1,0 +1,46 @@
+
+.container{
+  height: 100vh;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: space-between;
+
+}
+
+.left-div {
+  display: flex;
+  flex-direction: column;
+  gap:30px;
+  width: 50%; 
+  height: 76vh;
+}
+
+.top-left, .bottom-left {
+  box-shadow: 0 2px 24px var(--shadow-color);
+  background-color: var(--body-color);
+  border-radius: 25px;
+  padding: 10px;
+  height: 50vh;
+}
+
+.right-div {
+  width: 50%;
+  box-shadow: 0 2px 24px var(--shadow-color);
+  background-color: var(--body-color);
+  border-radius: 25px; /* Colore di esempio */
+  padding: 20px;
+  height: 76vh;
+}
+@media (max-width: 768px) {
+  /* Su schermi piccoli, metti i div uno sotto l'altro */
+  .content {
+    flex-direction: column;
+  }
+
+  .left-div, .right-div{
+    width: 100%;
+  }
+}

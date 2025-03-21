@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Controlla se l'utente è loggato
+if (!isset($_SESSION["username"])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+       
+
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -11,10 +22,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
 
       <!-----CSS ----->
-      <link rel="stylesheet" href="styles/input.css">
-      <link rel="stylesheet" href="styles/home.css">
-      <link rel="stylesheet" href="styles/cards.css">
-      <link rel="stylesheet" href="styles/goals.css">
+      <link rel="stylesheet" href="../styles/home.css">
       
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
@@ -23,7 +31,7 @@
       <header class="header" id="header">
          <div class="header__container">
             <a href="#" class="header__logo">
-                <img id="logo" src="images/un_logo_con_W_W.png" alt="logo">
+                <img id="logo" src="../images/un_logo_con_W_W.png" alt="logo">
                <span>Wallet Wise</span>
             </a>
             
@@ -42,8 +50,8 @@
                </div>
    
                <div class="sidebar__info">
-                  <h3>Sgaramella Antonio</h3>
-                  <span>sgara06.anto@gmail.com</span>
+                  <h3><?php echo htmlspecialchars($_SESSION["username"]); ?></h3>
+                  <span><?php echo htmlspecialchars($_SESSION["email"] ?? ''); ?></span>
                </div>
             </div>
 
@@ -52,8 +60,8 @@
                   <h3 class="sidebar__title">MANAGE</h3>
 
                   <div class="sidebar__list">
-                     <a href="../home/homebankingHtml.php" id="home" class="sidebar__link " data-section = "home">
-                        <i class="ri-pie-chart-2-fill"></i>
+                     <a id="home" class="sidebar__link" href='../home/homebankingHtml.php' data-section = "home">
+                        <i class="ri-pie-chart-2-fill"></i> 
                         <span>Home</span>
                      </a>
                      
@@ -62,12 +70,12 @@
                         <span>My Wallet</span>
                      </a>
 
-                     <a id="recentTransactions" class="sidebar__link "   href="../transaction/transactionHtml.php"data-section = "transactions">
+                     <a id="recentTransactions" class="sidebar__link active-link"  href="#" data-section = "transactions">
                         <i class="ri-arrow-up-down-line"></i>
                         <span>Recent Transactions</span>
                      </a>
 
-                     <a id="goals" class="sidebar__link active-link"  href="#" data-section = "goals">
+                     <a id="goals" class="sidebar__link "  href="../savingsGoals/savingsGoalsHtml.php" data-section = "goals">
                         <i class="ri-archive-drawer-fill"></i>
                         <span>Savings goals</span>
                      </a>
@@ -110,78 +118,18 @@
       <!-----MAIN ----->
       <main class="main container" id="main">
 
-         <div class="section home">
-            <div>
-               <h2>Home</h2>
-            </div>
-         </div>
-
-         <div class="section wallet">
-            <h2>Le mie carte</h2>
-            <section class="cardsContainer">
-               <div class="cardsWrapper">
-
-                  <div class="cards"> </div>
-                  <div class="arrow-left"><img src="images/arrow_forward_ios_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="arrow-left" ></div>
-                  <div class="cardsSlider-nav"></div>
-
-               </div>
-            </section>
-         </div>
-
-         <div class="section transactions">
-            <h2>3</h2>
+      <div class="section recentTransactions">
+            <h2>Recent Transactions</h2>
             
          </div>
 
-         <div class="section goals">
-            <h2>Savings goals</h2>
-            <div>
-               <span class="newGoalBtn">
-                  <button class="btn">+</button>
-                  Savings goal
-               </span>
 
-               <div class="newGoal">
-                  <h3>Set a new Savings Goal</h3>
-               
-                  <form class="goalForm" method="post" action="php/savingsGoals.php">
-                     <div style="display: flex; gap: 1rem; align-items: flex-end;">
-                        <div class="form__div" style="flex: 1; max-width: 30%;">
-                           <input type="text" class="form__input" placeholder=" ">
-                           <label class="form__label">Goal Name</label>
-                        </div>
-               
-                        <div class="form__div" style="flex: 2; max-width: 70%;">
-                           <input type="text" class="form__input" placeholder=" ">
-                           <label class="form__label">Goal Description</label>
-                        </div>
-                     </div>
-               
-                     <div style="display: flex; gap: 1rem;">
-                        <div class="form__div" style="flex: 1;">
-                           <input type="number" class="form__input" placeholder=" ">
-                           <label class="form__label">Goal Amount</label>
-                        </div>
-               
-                        <div class="form__div" style="flex: 1;">
-                           <input type="date" class="form__input">
-                           <label class="form__label">Target Date</label>
-                        </div>
-                     </div>
-               
-                     <input type="submit" value="Save" name="submit" class="saveGoal">
-                  </form>
-               </div>
-              
-                 
-            </div>
-            
-         </div>
+
+
+
       </main>
       
       <!-----MAIN JS ----->
-      <script src="src/home.js"></script>
-      <script src="src/card.js"></script>
+      <script src="../src/home.js"></script>
    </body>
 </html>

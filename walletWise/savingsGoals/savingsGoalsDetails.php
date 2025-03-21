@@ -1,3 +1,13 @@
+
+<?php
+session_start();
+
+// Controlla se l'utente è loggato
+if (!isset($_SESSION["username"])) {
+    header("Location: login.html");
+    exit();
+}
+?>
 <?php 
 
 include realpath(__DIR__ . '/../../walletWise/connectDB.php');
@@ -30,8 +40,11 @@ $dbName = $stmt->fetchColumn();
     $description = $rows[0]['Description'];
     $valori = '';
     $currentAmount = $rows[0]['CurrentAmount'];
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
 
 $html = "
+
 <!DOCTYPE html>
    <html lang='en'>
    <head>
@@ -45,6 +58,7 @@ $html = "
       <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css'>
 
       <!-----CSS ----->
+      <link rel='stylesheet' href='styles/savingGoalsDetails.css'>
       <link rel='stylesheet' href='../styles/input.css'>
       <link rel='stylesheet' href='styles/savingsGoals.css'>
       <link rel='stylesheet' href='../styles/home.css'>
@@ -74,8 +88,8 @@ $html = "
                </div>
    
                <div class='sidebar__info'>
-                  <h3>Sgaramella Antonio</h3>
-                  <span>sgara06.anto@gmail.com</span>
+                  <h3>$username</h3>
+                  <span>$email</span>
                </div>
             </div>
 
@@ -144,10 +158,7 @@ $html = "
       <div class='overlay'></div>
          <div class='section goals'>
             <div>
-               <span class='newGoalBtn'>
-                  <button class='btn'>+</button>
-                  Savings goal
-               </span>
+              
 
                <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
 
@@ -164,6 +175,9 @@ $html = "
                 <p>Current amount: <span class='currentAmount'>$currentAmount</span></p>
 
                 <canvas class='coursesDoughnutChart'></canvas>
+                
+                <button onclick=\"window.location.href='savingsGoalsHtml.php'\" class=\"btnSGD\">Savings Goals</button>
+
             </div>
          </div>
       </main>

@@ -11,7 +11,7 @@
 
 .newGoalBtn{
     position: fixed;
-    top: 17vh;  
+    top: 135px;  
     right: 50px; 
     display: flex;
     align-items: center;
@@ -42,17 +42,6 @@
     background: rgba(0, 0, 0, 0.5); 
     z-index: 999; 
     display: none;
-}
-.saveGoal{
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    padding: 8px 15px;
-    background-color: var(--first-color);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
 }
 
 input{
@@ -137,7 +126,59 @@ a{
 
 @media screen and (max-width: 1150px) {
     .newGoalBtn{
-        top:12vh;
+        top:90px;
     }
 }
+.goalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    width: 100%; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 10px; 
+    margin-top: 30px;
+    width: 100%; 
+    justify-content: flex-end; 
+}
+
+.CancelGoal, .saveGoal {
+    position: relative; 
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px; 
+    height: 40px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.CancelGoal {
+    background-color: #d9534f;
+    color: white;
+}
+
+.saveGoal {
+    background-color: var(--first-color);
+    color: white;
+}
+
+.CancelGoal:hover {
+    background-color: #c9302c;
+}
+
+.saveGoal:hover {
+    filter: brightness(85%);
+}
+
+
+
+
 

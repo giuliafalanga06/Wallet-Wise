@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Controlla se l'utente è loggato
+if (!isset($_SESSION["username"])) {
+    header("Location: login.html");
+    exit();
+}
+?>
 <!DOCTYPE html>
    <html lang='en'>
    <head>
@@ -40,8 +49,8 @@
                </div>
    
                <div class='sidebar__info'>
-                  <h3>Sgaramella Antonio</h3>
-                  <span>sgara06.anto@gmail.com</span>
+                  <h3><?php echo htmlspecialchars($_SESSION["username"]); ?></h3>
+                  <span><?php echo htmlspecialchars($_SESSION["email"] ?? ''); ?></span>
                </div>
             </div>
 
@@ -97,7 +106,7 @@
                   </i>
                </button>
 
-                  <button class='sidebar__link' onclick='window.location.href='../index.html''>
+                  <button class='sidebar__link' onclick="window.location.href='../index.html'">
                     <i class='ri-logout-box-r-fill'></i>
                     <span>Log Out</span>
                   </button>
@@ -126,7 +135,7 @@
 
                <div class='newGoal'>
                   <h3>Set a new Savings Goal</h3>
-               
+                  <br>
                   <?php $valori ?>
                   <form class='goalForm' method='post' action='php/formSavingsGoal.php' enctype='multipart/form-data'>
 
@@ -168,8 +177,10 @@
                            <label class='form__label'>Icon</label>
                         </div>
                      </div>
-               
-                     <input type='submit' value='Save' name='submit' class='saveGoal'>
+                     <div class="button-container">
+                        <a class="CancelGoal">Cancel</a>
+                        <input type="submit" value="Save" name="submit" class="saveGoal">
+                     </div>
                   </form>
                </div>
               

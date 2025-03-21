@@ -1,5 +1,12 @@
+<?php
+session_start();
 
-
+// Controlla se l'utente è loggato
+if (!isset($_SESSION["username"])) {
+    header("Location: login.html");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
    <html lang="en">
@@ -45,8 +52,9 @@
                </div>
    
                <div class="sidebar__info">
-                  <h3>Sgaramella Antonio</h3>
-                  <span>sgara06.anto@gmail.com</span>
+               <h3><?php echo htmlspecialchars($_SESSION["username"]); ?></h3>
+               <span><?php echo htmlspecialchars($_SESSION["email"] ?? ''); ?></span>
+
                </div>
             </div>
 
@@ -60,7 +68,7 @@
                         <span>Home</span>
                      </a>
                      
-                     <a id="wallet" class="sidebar__link" data-section = "wallet">
+                     <a href="wallet/walletHtml.php" id="wallet" class="sidebar__link" data-section = "wallet">
                         <i class="ri-wallet-3-fill"></i>
                         <span>My Wallet</span>
                      </a>
