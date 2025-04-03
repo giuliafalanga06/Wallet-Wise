@@ -3,9 +3,53 @@ session_start();
 
 // Controlla se l'utente è loggato
 if (!isset($_SESSION["username"])) {
-    header("Location: login.html");
+    header("Location: ../login/login.html");
     exit();
 }
+
+$monthlyIncome = 3500.00;
+$monthlyExpenses = 1850.25;
+
+$userId = $_SESSION["user_id"]; 
+
+$host = 'ftp.walletwise.altervista.org';  
+$dbname = 'my_walletwise';  
+$username = 'walletwise';  
+$password = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $stmt = $pdo->prepare("SELECT balance, last_update FROM user_balance WHERE user_id = ?");
+    $stmt->execute([$userId]);
+    $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($userData) {
+        $balance = $userData['balance'];
+        $lastUpdate = $userData['last_update'];
+
+        if (strtotime($lastUpdate) < strtotime("first day of this month")) {
+            $balance += $monthlyIncome;
+            $balance -= $monthlyExpenses;
+            $stmt = $pdo->prepare("UPDATE user_balance SET balance = ?, last_update = ? WHERE user_id = ?");
+            $stmt->execute([$balance, date("Y-m-d"), $userId]);
+
+            echo "Saldo aggiornato per il mese!";
+        } else {
+            echo "Il saldo è già stato aggiornato questo mese.";
+        }
+    } else {
+       // echo "Utente non trovato.";
+    }
+} catch (PDOException $e) {
+    echo "Errore nel recupero dei dati: " . $e->getMessage();
+    exit();
+}
+
+
+
+
 ?>
        
 
@@ -51,7 +95,7 @@ if (!isset($_SESSION["username"])) {
    
                <div class="sidebar__info">
                   <h3><?php echo htmlspecialchars($_SESSION["username"]); ?></h3>
-                  <span><?php echo htmlspecialchars($_SESSION["email"] ?? ''); ?></span>
+                  <span><?php echo htmlspecialchars($_SESSION["email"])?? '' ;?></span>
                </div>
             </div>
 
@@ -123,7 +167,7 @@ if (!isset($_SESSION["username"])) {
                <div class="content">
                   <div class="left-div">
                      <div class="top-left">
-                        <p>SALDO : 10000000000000000000€</p>
+                     <p>SALDO : €<?php echo number_format($balance, 2); ?></p>
                      </div>
                      <div class="bottom-left">
                         <p>rate da pagare o già pagate dei savings goals per questo mese</p>

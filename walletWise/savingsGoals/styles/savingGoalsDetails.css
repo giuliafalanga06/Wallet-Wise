@@ -13,19 +13,16 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 800px;
+    width: 100%;
     text-align: center;
     box-shadow: 0 2px 24px var(--shadow-color);
     background-color: var(--body-color);
-    
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.goals h1 {
-    font-size: 50px;
-    font-weight: 700;
-    color: var(--title-color);
-}
+
 
 .goalAmount, .currentAmount {
     font-weight: bold;
@@ -41,19 +38,16 @@
 
 .coursesDoughnutChart {
     width: 100% !important;
-    max-width: 600px;
+    max-width: 300px;
     height: auto !important;
     margin-top: 20px;
 }
 .btnSGD {
     position: absolute;
-    top: 150px;
-    left: 56%;
-    transform: translateX(-50%);
-    background: var(--text-color);
+    top: 130px;  
     color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 8px 15px;
+    border-radius: 15px;
     font-size: 16px;
     font-weight: 600;
     text-decoration: none;
@@ -61,6 +55,36 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.btnSGD:hover {
-    background: var(--hover-color);
+@media screen and (max-width: 1150px) {
+    .btnSGD{
+        top:85px;
+    }
+}
+h1{
+    text-align: center;
+    color: var(--first-color);
+    font-weight: 600;
+}
+
+.button-container {
+    margin: 0px !important;
+}
+
+
+.CancelGoal {
+    background-color: #d9534f;
+    color: white;
+}
+
+.saveGoal, .btnSGD {
+    background-color: var(--first-color);
+    color: white;
+}
+
+.CancelGoal:hover {
+    background-color: #c9302c;
+}
+
+.saveGoal:hover, .btnSGD:hover {
+    filter: brightness(85%);
 }

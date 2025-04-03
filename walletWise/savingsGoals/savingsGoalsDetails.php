@@ -4,8 +4,8 @@ session_start();
 
 // Controlla se l'utente è loggato
 if (!isset($_SESSION["username"])) {
-    header("Location: login.html");
-    exit();
+   header("Location: ../login/login.html");
+   exit();
 }
 ?>
 <?php 
@@ -62,6 +62,7 @@ $html = "
       <link rel='stylesheet' href='../styles/input.css'>
       <link rel='stylesheet' href='styles/savingsGoals.css'>
       <link rel='stylesheet' href='../styles/home.css'>
+      <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back_ios\" />
       <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
    </head>
    <body>
@@ -155,28 +156,41 @@ $html = "
 
       <!-----MAIN ----->
       <main class='main container' id='main'>
+      
       <div class='overlay'></div>
-         <div class='section goals'>
+      <h1>$name</h1>
+      <button  onclick=\"window.location.href='savingsGoalsHtml.php'\" class=\"btnSGD\">
+        <span font-weight:\"lighter\"> ❮ </span> to Savings Goals
+      </button>
+       <br>
+         <div class='section goals'> 
+        
             <div>
               
 
                <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
-
+               <div class=\"button-container\">
+                        <a class=\"CancelGoal\">Delete</a>
+                        <a class=\"saveGoal\">Modify</a>
+                     </div>
                <?php include 'php/savingsGoals.php';?>
                
                 <img src='https://walletwise.altervista.org/walletWise/images/$icon' style=\"border-radius: 50%; width: 100px; height: 100px;\">
-                <h1>$name</h1>
-                <p>Description: $description</p>
-                <p>Start date: $startDate</p>
-                <p>End date: $endDate</p>
+               
+                <div>                
+                  <p>Description: $description</p>
+                  <p>Start date: $startDate</p>
+                  <p>End date: $endDate</p>
 
-                <p>Goal amount: <span class='goalAmount'>$goalAmount<span></p>
-                <p>Month amount: $monthAmount</p>
-                <p>Current amount: <span class='currentAmount'>$currentAmount</span></p>
+                  <p>Goal amount: <span class='goalAmount'>$goalAmount<span></p>
+                  <p>Month amount: $monthAmount</p>
+                  <p>Current amount: <span class='currentAmount'>$currentAmount</span></p>
+                </div>
 
-                <canvas class='coursesDoughnutChart'></canvas>
+
+                <div><canvas class='coursesDoughnutChart'></canvas></div>
                 
-                <button onclick=\"window.location.href='savingsGoalsHtml.php'\" class=\"btnSGD\">Savings Goals</button>
+               
 
             </div>
          </div>

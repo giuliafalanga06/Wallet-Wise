@@ -3,7 +3,7 @@ session_start();
 
 // Controlla se l'utente è loggato
 if (!isset($_SESSION["username"])) {
-    header("Location: login.html");
+    header("Location: ../login/login.html");
     exit();
 }
 ?>
@@ -123,10 +123,25 @@ if (!isset($_SESSION["username"])) {
             <section class="cardsContainer">
                <div class="cardsWrapper">
 
-                  <div class="cards"> </div>
-                  <div class="arrow-left"><img src="../images/arrow_forward_ios_24dp_666666_FILL0_wght400_GRAD0_opsz24.svg" alt="arrow-left" ></div>
-                  <div class="cardsSlider-nav"></div>
-
+                  <div class="cards">
+                     <div class='credit-card' id="+ id +">
+                        <div class='card-header'>
+                           <div class='chip'></div>
+                           <div class='logo'>Wise</div>
+                        </div>
+                        <div class='card-number'>1234 5678 9012 3456</div>
+                        <div class='card-footer'>
+                           <div class='card-holder'>
+                              <span>Titolare</span>
+                              <p><?php echo htmlspecialchars($_SESSION['username']); ?></p>
+                           </div>
+                           <div class='expires'>
+                              <span>Scadenza</span>
+                              <p>12/25</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </section>
          </div>

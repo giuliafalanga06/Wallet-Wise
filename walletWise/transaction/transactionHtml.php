@@ -3,8 +3,8 @@ session_start();
 
 // Controlla se l'utente è loggato
 if (!isset($_SESSION["username"])) {
-    header("Location: login.html");
-    exit();
+   header("Location: ../login/login.html");
+   exit();
 }
 ?>
        

@@ -5,7 +5,7 @@
 .content {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 35px;
   justify-content: space-between;
 
 }
@@ -27,11 +27,11 @@
 }
 
 .right-div {
-  width: 50%;
+  width: 48%;
   box-shadow: 0 2px 24px var(--shadow-color);
   background-color: var(--body-color);
   border-radius: 25px; /* Colore di esempio */
-  padding: 20px;
+  padding: 10px;
   height: 76vh;
 }
 @media (max-width: 768px) {

@@ -3,8 +3,8 @@ session_start();
 
 // Controlla se l'utente è loggato
 if (!isset($_SESSION["username"])) {
-    header("Location: login.html");
-    exit();
+   header("Location: ../login/login.html");
+   exit();
 }
 ?>
 <!DOCTYPE html>
@@ -120,8 +120,8 @@ if (!isset($_SESSION["username"])) {
          <div class='section goals'>
             <h2>Savings goals</h2>
             <div>
-               <span class='newGoalBtn'>
-                  <button class='btn'>+</button>
+               <span class='newGoalBtn btn'>
+                  +
                   Savings goal
                </span>
 

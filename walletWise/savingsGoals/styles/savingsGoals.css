@@ -1,30 +1,31 @@
-.btn {
-    height: 30px;
-    width: 30px;  
-    font-size: 20px;
-    border-radius: 50px;
-    background-color: var(--first-color);
-    color: white;
-    text-align: center;
-    cursor: pointer;
-  }
+
 
 .newGoalBtn{
-    position: fixed;
-    top: 135px;  
-    right: 50px; 
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    position: absolute;
+    top: 130px;  
+    right:30px;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-speed);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--first-color);
+    color: white;
 }
 
+.newGoalBtn:hover {
+    filter: brightness(85%);
+}
 .newGoal {
     position: fixed; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); 
     width: 50vw;
-    height: 50vh;
+    height: 450px;
     box-shadow: 0 2px 24px var(--shadow-color);
     background-color: var(--body-color);
     border-radius: 25px;
@@ -53,7 +54,7 @@ input{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 60px;
+    gap: 50px;
     justify-content:flex-start;
     align-items: center;
 }
@@ -126,7 +127,7 @@ a{
 
 @media screen and (max-width: 1150px) {
     .newGoalBtn{
-        top:90px;
+        top:85px;
     }
 }
 .goalForm {
@@ -149,10 +150,9 @@ a{
     position: relative; 
     padding: 8px 15px;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     cursor: pointer;
     width: 100px; 
-    height: 40px;
     font-size: 1rem;
     display: flex;
     align-items: center;

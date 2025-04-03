@@ -9,19 +9,18 @@ $(document).ready(function() {
         $('.overlay').show();
     }); 
 
-    document.querySelector('.CancelGoal').addEventListener('click', function(event) {
-        event.preventDefault(); // Evita che si comporti come un link
-
-        document.querySelector('.newGoal').style.display = 'none';
-        document.querySelector('.overlay').style.display = 'none';
-    });
+ 
     
+    $('.CancelGoal').click(function() {
+        $('.newGoal').hide();
+        $('.overlay').hide();
+    }); 
 
-    // Assicurati di avere valori numerici per goal e currentAmount
+  
     const goal = document.getElementsByClassName('goalAmount')[0] ||100;
-    goalTxt = goal.textContent
+    goalTxt = goal.textContent;
     const currentAmount = document.getElementsByClassName('currentAmount')[0]|| 50;
-    currentAmountTxt = currentAmount.textContent
+    currentAmountTxt = currentAmount.textContent;
     // Calcola i dati per il grafico
     const coursesData = {  
         datasets: [{ 
@@ -50,15 +49,15 @@ $(document).ready(function() {
     });
 
     // Calcolare la data di fine
-    const form = document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', function(event) {
-            if (!document.querySelector('#monthAmount').value && document.querySelector('#startDate').value && document.querySelector('#goalAmount').value) {
-                const startDate = new Date(document.querySelector('#startDate').value);
-                const endDateMonth = parseInt(document.querySelector('#goalAmount').value) / parseInt(document.querySelector('#monthAmount').value);
-                startDate.setMonth(startDate.getMonth() + endDateMonth);
-                document.querySelector('#endDate').value = startDate.toISOString().split('T')[0];
-            }
-        });
-    }
+    // const form = document.querySelector('form');
+    // if (form) {
+    //     form.addEventListener('submit', function(event) {
+    //         if (!document.querySelector('#monthAmount').value && document.querySelector('#startDate').value && document.querySelector('#goalAmount').value) {
+    //             const startDate = new Date(document.querySelector('#startDate').value);
+    //             const endDateMonth = parseInt(document.querySelector('#goalAmount').value) / parseInt(document.querySelector('#monthAmount').value);
+    //             startDate.setMonth(startDate.getMonth() + endDateMonth);
+    //             document.querySelector('#endDate').value = startDate.toISOString().split('T')[0];
+    //         }
+    //     });
+    // }
 });
