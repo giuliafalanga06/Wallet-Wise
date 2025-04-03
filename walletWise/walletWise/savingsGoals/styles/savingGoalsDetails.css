@@ -1,0 +1,65 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --text-color: #333;
+    --bg-color: #fff;
+    --hover-color:  hsl(193, 86%, 34%);
+    --transition-speed: 0.3s ease-in-out;
+    --success-color: #28a745;
+    --warning-color: #dc3545;
+}
+
+.goals {
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+}
+
+.goals h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #222;
+}
+
+.goalAmount, .currentAmount {
+    font-weight: bold;
+}
+
+.goalAmount {
+    color: var(--warning-color);
+}
+
+.currentAmount {
+    color: var(--success-color);
+}
+
+.coursesDoughnutChart {
+    width: 100% !important;
+    max-width: 600px;
+    height: auto !important;
+    margin-top: 20px;
+}
+.btnSGD {
+    position: absolute;
+    top: 150px;
+    left: 56%;
+    transform: translateX(-50%);
+    background: var(--text-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-speed);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btnSGD:hover {
+    background: var(--hover-color);
+}

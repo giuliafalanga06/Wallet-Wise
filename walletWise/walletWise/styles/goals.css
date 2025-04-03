@@ -1,0 +1,140 @@
+.btn {
+    height: 30px;
+    width: 30px;  
+    font-size: 20px;
+    border-radius: 50px;
+    background-color: var(--first-color);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+  }
+
+.newGoalBtn{
+    position: fixed;
+    top: 150px;  
+    right: 50px; 
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.newGoal {
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 50vw;
+    height: 50vh;
+    box-shadow: 0 2px 24px var(--shadow-color);
+    background-color: var(--body-color);
+    border-radius: 25px;
+    padding: 4vh;
+    z-index: 1000; 
+    display: none;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 999; 
+    display: none;
+}
+.saveGoal{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 15px;
+    background-color: var(--first-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+input{
+    background-color: var(--body-color);
+}
+
+.goalsList {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 50px;
+    /*max 3 elementi*/
+    justify-content: flex-start;
+    align-items: left;
+    margin-top: 55500px;
+    /*max-width: 100%;*/
+}
+
+.singleGoal {
+    width:80vh;
+    max-width: 800vw ;
+    min-width: 200px;
+    min-height: 150px;
+    box-shadow: 0 2px 24px var(--shadow-color);
+    background-color: var(--body-color);
+    border-radius: 25px;
+    padding: 2vh;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative; /* Mantiene la posizione del bottone */
+}
+
+.moreDetailsBtn {
+    background-color: var(--first-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px; /* Fissa il bottone in basso */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.goal-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px;
+ }
+
+ canvas {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    
+}
+
+.goal-progress{
+    position: absolute;
+    top: 0.05vh;
+    right: 150px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 10; /* Canvas sopra gli altri elementi */
+}
+
+.goal-progress{
+    flex-shrink: 0; 
+}
+
+.goal-details {
+    display: none;
+    margin-top: 10px;
+}
+
+
+
