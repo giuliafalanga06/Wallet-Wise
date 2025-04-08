@@ -3,6 +3,7 @@
 
 //------COLLEGAMENTO AL DATABASE ------
 //sostituire con funzione
+session_start();
         include realpath(__DIR__ . "/../../../walletWise/connectDB.php");
         
         $pdo = pdoConnection();
@@ -109,7 +110,7 @@
                 $endDate = date('Y-m-d', strtotime($startDate . ' + ' . ceil($goal/$monthAmount) . ' months'));
             
                 try {
-                    $sql = "INSERT INTO SavingsGoal (Goal, Description, StartDate, EndDate, Name, monthAmount, Icon) VALUES (:goal, :description, :startDate, :endDate, :name, :monthAmount, :icon)";
+                    $sql = "INSERT INTO SavingsGoal (Goal, Description, StartDate, EndDate, Name, monthAmount, Icon, CardId) VALUES (:goal, :description, :startDate, :endDate, :name, :monthAmount, :icon, :cardId)";
                     $stmt = $pdo->prepare($sql);
                     $stmt->bindParam(':goal', $goal);
                     $stmt->bindParam(':description', $description);
@@ -118,6 +119,7 @@
                     $stmt->bindParam(':name', $name);
                     $stmt->bindParam(':monthAmount', $monthAmount);
                     $stmt->bindParam(':icon', $icon);
+                    $stmt->bindParam(':cardId', $_SESSION['idCard']);
                     $stmt->execute();
                     //echo "Dati inseriti correttamente!";
                     

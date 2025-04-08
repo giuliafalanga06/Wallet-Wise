@@ -62,13 +62,16 @@
         /*echo "Connesso al database: " . $dbName . "<br>";*/
 
 //------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
+session_start();
         try {
-            $sql = "SELECT * FROM SavingsGoal ORDER BY Id;";
+            $sql = "SELECT * FROM SavingsGoal where CardId = :CardId ORDER BY Id;";
             $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':CardId', $_SESSION["idCard"], PDO::PARAM_STR);
             $stmt->execute();
             $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             $valori = '';
+
             foreach ($rows as $row) {
                 $name = $row['Name'];
                 $goal = $row['Goal'];

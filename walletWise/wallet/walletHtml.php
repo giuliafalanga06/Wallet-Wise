@@ -7,6 +7,7 @@ if (!isset($_SESSION["username"])) {
     exit();
 }
 ?>
+
 <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -117,7 +118,7 @@ if (!isset($_SESSION["username"])) {
       <!-----MAIN ----->
       <main class="main container" id="main">
 
-       
+      <?php include 'php/card.php';?>
       <div class="section wallet">
             <h2>Le mie carte</h2>
             <section class="cardsContainer">
@@ -129,15 +130,15 @@ if (!isset($_SESSION["username"])) {
                            <div class='chip'></div>
                            <div class='logo'>Wise</div>
                         </div>
-                        <div class='card-number'>1234 5678 9012 3456</div>
+                        <div class='card-number'><?php echo $iban;?></div>
                         <div class='card-footer'>
                            <div class='card-holder'>
                               <span>Titolare</span>
-                              <p><?php echo htmlspecialchars($_SESSION['username']); ?></p>
+                              <p> <?php echo$_SESSION['username'];?></p>
                            </div>
                            <div class='expires'>
                               <span>Scadenza</span>
-                              <p>12/25</p>
+                              <p><?php echo $expirationMonthYear ?></p>
                            </div>
                         </div>
                      </div>
