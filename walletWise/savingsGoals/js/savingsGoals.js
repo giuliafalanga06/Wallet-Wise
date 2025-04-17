@@ -17,9 +17,9 @@ $(document).ready(function() {
     }); 
 
   
-    const goal = document.getElementsByClassName('goalAmount')[0] ||100;
+    const goal = $('.goalAmount')[0] ||100;
     goalTxt = goal.textContent;
-    const currentAmount = document.getElementsByClassName('currentAmount')[0]|| 50;
+    const currentAmount = $('.currentAmount')[0]|| 50;
     currentAmountTxt = currentAmount.textContent;
     // Calcola i dati per il grafico
     const coursesData = {  
@@ -35,7 +35,7 @@ $(document).ready(function() {
     }; 
 
     // Seleziona il contesto del grafico
-    const ctx = document.getElementsByClassName('coursesDoughnutChart')[0];
+    const ctx = $('.coursesDoughnutChart')[0];
 
     // Crea il grafico
     if (ctx) {
@@ -43,9 +43,9 @@ $(document).ready(function() {
     }
 
     // Gestione del nuovo goal
-    document.querySelector('.newGoalBtn').addEventListener('click', () => {
-        document.querySelector('.newGoal').style.display = 'block';
-        document.querySelector('.overlay').style.display = 'block';
+    $('.newGoalBtn').click( function(){
+        $('.newGoal').style.display = 'block';
+       $('.overlay').style.display = 'block';
     });
 
     // Calcolare la data di fine

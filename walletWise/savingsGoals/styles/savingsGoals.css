@@ -101,23 +101,7 @@ input{
     margin: 0;
  }
 
- canvas {
-    width: 150px;
-    height: 150px;
-    margin: auto;
-    
-}
 
-.goal-progress{
-    position: absolute;
-    top: 0.05vh;
-    right: 150px;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    z-index: 10; /* Canvas sopra gli altri elementi */
-}
 
 
 a{
@@ -130,6 +114,8 @@ a{
         top:85px;
     }
 }
+
+/*form*/
 .goalForm {
     display: flex;
     flex-direction: column;
@@ -177,6 +163,7 @@ a{
 .saveGoal:hover {
     filter: brightness(85%);
 }
+
 
 
 

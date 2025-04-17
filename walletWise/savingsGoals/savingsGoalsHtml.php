@@ -3,7 +3,7 @@ session_start();
 
 // Controlla se l'utente è loggato
 if (!isset($_SESSION["username"])) {
-   header("Location: ../login/login.html");
+   header("Location: ../login/login.php");
    exit();
 }
 ?>
@@ -144,8 +144,11 @@ if (!isset($_SESSION["username"])) {
                         <div class='form__div' style='flex: 1; max-width: 30%;'>
                            <input type='text' name='name' class='form__input' placeholder=' '>
                            <label class='form__label'>Goal Name</label>
+                           
                         </div>
-               
+                        
+                        
+
                         <div class='form__div' style='flex: 2; max-width: 70%;'>
                            <input type='text'  name='description' class='form__input' placeholder=' '>
                            <label class='form__label'>Goal Description</label>

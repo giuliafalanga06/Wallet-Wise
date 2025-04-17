@@ -21,7 +21,12 @@ session_start();
 
 
 
-//------INSERIMENTO DEL NEW SAVINGS GOAL NEL DATABASE ------
+//------INSERIMENTO DEL NEW SAVINGS GOAL NEL DATABASE ------$goal = $_POST['goalAmount'];
+            $description = "";
+            $startDate = "";
+            $name ="";
+            $monthAmount ="";
+            $goal = "";
 
         if (isset($_POST['submit'])) {
             inputControl($pdo);
@@ -57,8 +62,6 @@ session_start();
 
 
         function inputControl($pdo){
-
-            //gli errori devono essere mostrati sotto la form
             
             // Recupero i dati dal form
             $goal = $_POST['goalAmount'];
@@ -72,32 +75,42 @@ session_start();
 
             // Variabile per tenere traccia degli errori
             $errors = [];
+            $form = [];
 
             // Controllo che tutti i campi obbligatori siano stati compilati
-            if (empty($goal)) {
-                $errors[] = "Il campo 'Goal Amount' è obbligatorio.";
-            }
+            if (empty($goal))
+                $errors['goal'] = "Il campo 'Goal Amount' è obbligatorio.";
 
-            if (empty($description)) {
-                $errors[] = "Il campo 'Description' è obbligatorio.";
-            }
+            if (empty($description)) 
+                $errors['description'] = "Il campo 'Description' è obbligatorio.";
+            
+            
 
             if (empty($startDate)) {
-                $errors[] = "Il campo 'Start Date' è obbligatorio.";
+                $errors['startDate'] = "Il campo 'Start Date' è obbligatorio.";
+                $form['startDate'] = $startDate;
+            } else {
+                $today = new DateTime(); // Data odierna
+                $selectedDate = new DateTime($startDate); // Data selezionata dall'utente
+                
+                // Verifica che la data sia nel futuro (>= oggi)
+                if ($selectedDate < $today) {
+                    $errors['startDate'] = "La data di inizio deve essere uguale o successiva a oggi.";
+                }
             }
 
-            if (empty($name)) {
-                $errors[] = "Il campo 'Name' è obbligatorio.";
-            }
+            if (empty($name)) 
+                $errors['name'] = "Il campo 'Name' è obbligatorio.";
+            
 
-            if (empty($monthAmount)) {
-                $errors[] = "Il campo 'Month Amount' è obbligatorio.";
-            }
+            if (empty($monthAmount)) 
+                $errors['monthAmount'] = "Il campo 'Month Amount' è obbligatorio.";
+            
 
             // Controllo che 'Month Amount' sia minore di 'Goal Amount'
-            if (!empty($goal) && !empty($monthAmount) && $monthAmount >= $goal) {
-                $errors[] = "Il campo 'Month Amount' deve essere minore di 'Goal Amount'.";
-            }
+            if (!empty($goal) && !empty($monthAmount) && $monthAmount >= $goal) 
+                $errors['monthAmount'] = "Il campo 'Month Amount' deve essere minore di 'Goal Amount'.";
+            
 
             // Se ci sono errori, li mostro
             if (count($errors) > 0) {
@@ -130,4 +143,5 @@ session_start();
             }
         }
 
+        
 ?>

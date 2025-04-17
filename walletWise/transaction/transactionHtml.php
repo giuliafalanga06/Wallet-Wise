@@ -124,9 +124,6 @@ if (!isset($_SESSION["username"])) {
          </div>
 
 
-
-
-
       </main>
       
       <!-----MAIN JS ----->
