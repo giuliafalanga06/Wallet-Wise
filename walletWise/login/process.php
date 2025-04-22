@@ -22,17 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($email) || empty($pwd)) {
             $error_message = "Entrambi i campi sono obbligatori!";
         } else {
-            $sql = "SELECT id, name, password, account_activation_hash FROM usertables WHERE email = :email";
-           
+            $sql = "SELECT u.id as id, u.name as name, u.password as password, u.account_activation_hash as account_activation_hash, c.Id as idCard 
+                FROM usertables as u, Card as c 
+                WHERE c.UserId = u.id
+                AND email = :email";
+            
+            $iban = $row['Iban'];
+            $balance = $row['Balance'];
+            $expirationDate = new DateTime($row['Expiration']);  
+            $expirationMonthYear = $expirationDate->format('m/y');
+
+
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $_SESSION['password'] = $row["password"];
-            $_SESSION['hash'] = hash("sha256", $pwd);
-            $_SESSION['pwd'] = $pwd;
-
+            $_SESSION['idCard'] = $row['idCard'];
             
             if (!$row || hash("sha256", $pwd)!= $row["password"]) {
                 $_SESSION['loginError'] = "Credenziali errate!";
@@ -46,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["surname"] = $row["surname"];
                 $_SESSION["email"] = $email;
                 $_SESSION["id"] = $row["id"];
+                
                 header("Location: ../home/homebankingHtml.php");
                 exit();
             }

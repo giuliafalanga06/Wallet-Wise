@@ -7,8 +7,7 @@ if (!isset($_SESSION["username"])) {
    header("Location: ../login/login.html");
    exit();
 }
-?>
-<?php 
+
 
 include realpath(__DIR__ . '/../../walletWise/connectDB.php');
 $pdo = pdoConnection();
@@ -25,24 +24,32 @@ $dbName = $stmt->fetchColumn();
 
 //------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
 
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM SavingsGoal WHERE Id = '$id';";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   $id = $_GET['id'];
+   $sql = "SELECT * FROM SavingsGoal WHERE Id = '$id';";
+   $stmt = $pdo->prepare($sql);
+   $stmt->execute();
+   $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $name = $rows[0]['Name'];
-    $startDate = $rows[0]['StartDate'];
-    $endDate = $rows[0]['EndDate'];
-    $monthAmount = $rows[0]['MonthAmount'];
-    $goalAmount = $rows[0]['Goal'];
-    $icon =$rows[0]['icon']; 
-    $description = $rows[0]['Description'];
-    $valori = '';
-    $currentAmount = $rows[0]['CurrentAmount'];
-    $username = $_SESSION['username'];
-    $email = $_SESSION['email'];
+   $name = $rows[0]['Name'];
+   $startDate = $rows[0]['StartDate'];
+   $endDate = $rows[0]['EndDate'];
+   $monthAmount = $rows[0]['MonthAmount'];
+   $goalAmount = $rows[0]['Goal'];
+   $icon =$rows[0]['icon']; 
+   $description = $rows[0]['Description'];
+   $valori = '';
+   $currentAmount = $rows[0]['CurrentAmount'];
+   $username = $_SESSION['username'];
+   $email = $_SESSION['email'];
 
+   $checkedTravel = ($icon == 'travel.png') ? 'checked' : '';
+   $checkedCar = ($icon == 'car.png') ? 'checked' : '';
+   $checkedPeople = ($icon == 'people.png') ? 'checked' : '';
+   $checkedFood = ($icon == 'food.png') ? 'checked' : '';
+   $checkedPc = ($icon == 'pc.png') ? 'checked' : '';
+   $checkedHome = ($icon == 'home.png') ? 'checked' : '';
+   $checkedGames = ($icon == 'games.png') ? 'checked' : '';
+   $checkedBooks = ($icon == 'books.png') ? 'checked' : '';
 $html = "
 
 <!DOCTYPE html>
@@ -157,7 +164,7 @@ $html = "
       <!-----MAIN ----->
       <main class='main container' id='main'>
       
-      <div class='overlay'></div>
+      <div class='overlay2'></div>
       <h1>$name</h1>
       <button  onclick=\"window.location.href='savingsGoalsHtml.php'\" class=\"btnSGD\">
         <span font-weight:\"lighter\"> ❮ </span> to Savings Goals
@@ -166,12 +173,10 @@ $html = "
          <div class='section goals'> 
         
             <div>
-              
-
                <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
                <div class=\"button-container\">
-                        <a class=\"CancelGoal\">Delete</a>
-                        <a class=\"saveGoal\">Modify</a>
+                        <a class=\"CancelGoalDetails deleteGoalBtn\">Delete</a>
+                        <a class=\"saveGoal modifyGoalBtn\">Modify</a>
                      </div>
                <?php include 'php/savingsGoals.php';?>
                
@@ -190,9 +195,100 @@ $html = "
                 <div><canvas class='coursesDoughnutChart'></canvas></div>
                 
                
-
             </div>
          </div>
+
+
+         <div class='deleteGoal'>
+            <span>Are you sure you want to delete the '$name' savings goal?</span>
+            <div class=\"button-container-center\">   
+               <a class=\"saveGoal notDeleteGoal\">Cancel</a>
+               <a class=\"CancelGoalDetails\" href='php/deleteSavingsGoals.php?id=$id'>Delete</a>
+            </div>
+         </div>
+
+         <div class='modifyGoal'>
+                  <h3>Set a new Savings Goal</h3>
+                  <br>
+                  <?php $valori ?>
+                  <form class='goalForm' method='post' action='php/modifySavingsGoals.php?id=$id'' enctype='multipart/form-data'>
+
+                     <div style='display: flex; gap: 1rem; align-items: flex-end;'>
+
+                        <div class='form__div' style='flex: 1;'>
+                           <input type='text' name='name' value='$name' class='form__input' placeholder=' '>
+                           <label class='form__label'>Goal Name</label>
+                        </div>
+                        <div class='form__div' style='flex: 1;'>
+                           <input type='date' id='startDate'  name='startDate' value='$startDate' disabled class='form__input'>
+                           <label class='form__label'>Start Date</label>
+                        </div>
+
+                        
+                     </div>
+                     <div style='display: flex; gap: 1rem;'>
+                        <div class='form__div' style='flex: 1;'>
+                           <input type='text'  name='description' value='$description'class='form__input' placeholder=' '>
+                           <label class='form__label'>Goal Description</label>
+                        </div>
+                     </div>
+               
+                     <div style='display: flex; gap: 1rem;'>
+                        <div class='form__div' style='flex: 1;'>
+                           <input type='number' id='goalAmount' name='goalAmount' value='$goalAmount' class='form__input' placeholder=' '>
+                           <label class='form__label'>Goal Amount</label>
+                        </div>
+
+                        <div class='form__div' style='flex: 1;'>
+                           <input type='number' id='monthAmount' name='monthAmount'value='$monthAmount' class='form__input' placeholder=' '>
+                           <label class='form__label'>Month Amount</label>
+                        </div>
+               
+                        
+                     </div>
+
+                     
+                     <div class=\"icone\">
+                        <label>
+                           <input type=\"radio\" name=\"icona\" value=\"travel.png\" $checkedTravel>
+                           <img src=\"../images/icone/travel.png\" alt=\"Icona 3\">   
+                        </label> 
+                        <label>
+                           <input type=\"radio\" name=\"icona\" value=\"car.png\" $checkedCar>
+                           <img src=\"../images/icone/car.png\" alt=\"Icona 3\">   
+                        </label> 
+                        <label>
+                           <input type=\"radio\" name=\"icona\" value=\"people.png\" $checkedPeople>
+                           <img src=\"../images/icone/people.png\" alt=\"Icona 3\">
+                        </label>
+                        <label>
+                           <input type=\"radio\" name=\"icona\" value=\"food.png\" $checkedFood >
+                           <img src=\"../images/icone/food.png\" alt=\"Icona 3\">   
+                        </label> 
+                        <label>
+                           <input type=\"radio\" name=\"icona\" value=\"pc.png\" $checkedPc>
+                           <img src=\"../images/icone/pc.png\" alt=\"Icona 3\">
+                        </label>
+                        <label>
+                           <input type=\"radio\" name=\"icona\" value=\"home.png\" $checkedHome>
+                           <img src=\"../images/icone/home.png\" alt=\"Icona 3\">
+                        </label>
+                        <label>
+                           <input type=\"radio\" name=\"icona\" value=\"games.png\" $checkedGames>
+                           <img src=\"../images/icone/games.png\" alt=\"Icona 3\">
+                        </label>
+                        <label>
+                           <input type=\"radio\" name=\"icona\" value=\"books.png\" $checkedBooks>
+                           <img src=\"../images/icone/books.png\" alt=\"Icona 3\">
+                        </label>
+                     
+                     </div>
+                     <div class=\"button-container\">
+                        <a class=\"CancelGoalDetails\">Cancel</a>
+                        <input type=\"submit\" value=\"Save\" name=\"submit\" class=\"saveGoal\">
+                     </div>
+                  </form>
+               </div>
       </main>
       <!-----MAIN JS ----->
       <script src='../src/home.js'></script>

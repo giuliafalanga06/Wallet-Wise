@@ -141,15 +141,19 @@ if (!isset($_SESSION["username"])) {
 
                      <div style='display: flex; gap: 1rem; align-items: flex-end;'>
 
-                        <div class='form__div' style='flex: 1; max-width: 30%;'>
+                        <div class='form__div' style='flex: 1;'>
                            <input type='text' name='name' class='form__input' placeholder=' '>
                            <label class='form__label'>Goal Name</label>
-                           
                         </div>
-                        
-                        
+                        <div class='form__div' style='flex: 1;'>
+                           <input type='date' id='startDate'  name='startDate' class='form__input'>
+                           <label class='form__label'>Start Date</label>
+                        </div>
 
-                        <div class='form__div' style='flex: 2; max-width: 70%;'>
+                        
+                     </div>
+                     <div style='display: flex; gap: 1rem;'>
+                        <div class='form__div' style='flex: 1;'>
                            <input type='text'  name='description' class='form__input' placeholder=' '>
                            <label class='form__label'>Goal Description</label>
                         </div>
@@ -169,17 +173,7 @@ if (!isset($_SESSION["username"])) {
                         
                      </div>
 
-                     <div style='display: flex; gap: 1rem;'>
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='date' id='startDate'  name='startDate' class='form__input'>
-                           <label class='form__label'>Start Date</label>
-                        </div>
-               
-                        <div class='form__div' style='flex: 1;'>
-                           <input disabled type='file'  name='icon' value='' class='form__input'>
-                           <label class='form__label'>Icon</label>
-                        </div>
-                     </div>
+                     
                      <div class="icone">
                         <label>
                            <input type="radio" name="icona" value="travel.png">

@@ -6,8 +6,6 @@ if (!isset($_SESSION["username"])) {
    header("Location: ../login/login.html");
    exit();
 }
-?>
-<?php 
 
 include realpath(__DIR__ . '/../../../walletWise/connectDB.php');
 

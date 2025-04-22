@@ -1,7 +1,11 @@
 $(document).ready(function() {
+  const radios = document.querySelectorAll('input[type="radio"][name="icona"]');
+  let lastChecked = null;
     // Nascondi inizialmente la modale e l'overlay
     $('.newGoal').hide();
     $('.overlay').hide();
+    $('.overlay2').hide();
+    $('.deleteGoal').hide();
 
     // Mostra la modale e l'overlay al click del bottone
     $('.newGoalBtn').click(function() {
@@ -9,12 +13,34 @@ $(document).ready(function() {
         $('.overlay').show();
     }); 
 
- 
-    
     $('.CancelGoal').click(function() {
-        $('.newGoal').hide();
-        $('.overlay').hide();
+      $('.newGoal').hide();
+      $('.overlay').hide();
+      radios.forEach(radio => {
+        radio.checked = false;
+      });
     }); 
+
+    $('.CancelGoalDetails').click(function() {
+      $('.modifyGoal').hide();
+      $('.overlay2').hide();
+    }); 
+ 
+    $('.deleteGoalBtn').click(function (){
+      $('.overlay2').show();
+      $('.deleteGoal').show();
+    });
+
+    $('.notDeleteGoal').click(function (){
+      $('.overlay2').hide();
+      $('.deleteGoal').hide();
+    });
+    
+    $('.modifyGoalBtn').click(function() {
+      $('.modifyGoal').show();
+      $('.overlay2').show();
+  }); 
+ 
 
   
     const goal = $('.goalAmount')[0] ||100;
@@ -42,11 +68,7 @@ $(document).ready(function() {
         new Chart(ctx, config);
     }
 
-    // Gestione del nuovo goal
-    $('.newGoalBtn').click( function(){
-        $('.newGoal').style.display = 'block';
-       $('.overlay').style.display = 'block';
-    });
+
 
     // Calcolare la data di fine
     // const form = document.querySelector('form');
@@ -61,17 +83,19 @@ $(document).ready(function() {
     //     });
     // }
 
-    const radios = document.querySelectorAll('input[type="radio"][name="icona"]');
-    let lastChecked = null;
+
   
     radios.forEach(radio => {
-      radio.addEventListener('click', function () {
-        if (this === lastChecked) {
+      radio.addEventListener('click', removeCheckradio);
+    });
+
+    function removeCheckradio(){
+       if (this === lastChecked) {
           this.checked = false;
           lastChecked = null;
         } else {
           lastChecked = this;
         }
-      });
-    });
+      };
+    
 });

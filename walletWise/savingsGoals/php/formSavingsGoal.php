@@ -88,8 +88,9 @@ session_start();
                 $form['startDate'] = $startDate;
             } else {
                 $today = new DateTime(); // Data odierna
+                $today->setTime(0, 0, 0); // Azzeri l'orario
                 $selectedDate = new DateTime($startDate); // Data selezionata dall'utente
-                
+                $selectedDate->setTime(0, 0, 0);
                 // Verifica che la data sia nel futuro (>= oggi)
                 if ($selectedDate < $today) {
                     $errors['startDate'] = "La data di inizio deve essere uguale o successiva a oggi.";
