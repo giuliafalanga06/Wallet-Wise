@@ -7,7 +7,7 @@
         return;
     }
 
-    $token = $_GET["token"];
+    $token = hash("sha256",$_GET["token"]);
 
     $pdo = pdoConnection();
 

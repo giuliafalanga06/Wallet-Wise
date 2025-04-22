@@ -62,10 +62,13 @@ body {
     margin-bottom: 1.75rem;
 }
 
-.form_error{
-    color:red;
+.form_error, .error{
+    color: red;
 }
 
+.success{
+    color: green; 
+}
 .form__input {
     position: absolute;
     top: 0;
