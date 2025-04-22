@@ -163,9 +163,35 @@ a{
 .saveGoal:hover {
     filter: brightness(85%);
 }
-
-
-
-
-
+.icone {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .icone input[type="radio"] {
+    display: none;
+  }
+  
+  .icone label {
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 5px;
+    border-radius: 50%; /* bordo del contenitore circolare (opzionale) */
+    transition: 0.2s ease;
+  }
+  
+  .icone label img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    display: block;
+    object-fit: cover;
+  }
+  
+  /* Evidenziazione dell'immagine selezionata */
+  .icone input[type="radio"]:checked + img {
+    border: 1px solid var(--first-color);
+    box-shadow: 0 0 8px var(--first-color);
+  }
+  
 

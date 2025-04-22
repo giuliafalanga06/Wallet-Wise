@@ -52,10 +52,6 @@ if($_SESSION['signUp']['name'] || $_SESSION['signUp']['surname'] || $_SESSION['s
 }
 else{
     
-    
-
-    
-    
     $password_hash = hash("sha256",$_POST["password"]);
     
     $activation_token = bin2hex(random_bytes(16));
@@ -96,12 +92,13 @@ else{
         if (mail($to, $subject, $message, $headers)) {
             $_SESSION['signUp']['registration'] = "<span class='success'>Registration successful! Please check your email to activate your account.</span>";
             header("Location: ./signUp.php");
+            createCard($email, $pdo);
         } else {
             $_SESSION['signUp']["registration"] = "<span class='error'> Unable to send activation email. Change your email.</span>";
             header("Location: ./signUp.php");
         }
     
-        createCard($email, $pdo);
+        
     } else {
         echo "Error: Could not register the user.";
     }

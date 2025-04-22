@@ -60,4 +60,18 @@ $(document).ready(function() {
     //         }
     //     });
     // }
+
+    const radios = document.querySelectorAll('input[type="radio"][name="icona"]');
+    let lastChecked = null;
+  
+    radios.forEach(radio => {
+      radio.addEventListener('click', function () {
+        if (this === lastChecked) {
+          this.checked = false;
+          lastChecked = null;
+        } else {
+          lastChecked = this;
+        }
+      });
+    });
 });

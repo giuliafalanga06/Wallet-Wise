@@ -30,15 +30,13 @@ session_start();
 
         if (isset($_POST['submit'])) {
             inputControl($pdo);
-            $icon = insertIcon($pdo);
-            $endDate = date('Y-m-d', strtotime($startDate . ' + ' . ceil($goal/$monthAmount) . ' months'));
         
             exit();
         }
 
         function insertIcon($pdo): string{
             
-            //calcolo dell'id massimo di savingsGoal nel dabatse
+            //calcolo dell'id massimo di savingsGoal nel database
             $sql = "SELECT MAX(id) FROM SavingsGoal";
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
@@ -69,9 +67,10 @@ session_start();
             $startDate = $_POST['startDate'];
             $name = $_POST['name'];
             $monthAmount = $_POST['monthAmount'];
+            $icon = $_POST['icona'];
             
-            // Se l'icona non viene fornita, imposta un'icona di default
-            $icon = !empty($_POST['icon']) ? $_POST['icon'] : 'default-icon.png';
+            
+            
 
             // Variabile per tenere traccia degli errori
             $errors = [];
@@ -83,8 +82,6 @@ session_start();
 
             if (empty($description)) 
                 $errors['description'] = "Il campo 'Description' è obbligatorio.";
-            
-            
 
             if (empty($startDate)) {
                 $errors['startDate'] = "Il campo 'Start Date' è obbligatorio.";
@@ -101,11 +98,10 @@ session_start();
 
             if (empty($name)) 
                 $errors['name'] = "Il campo 'Name' è obbligatorio.";
-            
-
             if (empty($monthAmount)) 
                 $errors['monthAmount'] = "Il campo 'Month Amount' è obbligatorio.";
-            
+            if (empty($icon)) 
+                $errors['icona'] = "Il campo 'icona' è obbligatorio.";
 
             // Controllo che 'Month Amount' sia minore di 'Goal Amount'
             if (!empty($goal) && !empty($monthAmount) && $monthAmount >= $goal) 
@@ -119,7 +115,7 @@ session_start();
                 }
             }
             else{
-                $icon = insertIcon($pdo);
+                
                 $endDate = date('Y-m-d', strtotime($startDate . ' + ' . ceil($goal/$monthAmount) . ' months'));
             
                 try {

@@ -78,9 +78,9 @@ session_start();
                 $id = $row['Id'];
                 $icon = $row['icon'];
                 $valori .= "
-                            <a href='savingsGoalsDetails.php?id=$id'>
+                            <a href='savingsGoalsDetailsHtml.php?id=$id'>
                                 <div class='singleGoal'>
-                                    <img src='https://walletwise.altervista.org/walletWise/images/$icon'>
+                                    <img src='https://walletwise.altervista.org/walletWise/images/icone/$icon'>
                                     <h3 class='goal-name'>$name</h3>   
                                 </div>
                             </a>

@@ -176,9 +176,44 @@ if (!isset($_SESSION["username"])) {
                         </div>
                
                         <div class='form__div' style='flex: 1;'>
-                           <input type='file'  name='icon' value='' class='form__input'>
+                           <input disabled type='file'  name='icon' value='' class='form__input'>
                            <label class='form__label'>Icon</label>
                         </div>
+                     </div>
+                     <div class="icone">
+                        <label>
+                           <input type="radio" name="icona" value="travel.png">
+                           <img src="../images/icone/travel.png" alt="Icona 3">   
+                        </label> 
+                        <label>
+                           <input type="radio" name="icona" value="car.png">
+                           <img src="../images/icone/car.png" alt="Icona 3">   
+                        </label> 
+                        <label>
+                           <input type="radio" name="icona" value="people.png">
+                           <img src="../images/icone/people.png" alt="Icona 3">
+                        </label>
+                        <label>
+                           <input type="radio" name="icona" value="food.png">
+                           <img src="../images/icone/food.png" alt="Icona 3">   
+                        </label> 
+                        <label>
+                           <input type="radio" name="icona" value="pc.png">
+                           <img src="../images/icone/pc.png" alt="Icona 3">
+                        </label>
+                        <label>
+                           <input type="radio" name="icona" value="home.png">
+                           <img src="../images/icone/home.png" alt="Icona 3">
+                        </label>
+                        <label>
+                           <input type="radio" name="icona" value="games.png">
+                           <img src="../images/icone/games.png" alt="Icona 3">
+                        </label>
+                        <label>
+                           <input type="radio" name="icona" value="books.png">
+                           <img src="../images/icone/books.png" alt="Icona 3">
+                        </label>
+                     
                      </div>
                      <div class="button-container">
                         <a class="CancelGoal">Cancel</a>
