@@ -50,6 +50,25 @@ $dbName = $stmt->fetchColumn();
    $checkedHome = ($icon == 'home.png') ? 'checked' : '';
    $checkedGames = ($icon == 'games.png') ? 'checked' : '';
    $checkedBooks = ($icon == 'books.png') ? 'checked' : '';
+
+   
+   $sql = "SELECT * FROM SavingsTransactions WHERE GoalId = '$id';";
+   $stmt = $pdo->prepare($sql);
+   $stmt->execute();
+   $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   if(empty($rows)){
+         $valori = "<p style='text-align: center;'>No transactions found for this goal.</p>";
+   } else {
+      foreach ($rows as $row) {
+         $amount = $row['Amount'];
+         $date = $row['TransactionDate'];
+         $valori .= "<tr><td>$date</td><td>$amount</td></tr>";
+     }
+     $valori = "<table><tr><th>Date</th><th>Amount</th></tr>$valori</table>";
+   }
+   
+
 $html = "
 
 <!DOCTYPE html>
@@ -165,22 +184,23 @@ $html = "
       <main class='main container' id='main'>
       
       <div class='overlay2'></div>
-      <h1>$name</h1>
-      <button  onclick=\"window.location.href='savingsGoalsHtml.php'\" class=\"btnSGD\">
-        <span font-weight:\"lighter\"> ❮ </span> to Savings Goals
-      </button>
+      <div class='header-row'>
+         <a href='savingsGoalsHtml.php' class='btnSGD'>❮  Savings Goals</a>
+         <h1 class='goal-title'>$name</h1>
+         <div class='button-container'>
+            <a class='CancelGoalDetails deleteGoalBtn'>Delete</a>
+            <a class='saveGoal modifyGoalBtn'>Modify</a>
+         </div>
+      </div>
        <br>
          <div class='section goals'> 
         
             <div>
                <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
-               <div class=\"button-container\">
-                        <a class=\"CancelGoalDetails deleteGoalBtn\">Delete</a>
-                        <a class=\"saveGoal modifyGoalBtn\">Modify</a>
-                     </div>
+              
                <?php include 'php/savingsGoals.php';?>
                
-                <img src='https://walletwise.altervista.org/walletWise/images/icone/$icon' style=\"border-radius: 50%; width: 100px; height: 100px;\">
+                <img src='https://walletwise.altervista.org/walletWise/images/icone/$icon' style=\"border-radius: 50%; width: 100px; height: 100px; margin-right: 10px;\">
                
                 <div>                
                   <p>Description: $description</p>
@@ -196,6 +216,7 @@ $html = "
                 
                
             </div>
+            $valori
          </div>
 
 
@@ -210,7 +231,6 @@ $html = "
          <div class='modifyGoal'>
                   <h3>Set a new Savings Goal</h3>
                   <br>
-                  <?php $valori ?>
                   <form class='goalForm' method='post' action='php/modifySavingsGoals.php?id=$id'' enctype='multipart/form-data'>
 
                      <div style='display: flex; gap: 1rem; align-items: flex-end;'>

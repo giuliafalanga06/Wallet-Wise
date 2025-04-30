@@ -41,4 +41,15 @@ $dbName = $stmt->fetchColumn();
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 
+    $sql = "SELECT * FROM SavingsTransactions WHERE GoalId = '$id';";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($rows as $row) {
+        $amount = $row['Amount'];
+        $date = $row['TransactionDate'];
+        $valori .= "<tr><td>$amount</td><td>$date</td></tr>";
+    }
+    $valori = "<table><tr><th>Amount</th><th>Date</th></tr>$valori</table>";
 ?>
