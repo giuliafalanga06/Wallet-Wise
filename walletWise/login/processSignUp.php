@@ -3,32 +3,44 @@ session_start();
 
 
 if (empty($_POST["name"])) {
-    $_SESSION['signUp']['name'] = "<span class='error'>Name is required </span>";
+    $_SESSION['signUp']['error']['name'] = "<span class='error'>Name is required </span>";
     header("Location: ./signUp.php");
+}else if (!preg_match("/^[a-zA-Z ]*$/", $_POST["name"])) {
+    $_SESSION['signUp']['error']['name'] = "<span class='error'>Only letters and white space allowed </span>";
+    header("Location: ./signUp.php");
+}else {
+    $_SESSION['signUp']['name'] = $_POST["name"];
 }
 
 
 if (empty($_POST["surname"])) {
-    $_SESSION['signUp']['surname'] = "<span class='error'>Surname is required </span>";
+    $_SESSION['signUp']['error']['surname'] = "<span class='error'>Surname is required </span>";
     header("Location: ./signUp.php");
+}else if (!preg_match("/^[a-zA-Z ]*$/", $_POST["surname"])) {
+    $_SESSION['signUp']['error']['surname'] = "<span class='error'>Only letters and white space allowed </span>";
+    header("Location: ./signUp.php");
+}else {
+    $_SESSION['signUp']['surname'] = $_POST["surname"];
 }
 
 if (! filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-    $_SESSION['signUp']['email'] = "<span class='error'>Valid Email is required </span>";
+    $_SESSION['signUp']['error']['email'] = "<span class='error'>Valid Email is required </span>";
     header("Location: ./signUp.php");
+}else {
+    $_SESSION['signUp']['email'] = $_POST["email"];
 }
 
 if (strlen($_POST["password"]) < 8 || ! preg_match("/[a-z]/i", $_POST["password"]) || ! preg_match("/[0-9]/", $_POST["password"])) {
-    $_SESSION['signUp']['password'] = "<span class='error'>Password must be at least 8 characters long and contain at least one letter and one number </span>";
+    $_SESSION['signUp']['error']['password'] = "<span class='error'>Password must be at least 8 characters long and contain at least one letter and one number </span>";
     header("Location: ./signUp.php");
 }
 
-
 if ($_POST["password"] !== $_POST["password_confirmation"]) {
-    $_SESSION['signUp']['passwordConfirmation'] = "<span class='error'>Passwords do not match </span>";
+    $_SESSION['signUp']['error']['passwordConfirmation'] = "<span class='error'>Passwords do not match </span>";
     header("Location: ./signUp.php");
     
 }
+
 $name = $_POST["name"];
 $surname = $_POST["surname"];
 $email = $_POST["email"];
@@ -42,11 +54,11 @@ $stmt_check->bindParam(':email', $email, PDO::PARAM_STR);
 $stmt_check->execute();
 
 if ($stmt_check->fetchColumn() > 0) {
-    $_SESSION['signUp']['email'] = "<span class='error'>Email already registered. Please use a different email address </span>";
+    $_SESSION['signUp']['error']['email'] = "<span class='error'>Email already registered. Please use a different email address </span>";
     header("Location: ./signUp.php");
 }
 
-if($_SESSION['signUp']['name'] || $_SESSION['signUp']['surname'] || $_SESSION['signUp']['email'] || $_SESSION['signUp']['password'] || $_SESSION['signUp']['passwordConfirmation']) {
+if($_SESSION['signUp']['error']['name'] || $_SESSION['signUp']['error']['surname'] || $_SESSION['signUp']['error']['email'] || $_SESSION['signUp']['error']['password'] || $_SESSION['signUp']['error']['passwordConfirmation']) {
     header("Location: ./signUp.php");
     exit();
 }

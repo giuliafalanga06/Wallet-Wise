@@ -15,32 +15,32 @@
             <h1 class="form__title">Sign Up</h1>
             <form action="processSignUp.php" method="post">
                 <div class="form__div">
-                    <input type="text" value="<?php echo  $name;?>" name="name" class="form__input" placeholder=" " >
+                    <input type="text" name="name" class="form__input" placeholder=" " value="<?php echo $_SESSION['signUp']['name'] ?? ''; unset($_SESSION['signUp']['name'])?>" >
                     <label class="form__label">Name</label>
                     
                 </div>
                 <?php  
-                    echo $_SESSION['signUp']['name'] ?? ''; 
-                    unset($_SESSION['signUp']['name']);
+                    echo $_SESSION['signUp']['error']['name'] ?? ''; 
+                    unset($_SESSION['signUp']['error']['name']);
                 ?>
 
                 <div class="form__div">
-                    <input type="text"  name="surname" class="form__input" placeholder=" " >
+                    <input type="text"  name="surname" class="form__input" placeholder=" " value="<?php echo $_SESSION['signUp']['surname'] ?? ''; unset($_SESSION['signUp']['surname'])?>" >
                     <label class="form__label">Surname</label>
                     
                 </div>
                 <?php  
-                    echo $_SESSION['signUp']['surname'] ?? ''; 
-                    unset($_SESSION['signUp']['surname']);
+                    echo $_SESSION['signUp']['error']['surname'] ?? ''; 
+                    unset($_SESSION['signUp']['error']['surname']);
                 ?>
                 <div class="form__div">
-                    <input type="text" name="email" class="form__input" placeholder=" " >
+                    <input type="text" name="email" class="form__input" placeholder=" " value="<?php echo $_SESSION['signUp']['email'] ?? ''; unset($_SESSION['signUp']['email']) ?>" >
                     <label class="form__label">Email</label>
                     
                 </div>
                 <?php  
-                    echo $_SESSION['signUp']['email'] ?? ''; 
-                    unset($_SESSION['signUp']['email']);
+                    echo $_SESSION['signUp']['error']['email'] ?? ''; 
+                    unset($_SESSION['signUp']['error']['email']);
                 ?>
                 <div class="form__div">
                     <input type="password" name="password" class="form__input" placeholder=" " >
@@ -48,8 +48,8 @@
                 
                 </div>
                 <?php  
-                    echo $_SESSION['signUp']['password'] ?? ''; 
-                    unset($_SESSION['signUp']['password']);
+                    echo $_SESSION['signUp']['error']['password'] ?? ''; 
+                    unset($_SESSION['signUp']['error']['password']);
                 ?>
                 <div class="form__div">
                     <input type="password" name="password_confirmation" class="form__input" placeholder=" " >
@@ -57,8 +57,8 @@
                     
                 </div>
                 <?php  
-                    echo $_SESSION['signUp']['passwordConfirmation'] ?? ''; 
-                    unset($_SESSION['signUp']['passwordConfirmation']);
+                    echo $_SESSION['signUp']['error']['passwordConfirmation'] ?? ''; 
+                    unset($_SESSION['signUp']['error']['passwordConfirmation']);
                 ?>
                 <span class="form_error">
                 <?php  

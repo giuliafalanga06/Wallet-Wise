@@ -151,7 +151,7 @@ try {
                   </i>
                </button>
 
-                  <button class="sidebar__link" onclick="window.location.href='../index.html'">
+                  <button class='sidebar__link' onclick="window.location.href='../login/logout.php'">
                     <i class="ri-logout-box-r-fill"></i>
                     <span>Log Out</span>
                   </button>

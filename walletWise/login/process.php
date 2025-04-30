@@ -12,15 +12,16 @@ include realpath( "../../walletWise/connectDB.php");
             echo "Connessione al database riuscita!<br>";
         }
 
-
+        var_dump($_POST);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['login'])) {
-        // Sanificazione dell'input
+ 
         $email = trim($_POST["email"] ?? '');
         $pwd = $_POST["password"] ?? '';
-
+        $_SESSION["email"] = $email;
+        
         if (empty($email) || empty($pwd)) {
-            $error_message = "Entrambi i campi sono obbligatori!";
+            $_SESSION['loginError'] = "Both fields are required!";
+            header("Location: ./login.php");
         } else {
             $sql = "SELECT u.id as id, u.name as name, u.password as password, u.account_activation_hash as account_activation_hash, c.Id as idCard 
                 FROM usertables as u, Card as c 
@@ -42,10 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['idCard'] = $row['idCard'];
             
             if (!$row || hash("sha256", $pwd)!= $row["password"]) {
-                $_SESSION['loginError'] = "Credenziali errate!";
+                $_SESSION['loginError'] = "Wrong credentials supplied!";
                 header("Location: ./login.php");
             } else if ($row["account_activation_hash"] != null) {
-                $_SESSION['loginError'] = "Il tuo account non è attivo!";
+                $_SESSION['loginError'] = "Wrong credentials supplied!";
                 header("Location: ./login.php");
             }
             else {
@@ -59,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
    
-    }
+    
 }
 
 // Visualizza l'errore tramite alert se presente
