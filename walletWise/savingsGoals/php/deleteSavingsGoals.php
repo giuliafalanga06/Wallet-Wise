@@ -21,6 +21,11 @@
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id);
     $stmt->execute();
+
+    $sql = "DELETE FROM SavingsTransactions WHERE GoalId = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
     header("Location: ../savingsGoalsHtml.php");
     exit();
 ?>

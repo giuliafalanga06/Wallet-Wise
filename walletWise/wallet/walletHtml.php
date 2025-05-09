@@ -21,10 +21,13 @@ if (!isset($_SESSION["username"])) {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
 
       <!-----CSS ----->
+      <link rel='stylesheet' href='./css/wallet.css'>
+      <link rel='stylesheet' href='../styles/input.css'>
       <link rel="stylesheet" href="../styles/home.css">
       <link rel="stylesheet" href="../styles/cards.css">
       
-      <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
+      
+      <title>Walletwise | Wallet</title>
    </head>
    <body>
       <!-----HEADER ----->
@@ -79,6 +82,11 @@ if (!isset($_SESSION["username"])) {
                         <i class="ri-archive-drawer-fill"></i>
                         <span>Savings goals</span>
                      </a>
+
+                     <a id="investment" class="sidebar__link "  href="../investment/investmentHtml.php" data-section = "investment">
+                        <i class="ri-line-chart-fill"></i>
+                        <span>Investment</span>
+                     </a>
                   </div>
                </div>
 
@@ -117,10 +125,10 @@ if (!isset($_SESSION["username"])) {
 
       <!-----MAIN ----->
       <main class="main container" id="main">
-
+      <div class='overlay'></div>
       <?php include 'php/card.php';?>
       <div class="section wallet">
-            <h2>Le mie carte</h2>
+            <h2>My Wallet</h2>
             <section class="cardsContainer">
                <div class="cardsWrapper">
 
@@ -145,13 +153,66 @@ if (!isset($_SESSION["username"])) {
                   </div>
                </div>
             </section>
+
+         <div>
+            <a class='newTransferBtn'>+ Instant bank transfer</a>
          </div>
 
+         <div class='newTransfer'>
+         <h3>Set a new instant bank transfer</h3>
+         <br>
+            <form class='Transfer' method='post' action='php/formTransfer.php' enctype='multipart/form-data'>
+               <div style='display: flex; gap: 1rem; align-items: flex-end;'>
+                  <div class='form__div' style='flex: 1;'>
+                     <input type='text' name='name' class='form__input' placeholder=' '>
+                     <label class='form__label'>Beneficiary's Name</label>
+                  </div>
+                  <div class='form__div' style='flex: 1;'>
+                     <input type='text' id='surname'  name='surname' class='form__input' placeholder=' '>
+                     <label class='form__label'>Beneficiary's surname</label>
+                  </div>
+               </div>
+
+               <div style='display: flex; gap: 1rem;'>
+                  <div class='form__div' style='flex: 1;'>
+                     <input type='text'  name='iban' class='form__input' placeholder=' '>
+                     <label class='form__label'>Beneficiary's Iban</label>
+                  </div>
+               </div>
+         
+               <div style='display: flex; gap: 1rem;'>
+               <div class='form__div' style='flex: 1;'>
+                     <input type='text' id='email' name='email' class='form__input' placeholder=' '>
+                     <label class='form__label'>Beneficiary's email </label>
+                  </div>
+
+                  <div class='form__div' style='flex: 1;'>
+                     <input type='number' id='amount' name='amount' class='form__input' placeholder=' '>
+                     <label class='form__label'>Amount</label>
+                  </div>
+
+                 
+               </div>
+
+               <div style='display: flex; gap: 1rem;'>
+                  <div class='form__div' style='flex: 1;'>
+                  <input type='text' id='reason' name='reason' class='form__input' placeholder=' '>
+                  <label class='form__label'>Reason for payment</label>
+                  </div>
+               </div>
+               <div class="button-container">
+                        <a class="CancelTransfer">Cancel</a>
+                        <input type="submit" value="Save" name="submit" class="saveTransfer">
+               </div>
+            </form>
+         </div>
+      </div> 
 
       </main>
       
       <!-----MAIN JS ----->
       <script src="../src/home.js"></script>
       <script src="../src/card.js"></script>
+      <script src="./js/wallet.js"></script>
    </body>
 </html>

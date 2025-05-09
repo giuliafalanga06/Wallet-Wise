@@ -98,8 +98,14 @@ function inputControl($pdo) {
         // Calcola la end date come un mese prima dell'ultima rata
         $endDate = date('Y-m-d', strtotime($startDate . ' + ' . ($mesi - 1) . ' months'));
        
-        $primaRata = $monthAmount;
-        $currentAmount = $primaRata;
+       // se start date è now
+        if ($startDate == date('Y-m-d')) {
+            $currentAmount = $monthAmount;
+        }
+        else{
+            $currentAmount = 0;
+        }
+
         $nextTransactionDate = date('Y-m-d', strtotime($startDate . ' +1 month'));
 
         try {
@@ -129,8 +135,10 @@ function inputControl($pdo) {
             $goalId = $pdo->lastInsertId();
 
             // Registra la prima transazione
-            $insert = $pdo->prepare("INSERT INTO SavingsTransactions (GoalId, Amount, TransactionDate) VALUES (?, ?, ?)");
-            $insert->execute([$goalId, $primaRata, $startDate]);
+            if ($startDate == date('Y-m-d')) {
+                $insert = $pdo->prepare("INSERT INTO SavingsTransactions (GoalId, Amount, TransactionDate) VALUES (?, ?, ?)");
+                $insert->execute([$goalId, $currentAmount, $startDate]);
+            }            
 
             echo "Obiettivo creato con successo!";
             header("Location: ../savingsGoalsHtml.php");  // Redirect dopo successo

@@ -179,7 +179,7 @@ a{
 }
 
 .CancelGoal:hover, .CancelGoalDetails:hover {
-    background-color: #c9302c;
+    filter: brightness(85%);
 }
 
 .saveGoal:hover {

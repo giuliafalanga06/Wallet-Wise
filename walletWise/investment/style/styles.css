@@ -1,0 +1,375 @@
+/* Investment Section - Namespaced Styles */
+.inv-main-container {
+    padding-top: 5rem;
+}
+
+.inv-section {
+    margin-bottom: 2rem;
+    background-color: var(--body-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 2px 15px var(--shadow-color);
+    transition: background-color 0.4s;
+}
+
+.inv-section-title {
+    color: var(--first-color);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--first-color);
+}
+
+.inv-subtitle {
+    color: var(--title-color);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.inv-description {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Info Cards */
+.inv-info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.inv-card {
+    background-color: var(--body-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--first-color);
+}
+
+.inv-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--shadow-color);
+}
+
+.inv-card-title {
+    color: var(--title-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.inv-card-text {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Form Styles */
+.inv-form {
+    margin-top: 2rem;
+}
+
+.inv-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.inv-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--title-color);
+}
+
+.inv-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+.inv-input:focus {
+    outline: none;
+    border-color: var(--first-color);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.inv-button {
+    background-color: var(--first-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.inv-button:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Results Section */
+.inv-results {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.inv-results.hidden {
+    display: none;
+}
+
+.inv-results-title {
+    color: var(--title-color);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.inv-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.inv-result-item {
+    background-color: var(--card-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.inv-result-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.inv-result-value {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--first-color);
+}
+
+.inv-canvas-chart {
+    width: 100%;
+    height: 400px;
+}
+
+/* Table Styles */
+.inv-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+}
+
+.inv-table th, 
+.inv-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.inv-table th {
+    background-color: var(--card-color);
+    font-weight: 600;
+}
+
+.inv-table tr:hover {
+    background-color: var(--card-color);
+}
+
+/* Accordion Styles */
+.inv-accordion {
+    margin: 1.5rem 0;
+}
+
+.inv-accordion-item {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.inv-accordion-header {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--card-color);
+    text-align: left;
+    border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease;
+    color: var(--title-color);
+}
+
+.inv-accordion-header:hover {
+    background-color: var(--border-color);
+}
+
+.inv-accordion-header::after {
+    content: "+";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+
+.inv-accordion-item.active .inv-accordion-header::after {
+    content: "-";
+}
+
+.inv-accordion-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.inv-accordion-item.active .inv-accordion-content {
+    padding: 1rem;
+    max-height: 1000px;
+}
+
+.inv-accordion-content p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.inv-list {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.inv-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* Stili per l'overlay del grafico */
+.market-chart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.market-chart-overlay.show {
+    display: flex;
+}
+
+.market-chart-container {
+    background: var(--body-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    width: 800px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.cancelChartBtn {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: var(--first-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+.cancelChartBtn:hover {
+    filter: brightness(90%);
+}
+
+/* Assicurati che il grafico TradingView sia responsive */
+.tradingview-widget-container {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#tradingview_chart {
+    width: 100%;
+    height: 500px;
+}
+
+/* Dark Theme Adjustments */
+.dark-theme .inv-card {
+    background-color: var(--card-color);
+}
+
+.dark-theme .inv-section {
+    background-color: var(--card-color);
+}
+
+.dark-theme .inv-table th {
+    background-color: hsl(228, 16%, 20%);
+}
+
+.dark-theme .inv-accordion-header {
+    background-color: hsl(228, 16%, 20%);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .inv-info-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .inv-results-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .inv-table {
+        font-size: 0.85rem;
+    }
+    
+    .inv-table th, 
+    .inv-table td {
+        padding: 0.5rem;
+    }
+    
+    .market-chart-container {
+        width: 95%;
+        padding: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes inv-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.inv-results.show {
+    display: block;
+    animation: inv-fadeIn 0.5s ease forwards;
+}

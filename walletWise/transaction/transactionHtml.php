@@ -24,7 +24,7 @@ if (!isset($_SESSION["username"])) {
       <!-----CSS ----->
       <link rel="stylesheet" href="../styles/home.css">
       
-      <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
+      <title>Walletwise | Transactions</title>
    </head>
    <body>
       <!-----HEADER ----->
@@ -78,6 +78,11 @@ if (!isset($_SESSION["username"])) {
                      <a id="goals" class="sidebar__link "  href="../savingsGoals/savingsGoalsHtml.php" data-section = "goals">
                         <i class="ri-archive-drawer-fill"></i>
                         <span>Savings goals</span>
+                     </a>
+
+                     <a id="investment" class="sidebar__link "  href="../investment/investmentHtml.php" data-section = "investment">
+                        <i class="ri-line-chart-fill"></i>
+                        <span>Investment</span>
                      </a>
                   </div>
                </div>

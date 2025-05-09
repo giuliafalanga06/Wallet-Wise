@@ -48,6 +48,8 @@
 
 //------COLLEGAMENTO AL DATABASE ------
         include realpath(__DIR__ . "/../../../walletWise/connectDB.php");
+        session_start();
+
         $pdo = pdoConnection();
         
         if (!$pdo) {
@@ -86,8 +88,6 @@ session_start();
                             </a>
                 ";
             }
-
-
 
         } catch (Exception $e) {
             echo "Errore: " . $e->getMessage();

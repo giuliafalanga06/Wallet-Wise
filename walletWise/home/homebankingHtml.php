@@ -7,45 +7,45 @@ if (!isset($_SESSION["username"])) {
     exit();
 }
 
-$monthlyIncome = 3500.00;
-$monthlyExpenses = 1850.25;
+// $monthlyIncome = 3500.00;
+// $monthlyExpenses = 1850.25;
 
-$userId = $_SESSION["user_id"]; 
+// $userId = $_SESSION["user_id"]; 
 
-$host = 'ftp.walletwise.altervista.org';  
-$dbname = 'my_walletwise';  
-$username = 'walletwise';  
-$password = '';
+// $host = 'ftp.walletwise.altervista.org';  
+// $dbname = 'my_walletwise';  
+// $username = 'walletwise';  
+// $password = '';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// try {
+//     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $pdo->prepare("SELECT balance, last_update FROM user_balance WHERE user_id = ?");
-    $stmt->execute([$userId]);
-    $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+//     $stmt = $pdo->prepare("SELECT balance, last_update FROM user_balance WHERE user_id = ?");
+//     $stmt->execute([$userId]);
+//     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($userData) {
-        $balance = $userData['balance'];
-        $lastUpdate = $userData['last_update'];
+//     if ($userData) {
+//         $balance = $userData['balance'];
+//         $lastUpdate = $userData['last_update'];
 
-        if (strtotime($lastUpdate) < strtotime("first day of this month")) {
-            $balance += $monthlyIncome;
-            $balance -= $monthlyExpenses;
-            $stmt = $pdo->prepare("UPDATE user_balance SET balance = ?, last_update = ? WHERE user_id = ?");
-            $stmt->execute([$balance, date("Y-m-d"), $userId]);
+//         if (strtotime($lastUpdate) < strtotime("first day of this month")) {
+//             $balance += $monthlyIncome;
+//             $balance -= $monthlyExpenses;
+//             $stmt = $pdo->prepare("UPDATE user_balance SET balance = ?, last_update = ? WHERE user_id = ?");
+//             $stmt->execute([$balance, date("Y-m-d"), $userId]);
 
-            echo "Saldo aggiornato per il mese!";
-        } else {
-            echo "Il saldo è già stato aggiornato questo mese.";
-        }
-    } else {
-       // echo "Utente non trovato.";
-    }
-} catch (PDOException $e) {
-    echo "Errore nel recupero dei dati: " . $e->getMessage();
-    exit();
-}
+//             echo "Saldo aggiornato per il mese!";
+//         } else {
+//             echo "Il saldo è già stato aggiornato questo mese.";
+//         }
+//     } else {
+//        // echo "Utente non trovato.";
+//     }
+// } catch (PDOException $e) {
+//     echo "Errore nel recupero dei dati: " . $e->getMessage();
+//     exit();
+// }
 
 
 
@@ -68,7 +68,7 @@ try {
       <!-----CSS ----->
       <link rel="stylesheet" href="../styles/home.css">
       <link rel="stylesheet" href="styles/home.css">
-      <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
+      <title>Walletwise | Home</title>
    </head>
    <body>
       <!-----HEADER ----->
@@ -123,6 +123,11 @@ try {
                         <i class="ri-archive-drawer-fill"></i>
                         <span>Savings goals</span>
                      </a>
+
+                     <a id="investment" class="sidebar__link "  href="../investment/investmentHtml.php" data-section = "investment">
+                        <i class="ri-line-chart-fill"></i>
+                        <span>Investment</span>
+                     </a>
                   </div>
                </div>
 
@@ -162,6 +167,7 @@ try {
       <!-----MAIN ----->
       <main class="main container" id="main">
          <div class="section home">
+         <?php include 'php/homebanking.php';?>
             <h2>Home</h2>
             <br>
                <div class="content">
@@ -170,7 +176,7 @@ try {
                      <p>SALDO : €<?php echo number_format($balance, 2); ?></p>
                      </div>
                      <div class="bottom-left">
-                        <p>rate da pagare o già pagate dei savings goals per questo mese</p>
+                        <?php echo $valori; ?>  
                      </div>
                   </div>
                   <div class="right-div">

@@ -1,0 +1,81 @@
+.newTransfer {
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 50vw;
+    box-shadow: 0 2px 24px var(--shadow-color);
+    background-color: var(--body-color);
+    border-radius: 25px;
+    padding: 4vh;
+    z-index: 1000; 
+    display: none;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 10px; 
+    margin-top: 30px;
+    width: 100%; 
+    justify-content: flex-end; 
+}
+
+
+.CancelTransfer, .saveTransfer {
+    position: relative; 
+    padding: 8px 15px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100px; 
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.newTransferBtn{
+
+    color: white;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-speed);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--first-color);
+    color: white;
+}
+
+.CancelTransfer{
+    background-color: #d9534f;
+    color: white;
+}
+
+.saveTransfer, .newTransferBtn {
+    background-color: var(--first-color);
+    color: white;
+}
+
+.CancelTransfer:hover {
+    filter: brightness(85%);
+}
+
+.saveTransfer:hover, .newTransferBtn:hover {
+    filter: brightness(85%);
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 999; 
+    display: none;
+}

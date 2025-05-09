@@ -1,5 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@500&display=swap');
 
+:root {
+    --header-height: 3.5rem;
+  
+    /*--- Colors ---*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: hsl(193, 86%, 34%);
+    --second-color: hsl(193, 100%, 55%);
+    --title-color: hsl(228, 18%, 16%);
+    --text-color: hsl(228, 8%, 56%);
+    --body-color: hsl(228, 100%, 99%);
+    --shadow-color: hsla(228, 80%, 4%, .1);
+    --card-color: hsla(193, 86%, 34%, 0.542);
+    /*--- Font and typography ---*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Nunito Sans", system-ui;
+    --normal-font-size: .938rem;
+    --smaller-font-size: .75rem;
+    --tiny-font-size: .75rem;
+  
+    /*--- Font weight ---*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+  
+    /*--- z index ---*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+  }
+
 * {
     transition: 1s;
     box-sizing: border-box;
@@ -9,6 +37,11 @@ body {
     margin: 0;
     overflow: auto;
     font-family: 'Public Sans';
+}
+.immagineSfondo{
+    width: 85%;
+    height: 85%;
+    padding-top: 100px;
 }
 
 article>div>div>figure>img {
@@ -70,14 +103,14 @@ p {
 
 h1>a,
 h2>a {
-    color: hsl(233, 26%, 24%);
+    color: var(--first-color);
     font-weight: 550;
     cursor: pointer
 }
 
 h1>a:hover,
 h2>a:hover {
-    color: hsl(136, 65%, 51%);
+    color: var(--second-color);
 }
 .logo{
     display: flex;
@@ -94,10 +127,10 @@ button {
     padding-right: 20px;
     color: hsl(0, 0%, 100%);
     border-radius: 15px;
-    background: linear-gradient(to right, hsl(136, 65%, 51%), hsl(192, 70%, 51%));
+    background: linear-gradient(to right, var(--first-color), var(--second-color));
     border: 1px solid transparent;
-    border-left-color: hsl(136, 65%, 51%);
-    border-right-color: hsl(192, 70%, 51%);
+    border-left-color: var(--first-color);
+    border-right-color: var(--second-color);
     cursor: pointer;
 }
 
@@ -139,7 +172,7 @@ nav>ul>li>a {
 
 .border {
     display: none;
-    background: linear-gradient(to right, hsl(136, 65%, 51%), hsl(192, 70%, 51%));
+    background:  linear-gradient(to right, var(--first-color), var(--second-color));
     width: 50px;
     margin-left: 3px;
     margin-top: 24px;
@@ -212,7 +245,7 @@ nav>button {
 
 .ham_border {
     display: none;
-    background: linear-gradient(to right, hsl(136, 65%, 51%), hsl(192, 70%, 51%));
+    background: linear-gradient(to right, var(--first-color), var(--second-color));
     width: 50px;
     height: 1mm;
     margin-top: 5px;

@@ -103,6 +103,9 @@ else{
         // Send the email
         if (mail($to, $subject, $message, $headers)) {
             $_SESSION['signUp']['registration'] = "<span class='success'>Registration successful! Please check your email to activate your account.</span>";
+            $_SESSION['signUp']['name'] = '';
+            $_SESSION['signUp']['surname'] = '';
+            $_SESSION['signUp']['email'] = '';
             header("Location: ./signUp.php");
             createCard($email, $pdo);
         } else {

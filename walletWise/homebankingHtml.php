@@ -26,7 +26,7 @@ if (!isset($_SESSION["username"])) {
       <link rel="stylesheet" href="styles/cards.css">
       <link rel="stylesheet" href="styles/goals.css">
       
-      <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
+      <title>Walletwise</title>
    </head>
    <body>
       <!-----HEADER ----->

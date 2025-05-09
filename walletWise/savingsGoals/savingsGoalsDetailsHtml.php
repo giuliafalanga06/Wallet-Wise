@@ -144,6 +144,11 @@ $html = "
                         <i class='ri-archive-drawer-fill'></i>
                         <span>Savings goals</span>
                      </a>
+
+                     <a id=\"investment\" class=\"sidebar__link \"  href=\"../investment/investmentHtml.php\" data-section = \"investment\">
+                        <i class=\"ri-line-chart-fill\"></i>
+                        <span>Investment</span>
+                     </a>
                   </div>
                </div>
 

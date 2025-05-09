@@ -23,7 +23,7 @@ if (!isset($_SESSION["username"])) {
       <link rel='stylesheet' href='../styles/input.css'>
       <link rel='stylesheet' href='styles/savingsGoals.css'>
       <link rel='stylesheet' href='../styles/home.css'>
-      <title>Responsive sidebar Menu | Dark/Light Mode - Bedimcode</title>
+      <title>Walletwise | Savings Goals</title>
    </head>
    <body>
       <!-----HEADER ----->
@@ -77,6 +77,11 @@ if (!isset($_SESSION["username"])) {
                      <a id='goals' class='sidebar__link active-link'  href='#' data-section = 'goals'>
                         <i class='ri-archive-drawer-fill'></i>
                         <span>Savings goals</span>
+                     </a>
+
+                     <a id="investment" class="sidebar__link "  href="../investment/investmentHtml.php" data-section = "investment">
+                        <i class="ri-line-chart-fill"></i>
+                        <span>Investment</span>
                      </a>
                   </div>
                </div>

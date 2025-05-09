@@ -1,9 +1,13 @@
 <?php
+session_start();
 
+// Controlla se l'utente è loggato
+if (!isset($_SESSION["username"])) {
+    header("Location: ../login/login.html");
+    exit();
+}
 //------COLLEGAMENTO AL DATABASE ------
         include realpath(__DIR__ . "/../../../walletWise/connectDB.php");
-        session_start();
-
         $pdo = pdoConnection();
         
         if (!$pdo) {
@@ -17,13 +21,10 @@
         $dbName = $stmt->fetchColumn();
         /*echo "Connesso al database: " . $dbName . "<br>";*/
 
-
 //------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
 session_start();
         try {
-            $sql = "SELECT * 
-                    FROM SavingsGoal, SavingsTransactions, Transactions 
-                    where CardId = :CardId ORDER BY Id;";
+            $sql = "SELECT * FROM SavingsGoal where CardId = :CardId  AND NextTransactionDate >= CURDATE() AND month(NextTransactionDate) = month(CURDATE())ORDER BY Id;";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':CardId', $_SESSION["idCard"], PDO::PARAM_STR);
             $stmt->execute();
@@ -31,25 +32,34 @@ session_start();
 
             $valori = '';
 
+            if (empty($rows)) {
+                $valori = "<p class='no-goals'>You have no savings goals to pay for this month.</p>";
+            } else {
+                $valori = " <p>Savings goals to pay this month:</p><br>";
+            }
             foreach ($rows as $row) {
                 $name = $row['Name'];
                 $goal = $row['Goal'];
                 $id = $row['Id'];
+                $monthAmount = $row['MonthAmount'];
                 $icon = $row['icon'];
+                $date = $row['NextTransactionDate'];
                 $valori .= "
-                            <a href='savingsGoalsDetailsHtml.php?id=$id'>
-                                <div class='singleGoal'>
+                            <a href='http://walletwise.altervista.org/walletWise/savingsGoals/savingsGoalsDetailsHtml.php?id=$id'>
+                                <div class='nextTransaction'>
                                     <img src='https://walletwise.altervista.org/walletWise/images/icone/$icon'>
-                                    <h3 class='goal-name'>$name</h3>   
+                                    <h3 class='goal-name'>$name</h3>  
+                                    <p class='goal-date'>$date</p> 
+                                    <p class='goal-amount'>€ $monthAmount</p>
                                 </div>
                             </a>
                 ";
             }
 
+
+
         } catch (Exception $e) {
             echo "Errore: " . $e->getMessage();
         }
 
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
-?>
+        ?>
