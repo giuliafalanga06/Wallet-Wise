@@ -3,49 +3,10 @@ session_start();
 
 // Controlla se l'utente è loggato
 if (!isset($_SESSION["username"])) {
-    header("Location: ../login/login.html");
-    exit();
+   header("Location: ../login/login.html");
+   exit();
 }
 
-// $monthlyIncome = 3500.00;
-// $monthlyExpenses = 1850.25;
-
-// $userId = $_SESSION["user_id"]; 
-
-// $host = 'ftp.walletwise.altervista.org';  
-// $dbname = 'my_walletwise';  
-// $username = 'walletwise';  
-// $password = '';
-
-// try {
-//     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-//     $stmt = $pdo->prepare("SELECT balance, last_update FROM user_balance WHERE user_id = ?");
-//     $stmt->execute([$userId]);
-//     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
-
-//     if ($userData) {
-//         $balance = $userData['balance'];
-//         $lastUpdate = $userData['last_update'];
-
-//         if (strtotime($lastUpdate) < strtotime("first day of this month")) {
-//             $balance += $monthlyIncome;
-//             $balance -= $monthlyExpenses;
-//             $stmt = $pdo->prepare("UPDATE user_balance SET balance = ?, last_update = ? WHERE user_id = ?");
-//             $stmt->execute([$balance, date("Y-m-d"), $userId]);
-
-//             echo "Saldo aggiornato per il mese!";
-//         } else {
-//             echo "Il saldo è già stato aggiornato questo mese.";
-//         }
-//     } else {
-//        // echo "Utente non trovato.";
-//     }
-// } catch (PDOException $e) {
-//     echo "Errore nel recupero dei dati: " . $e->getMessage();
-//     exit();
-// }
 
 
 
@@ -61,7 +22,7 @@ if (!isset($_SESSION["username"])) {
 
       <!-----JQUERY ----->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <!-----REMIXICONS ----->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
 
@@ -69,6 +30,13 @@ if (!isset($_SESSION["username"])) {
       <link rel="stylesheet" href="../styles/home.css">
       <link rel="stylesheet" href="styles/home.css">
       <title>Walletwise | Home</title>
+       <style>
+
+        #transactionsChart {
+            margin-top: 20px;
+        }
+    </style>
+
    </head>
    <body>
       <!-----HEADER ----->
@@ -180,7 +148,74 @@ if (!isset($_SESSION["username"])) {
                      </div>
                   </div>
                   <div class="right-div">
-                     <p>Grafici spese e guadagni del mese</p>
+                       <div class="container">
+                           <h1 style="text-align: center;">Balance Trend<?php echo htmlspecialchars($cardId); ?></h1>
+                           <canvas id="transactionsChart"></canvas>
+                        </div>
+
+                                 <script>
+                                    // Dati passati direttamente da PHP a JavaScript
+                                    const transactions = <?php echo $transactionsJson; ?>;
+                                    console.log(transactions);
+                                    // Preparazione dati per il grafico
+                                    const dates = transactions.map(t => t.Date);
+                                    const balances = transactions.map(t => parseFloat(t.NewBalance));
+                                    
+                                    if (transactions.length === 0 ) {
+                                       document.getElementById('transactionsChart').parentElement.innerHTML =   '<p class="no-data">No transactions available</p>';
+                                    } 
+                                    else{
+                                    // Creazione grafico
+                                       const ctx = document.getElementById('transactionsChart').getContext('2d');
+                                       const transactionsChart = new Chart(ctx, {
+                                             type: 'line',
+                                             data: {
+                                                labels: dates,
+                                                datasets: [{
+                                                   label: 'Balance (€)',
+                                                   data: balances,
+                                                   borderColor: 'hsl(193, 86%, 34%)',
+                                                   tension: 0.1,
+                                                   fill: true
+                                                }]
+                                             },
+                                             options: {
+                                                responsive: true,
+                                                plugins: {
+                                                   title: {
+                                                         display: true,
+                                                         text: 'Last 10 transactions',
+                                                         font: {
+                                                            size: 15
+                                                         }
+                                                   },
+                                                   tooltip: {
+                                                         callbacks: {
+                                                            label: function(context) {
+                                                               return `Balance: €${context.parsed.y.toFixed(2)}`;
+                                                            }
+                                                         }
+                                                   }
+                                                },
+                                                scales: {
+                                                   y: {
+                                                         beginAtZero: false,
+                                                         ticks: {
+                                                            callback: function(value) {
+                                                               return `€${value}`;
+                                                            }
+                                                         }
+                                                   },
+
+                                                   y: {
+                                                      ticks: { maxTicksLimit: dates.length } // Forza solo 5 etichette sull'asse X
+                                                   },
+                                                }
+                                             }
+                                          
+                                       });
+                                    }
+                                 </script>
                   </div>
                   
                </div>

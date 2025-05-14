@@ -23,6 +23,7 @@ if (!isset($_SESSION["username"])) {
    <!-----CSS ----->
    <link rel="stylesheet" href="../styles/home.css">
    <link rel="stylesheet" href="../investment/style/styles.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
    
    <title>Walletwise | Investments</title>
 </head>
@@ -147,132 +148,247 @@ if (!isset($_SESSION["username"])) {
             </div>
          </div>
 
-         <!-- Sezione simulatore investimenti -->
-         <section class="inv-simulator-section">
-            <h3 class="inv-subtitle">AutoInvest Simulator</h3>
-            <p class="inv-description">This educational platform will teach you the fundamentals of automatic investments, allowing you to simulate investment strategies without real risks.</p>
+         <!-- sezione investimenti -->
+         <main class="ss-main ss-container">
+        <section class="ss-simulator-section">
+            <div class="ss-simulator-card">
+                <div class="ss-simulator-controls">
+                    <div class="ss-input-group">
+                        <label for="ss-initial-amount" class="ss-input-label">Deposito iniziale (€)</label>
+                        <input type="range" id="ss-initial-amount" class="ss-range-input" min="100" max="10000" step="100" value="1000">
+                        <div class="ss-value-display">€ <span id="ss-initial-amount-value" class="ss-value-number">1000</span></div>
+                    </div>
+
+                    <div class="ss-input-group">
+                        <label for="ss-monthly-amount" class="ss-input-label">Deposito mensile (€)</label>
+                        <input type="range" id="ss-monthly-amount" class="ss-range-input" min="0" max="1000" step="50" value="100">
+                        <div class="ss-value-display">€ <span id="ss-monthly-amount-value" class="ss-value-number">100</span></div>
+                    </div>
+
+                    <div class="ss-input-group">
+                        <label for="ss-duration" class="ss-input-label">Durata (anni)</label>
+                        <input type="range" id="ss-duration" class="ss-range-input" min="1" max="30" step="1" value="5">
+                        <div class="ss-value-display"><span id="ss-duration-value" class="ss-value-number">5</span> anni</div>
+                    </div>
+
+                    <div class="ss-input-group">
+                        <label for="ss-risk-profile" class="ss-input-label">Profilo di rischio</label>
+                        <select id="ss-risk-profile" class="ss-select-input">
+                            <option value="conservative">Conservativo (2%)</option>
+                            <option value="balanced" selected>Bilanciato (4%)</option>
+                            <option value="aggressive">Aggressivo (6%)</option>
+                        </select>
+                    </div>
+                  
+                    <div class="ss-input-group">
+                      <button id="ss-calculate-btn" class="ss-primary-btn">Calcola</button>
+                    </div>
+                    
+                </div>
+
+                <div class="ss-simulator-results">
+                    <h3 class="ss-results-title">Proiezione del tuo risparmio</h3>
+                    <div class="ss-chart-container">
+                        <canvas id="ss-savings-chart" class="ss-chart"></canvas>
+                    </div>
+                    <div class="ss-summary">
+                        <div class="ss-summary-item">
+                            <span class="ss-summary-label">Totale versato</span>
+                            <strong id="ss-total-deposited" class="ss-summary-value">€0</strong>
+                        </div>
+                        <div class="ss-summary-item">
+                            <span class="ss-summary-label">Interessi guadagnati</span>
+                            <strong id="ss-interest-earned" class="ss-summary-value">€0</strong>
+                        </div>
+                        <div class="ss-summary-item ss-highlight">
+                            <span class="ss-summary-saldo">Saldo finale</span>
+                            <strong id="ss-final-balance" class="ss-saldo-finale">€0</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="inv-education-section">
+            <h3 class="inv-subtitle">Guida agli Investimenti Automatici</h3>
             
-            <div class="inv-info-cards">
-               <div class="inv-card">
-                  <h4 class="inv-card-title">What are automatic investments?</h4>
-                  <p class="inv-card-text">Automatic investments (or DCA - Dollar Cost Averaging) allow you to invest small amounts at regular intervals, reducing risk and taking advantage of dollar-cost averaging.</p>
-               </div>
-               <div class="inv-card">
-                  <h4 class="inv-card-title">Benefits</h4>
-                  <p class="inv-card-text">✓ Investment discipline<br>
-                     ✓ Reduced timing risk<br>
-                     ✓ Exploitation of market fluctuations<br>
-                     ✓ Ability to start with small amounts</p>
-               </div>
-               <div class="inv-card">
-                  <h4 class="inv-card-title">How it works</h4>
-                  <p class="inv-card-text">1. Define a monthly budget<br>
-                     2. Choose financial instruments<br>
-                     3. Set investment frequency<br>
-                     4. The system invests automatically</p>
-               </div>
+            <div class="inv-education-tabs">
+               <button class="inv-tab-btn active" onclick="openTab(event, 'inv-basics')">Concetti Base</button>
+               <button class="inv-tab-btn" onclick="openTab(event, 'inv-strategies')">Strategie</button>
+               <button class="inv-tab-btn" onclick="openTab(event, 'inv-platforms')">Piattaforme</button>
+               <button class="inv-tab-btn" onclick="openTab(event, 'inv-faq')">FAQ</button>
             </div>
 
-            <form id="investment-form" class="inv-form">
-               <div class="inv-form-group">
-                  <label for="initial-amount" class="inv-label">Initial investment (€):</label>
-                  <input type="number" id="initial-amount" class="inv-input" min="0" value="1000">
-               </div>
+            <!-- Tab 1: Concetti Base -->
+            <div id="inv-basics" class="inv-tab-content" style="display: block;">
+               <h4><i class="ri-lightbulb-line"></i> Cosa sono gli Investimenti Automatici?</h4>
+               <p>Sistemi che utilizzano algoritmi e tecnologie digitali per gestire portafogli con intervento umano minimo o nullo.</p>
                
-               <div class="inv-form-group">
-                  <label for="monthly-contribution" class="inv-label">Monthly contribution (€):</label>
-                  <input type="number" id="monthly-contribution" class="inv-input" min="0" value="100">
-               </div>
-               
-               <div class="inv-form-group">
-                  <label for="years" class="inv-label">Investment period (years):</label>
-                  <input type="number" id="years" class="inv-input" min="1" max="50" value="10">
-               </div>
-               
-               <div class="inv-form-group">
-                  <label for="expected-return" class="inv-label">Expected annual return (%):</label>
-                  <input type="number" id="expected-return" class="inv-input" min="0" max="30" step="0.1" value="7">
-               </div>
-               
-               <div class="inv-form-group">
-                  <label for="investment-frequency" class="inv-label">Investment frequency:</label>
-                  <select id="investment-frequency" class="inv-select">
-                     <option value="monthly">Monthly</option>
-                     <option value="quarterly">Quarterly</option>
-                     <option value="biannual">Semiannual</option>
-                     <option value="annual">Annual</option>
-                  </select>
-               </div>
-               
-               <button type="button" id="calculate-btn" class="inv-button">Calculate</button>
-            </form>
-            
-            <div id="results" class="inv-results hidden">
-               <h4 class="inv-results-title">Simulation Results</h4>
-               <div class="inv-results-grid">
-                  <div class="inv-result-item">
-                     <span class="inv-result-label">Final amount:</span>
-                     <span id="final-amount" class="inv-result-value">€0</span>
+               <div class="inv-types-grid">
+                  <div class="inv-type-card">
+                     <h5><i class="ri-calendar-line"></i> PAC (Piani di Accumulo)</h5>
+                     <ul>
+                        <li>Investimenti periodici di importi fissi</li>
+                        <li>Dollar-cost averaging (media dei prezzi nel tempo)</li>
+                        <li>Riduce l'impatto della volatilità</li>
+                     </ul>
                   </div>
-                  <div class="inv-result-item">
-                     <span class="inv-result-label">Total invested:</span>
-                     <span id="total-invested" class="inv-result-value">€0</span>
+                  
+                  <div class="inv-type-card">
+                     <h5><i class="ri-cpu-line"></i> Trading Algoritmico</h5>
+                     <ul>
+                        <li>Operazioni ad alta frequenza</li>
+                        <li>Sfrutta inefficienze di mercato</li>
+                        <li>Principalmente per istituzioni</li>
+                     </ul>
                   </div>
-                  <div class="inv-result-item">
-                     <span class="inv-result-label">Gain:</span>
-                     <span id="total-gain" class="inv-result-value">€0</span>
-                  </div>
-                  <div class="inv-result-item">
-                     <span class="inv-result-label">Total return:</span>
-                     <span id="total-return" class="inv-result-value">0%</span>
-                  </div>
-               </div>
-               
-               <div class="inv-chart-container">
-                  <canvas id="investment-chart" class="inv-canvas-chart"></canvas>
-               </div>
-               
-               <table id="yearly-breakdown" class="inv-table">
-                  <thead>
-                     <tr>
-                        <th>Year</th>
-                        <th>Invested capital</th>
-                        <th>Value</th>
-                        <th>Gain</th>
-                     </tr>
-                  </thead>
-                  <tbody id="yearly-data"></tbody>
-               </table>
-            </div>
-         </section>
-
-         <!-- Sezione educativa -->
-         <section class="inv-education-section">
-            <h3 class="inv-subtitle">Key Concepts to Understand</h3>
-            
-            <div class="inv-accordion">
-               <div class="inv-accordion-item">
-                  <button class="inv-accordion-header">Dollar-Cost Averaging (DCA)</button>
-                  <div class="inv-accordion-content">
-                     <p>The Dollar-Cost Averaging is a strategy where you invest fixed amounts at regular intervals, regardless of market price. This allows you to buy more shares when prices are low and fewer shares when prices are high, averaging the purchase cost over time.</p>
-                     <p>Main benefits:</p>
-                     <ul class="inv-list">
-                        <li>Reduces the impact of market volatility</li>
-                        <li>Eliminates the need for "perfect timing"</li>
-                        <li>Promotes investment discipline</li>
+                  
+                  <div class="inv-type-card">
+                     <h5><i class="ri-share-line"></i> Copy Trading</h5>
+                     <ul>
+                        <li>Copia strategie di trader esperti</li>
+                        <li>Trasparenza sui rendimenti</li>
+                        <li>Possibilità di diversificare</li>
                      </ul>
                   </div>
                </div>
                
-               <div class="inv-accordion-item">
-                  <button class="inv-accordion-header">Compound Interest</button>
-                  <div class="inv-accordion-content">
-                     <p>Compound interest is the process where the returns generated by your initial investment are added to the principal, generating further returns in turn. It is often referred to as the eighth wonder of the financial world.</p>
-                     <p>An example: if you invest €1000 with an annual return of 7%, after one year you will have €1070. The next year, the 7% will apply to €1070, not just the initial €1000, and so on, creating a "snowball" effect.</p>
+               <div class="inv-benefits-box">
+                  <h5><i class="ri-medal-line"></i> Vantaggi Principali</h5>
+                  <ul>
+                     <li><strong>Accessibilità:</strong> investimenti minimi bassi</li>
+                     <li><strong>Costi ridotti:</strong> commissioni inferiori</li>
+                     <li><strong>Disciplina:</strong> niente decisioni emotive</li>
+                     <li><strong>Efficienza:</strong> risparmio di tempo</li>
+                     <li><strong>Diversificazione:</strong> portafogli globali</li>
+                  </ul>
+               </div>
+            </div>
+
+            <!-- Tab 2: Strategie -->
+            <div id="inv-strategies" class="inv-tab-content">
+               <h4><i class="ri-line-chart-line"></i> Strategie di Investimento</h4>
+               
+               <div class="inv-strategy-accordion">
+                  <button class="inv-accordion-btn">Strategie Basate su Regole <i class="ri-arrow-down-s-line"></i></button>
+                  <div class="inv-accordion-panel">
+                     <ul>
+                        <li><strong>Ribilanciamento periodico:</strong> riaggiustamento alle allocazioni target</li>
+                        <li><strong>Momentum:</strong> acquisto di asset con performance recenti forti</li>
+                        <li><strong>Value:</strong> focus su asset sottovalutati</li>
+                        <li><strong>Dividend Growth:</strong> concentrazione su aziende con dividendi crescenti</li>
+                     </ul>
                   </div>
+                  
+                  <button class="inv-accordion-btn">Strategie con Algoritmi Avanzati <i class="ri-arrow-down-s-line"></i></button>
+                  <div class="inv-accordion-panel">
+                     <ul>
+                        <li><strong>Reti neurali:</strong> modelli complessi ispirati al funzionamento cerebrale</li>
+                        <li><strong>NLP:</strong> analisi del sentiment da notizie e social</li>
+                        <li><strong>Reinforcement Learning:</strong> algoritmi che migliorano con l'esperienza</li>
+                        <li><strong>Ensemble Methods:</strong> combinazione di più modelli</li>
+                     </ul>
+                  </div>
+               </div>
+               
+               <div class="inv-implementation-box">
+                  <h5><i class="ri-checkbox-line"></i> Come Implementare</h5>
+                  <ol>
+                     <li>Definire obiettivi (rendimenti, rischio, orizzonte temporale)</li>
+                     <li>Selezionare piattaforma (costi, funzionalità, affidabilità)</li>
+                     <li>Configurazione iniziale (allocazione, frequenza)</li>
+                     <li>Monitoraggio periodico</li>
+                     <li>Ottimizzazione quando necessario</li>
+                  </ol>
+               </div>
+            </div>
+
+            <!-- Tab 3: Piattaforme -->
+            <div id="inv-platforms" class="inv-tab-content">
+               <h4><i class="ri-computer-line"></i> Piattaforme di Riferimento</h4>
+               
+               <div class="inv-platforms-table">
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>Regione</th>
+                           <th>Piattaforme</th>
+                           <th>Caratteristiche</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>Nord America</td>
+                           <td>Betterment, Wealthfront, Robinhood</td>
+                           <td>Robo-advisor avanzati, bassi costi</td>
+                        </tr>
+                        <tr>
+                           <td>Europa</td>
+                           <td>Nutmeg, Moneyfarm, Scalable Capital</td>
+                           <td>Conforme a regolamentazioni UE</td>
+                        </tr>
+                        <tr>
+                           <td>Italia</td>
+                           <td>Fineco Advice, Tinaba, Moneyfarm</td>
+                           <td>Servizi localizzati, supporto in italiano</td>
+                        </tr>
+                        <tr>
+                           <td>Asia</td>
+                           <td>StashAway, 8 Securities</td>
+                           <td>Focus su mercati emergenti</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               
+               <div class="inv-selection-criteria">
+                  <h5><i class="ri-search-line"></i> Criteri di Selezione</h5>
+                  <ul>
+                     <li><strong>Costi:</strong> commissioni di gestione e transazione</li>
+                     <li><strong>Asset disponibili:</strong> azioni, ETF, obbligazioni, etc.</li>
+                     <li><strong>Interfaccia:</strong> usabilità e strumenti di analisi</li>
+                     <li><strong>Sicurezza:</strong> regolamentazione e protezione fondi</li>
+                     <li><strong>Supporto:</strong> assistenza clienti e risorse educative</li>
+                  </ul>
+               </div>
+            </div>
+
+            <!-- Tab 4: FAQ -->
+            <div id="inv-faq" class="inv-tab-content">
+               <h4><i class="ri-question-line"></i> Domande Frequenti</h4>
+               
+               <div class="inv-faq-accordion">
+                  <button class="inv-accordion-btn">Gli investimenti automatici sono sicuri? <i class="ri-arrow-down-s-line"></i></button>
+                  <div class="inv-accordion-panel">
+                     <p>La sicurezza dipende dalla piattaforma scelta. Le piattaforme regolamentate offrono protezioni, ma tutti gli investimenti comportano rischi. Diversificare e comprendere la strategia sono fondamentali.</p>
+                  </div>
+                  
+                  <button class="inv-accordion-btn">Qual è il capitale minimo richiesto? <i class="ri-arrow-down-s-line"></i></button>
+                  <div class="inv-accordion-panel">
+                     <p>Molte piattaforme permettono di iniziare con poche centinaia di euro, specialmente per i PAC. Alcune hanno addirittura nessun minimo per iniziare.</p>
+                  </div>
+                  
+                  <button class="inv-accordion-btn">Come vengono tassati questi investimenti? <i class="ri-arrow-down-s-line"></i></button>
+                  <div class="inv-accordion-panel">
+                     <p>La tassazione varia per paese. In Italia, le plusvalenze sono tassate al 26% per i privati. Alcune piattaforme offrono report fiscali automatici.</p>
+                  </div>
+                  
+                  <button class="inv-accordion-btn">Posso personalizzare la strategia? <i class="ri-arrow-down-s-line"></i></button>
+                  <div class="inv-accordion-panel">
+                     <p>Dipende dalla piattaforma. Alcune offrono strategie predefinite, altre permettono un alto grado di personalizzazione, inclusi fattori ESG e preferenze di rischio.</p>
+                  </div>
+               </div>
+               
+               <div class="inv-contact-box">
+                  <h5>Hai altre domande?</h5>
+                  <p>Contatta il nostro team di esperti per una consulenza personalizzata.</p>
+                  <button class="inv-contact-btn">Contatta un Esperto</button>
                </div>
             </div>
          </section>
+
+        
+    </main>
+         
       </div>
    </main>
 
@@ -358,6 +474,7 @@ if (!isset($_SESSION["username"])) {
             "container_id": "tradingview_chart"
          });
       }
+    
    </script>
 </body>
 </html>

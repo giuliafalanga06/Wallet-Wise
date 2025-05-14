@@ -144,7 +144,7 @@ function createCard($email, $pdo) {
             $iban = randomIban(); 
         } while (ibanExists($iban, $pdo)); 
         
-        $balance = 500000;  
+        $balance = 1000;  
         $expiration = todayMoreFiveYears(); 
         $stmt->bindParam(':iban', $iban, PDO::PARAM_STR);
         $stmt->bindParam(':balance', $balance, PDO::PARAM_INT);

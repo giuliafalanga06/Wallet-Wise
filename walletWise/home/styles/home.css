@@ -1,7 +1,5 @@
 
-.container{
-  height: 100vh;
-}
+
 .content {
   display: flex;
   flex-direction: row;
@@ -37,7 +35,7 @@
   background-color: var(--body-color);
   border-radius: 25px; /* Colore di esempio */
   padding: 15px;
-  height: 76vh;
+  height: auto;
 }
 @media (max-width: 768px) {
   /* Su schermi piccoli, metti i div uno sotto l'altro */
@@ -66,4 +64,8 @@
   height: 50px;
   border-radius: 50%;
   box-shadow: 0 2px 24px var(--shadow-color);
+}
+
+canvas{
+  margin-bottom: 50px;
 }

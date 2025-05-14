@@ -49,7 +49,7 @@
         return;
     }
 
-    $_SESSION["successRegistration"] = "Verifica avvenuta con successo";
+    $_SESSION["successRegistration"] = 'Verification successful';
     header("Location: ./login.php");
     return;
 ?>

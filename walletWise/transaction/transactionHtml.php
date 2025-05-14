@@ -23,7 +23,7 @@ if (!isset($_SESSION["username"])) {
 
       <!-----CSS ----->
       <link rel="stylesheet" href="../styles/home.css">
-      
+      <link rel="stylesheet" href="styles/transactions.css">
       <title>Walletwise | Transactions</title>
    </head>
    <body>
@@ -125,8 +125,10 @@ if (!isset($_SESSION["username"])) {
 
       <div class="section recentTransactions">
             <h2>Recent Transactions</h2>
-            
-         </div>
+            <?php include './php/transaction.php';?>
+           
+               <?php echo $valori ?? ''; ?>
+       </div>
 
 
       </main>

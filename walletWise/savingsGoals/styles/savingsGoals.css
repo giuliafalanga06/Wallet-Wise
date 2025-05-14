@@ -85,8 +85,14 @@ input{
     justify-content: space-between;
     flex-direction: column;
     position: relative; /* Mantiene la posizione del bottone */
+    transition: transform 0.3s ease;
 }
 
+.singleGoal:hover {
+    
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
 .singleGoal img{
     border-radius: 50%;
     width: 50px;

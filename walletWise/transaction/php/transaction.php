@@ -1,10 +1,10 @@
 <?php
-
+//
 //------COLLEGAMENTO AL DATABASE ------
         include realpath(__DIR__ . "/../../../walletWise/connectDB.php");
         session_start();
 
-        $pdo = pdoConnection();
+         $pdo = pdoConnection();
         
         if (!$pdo) {
             die("Errore di connessione al database.");
@@ -19,11 +19,23 @@
 
 
 //------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
-session_start();
+
+        if (!isset($_SESSION["username"])) {
+            header("Location: ../login/login.html");
+            exit();
+        }
+
+        $pdo = pdoConnection();
+
         try {
-            $sql = "SELECT * 
-                    FROM SavingsGoal, SavingsTransactions, Transactions 
-                    where CardId = :CardId ORDER BY Id;";
+
+            // Prepara la query
+         $sql = "
+            SELECT *
+            FROM Transactions
+            WHERE CardId = :CardId
+            ORDER BY TransactionDate DESC; ";
+
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':CardId', $_SESSION["idCard"], PDO::PARAM_STR);
             $stmt->execute();
@@ -31,25 +43,52 @@ session_start();
 
             $valori = '';
 
+            //prendi nome e cognome di creditore e debitore
+           
             foreach ($rows as $row) {
-                $name = $row['Name'];
-                $goal = $row['Goal'];
-                $id = $row['Id'];
-                $icon = $row['icon'];
-                $valori .= "
-                            <a href='savingsGoalsDetailsHtml.php?id=$id'>
-                                <div class='singleGoal'>
-                                    <img src='https://walletwise.altervista.org/walletWise/images/icone/$icon'>
-                                    <h3 class='goal-name'>$name</h3>   
-                                </div>
-                            </a>
-                ";
+                $description = $row['Description'];
+                $creditor = $row['Creditor'];
+                $debitor = $row['Debitor'];
+                $income = $row['Income'];
+                $date = $row['TransactionDate'];
+                $credit = $row['credit'];
+                //se creditor/debitor non è vuoto prendi il nome e cognome
+                if (!empty($creditor)) $creditorData = dataUser($creditor, $pdo);
+                    
+                if(!empty($debitor)) $debitorData = dataUser($debitor, $pdo);
+                
+
+                if($credit == 1)
+                    $color = 'green';
+                else
+                    $color = 'red';
+
+                $valori .= "<tr>
+                            <td>$description</td>
+                            <td>$creditorData</td>
+                            <td>$debitorData</td>
+                            <td style='color:$color'>$income</td>
+                            <td>$date</td>
+                        </tr>";
+                
             }
 
+             $valori = "<table><tr><th>Description</th><th>Creditor</th><th>Debitor</th><th>Income</th><th>Date</th></tr>$valori</table>";
         } catch (Exception $e) {
             echo "Errore: " . $e->getMessage();
         }
 
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
+
+
+        function dataUser($id, $pdo) {
+             
+            $sql = "SELECT * FROM usertables WHERE id = :Id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':Id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row['name'] . ' ' . $row['surname'];
+        }
 ?>

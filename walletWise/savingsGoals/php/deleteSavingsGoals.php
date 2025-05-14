@@ -17,6 +17,13 @@
     }
 
     $id = $_GET['id'];
+    $sql = "SELECT Name, CurrentAmount FROM SavingsGoal WHERE Id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    $goal = $stmt->fetch(PDO::FETCH_ASSOC);
+    $name = $goal['Name'];
+    $currentAmount = $goal['CurrentAmount'];
     $sql = "DELETE FROM SavingsGoal WHERE Id = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id);
@@ -26,6 +33,17 @@
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id);
     $stmt->execute();
+
+    $sql = "INSERT INTO Transactions (
+                            Description, Creditor, Income, TransactionDate, CardId, credit
+                        ) VALUES (?, ?, ?, ?, ?, ?)";
+
+                $stmt = $pdo->prepare($sql);
+                $reason = "Elimination of savings goals: " . $name;
+                $stmt->execute([$reason, $_SESSION['id'], $currentAmount, date('Y-m-d'), $_SESSION['idCard'], 1]);
+
     header("Location: ../savingsGoalsHtml.php");
+
+
     exit();
 ?>

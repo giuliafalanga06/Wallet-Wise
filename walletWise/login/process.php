@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['loginError'] = "Both fields are required!";
             header("Location: ./login.php");
         } else {
-            $sql = "SELECT u.id as id, u.name as name, u.password as password, u.account_activation_hash as account_activation_hash, c.Id as idCard 
+            $sql = "SELECT u.id as id, u.name as name, u.surname as surname, u.password as password, u.account_activation_hash as account_activation_hash, c.Id as idCard 
                 FROM usertables as u, Card as c 
                 WHERE c.UserId = u.id
                 AND email = :email";

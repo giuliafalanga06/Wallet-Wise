@@ -55,11 +55,17 @@ session_start();
                             </a>
                 ";
             }
+            // query per ottenere i dati
+            $stmt = $pdo->prepare(" SELECT NewBalance, Date FROM logTransactions WHERE CardId = :cardId  ORDER BY  Id ASC LIMIT 10;
+            ");
+            $stmt->execute([':cardId' => $_SESSION["idCard"]]);
+            $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            // converti i dati in formato JSON per JavaScript
+            $transactionsJson = json_encode($transactions);
+            $_SESSION['transactions'] = $transactionsJson;
 
-
-        } catch (Exception $e) {
-            echo "Errore: " . $e->getMessage();
-        }
-
+                    } catch (Exception $e) {
+                        echo "Errore: " . $e->getMessage();
+                    }
         ?>

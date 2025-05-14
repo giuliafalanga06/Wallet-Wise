@@ -106,7 +106,9 @@ table th, table td {
     text-align: center;
 }
 
+
 table th {
     background-color: var(--first-color);
     color: white;
+    border-radius-top: 80px;
 }

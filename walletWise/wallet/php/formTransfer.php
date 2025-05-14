@@ -31,7 +31,7 @@ function inputControl($pdo) {
     $iban = $_POST['iban'];
     $amount = $_POST['amount'];
     $reason = $_POST['reason'];
- 
+    
 
     // Variabile per tenere traccia degli errori
     $errors = [];
@@ -44,60 +44,76 @@ function inputControl($pdo) {
     if (empty($amount)) $errors['amount'] = "Amount is required.";
     if ($amount <= 0) $errors['amount'] = "Amount must be greater than zero.";
     if (empty($reason)) $errors['reason'] = "Reason is required.";
+
+     // Controllo che l'IBAN non contenga caratteri speciali
+    if (!preg_match("/^[a-zA-Z0-9]+$/", $iban)) {
+        $errors['iban'] = "Iban can only contain letters and numbers.";
+    }
+    // Controllo che il nome e il cognome non siano vuoti
+    // Controllo che il nome e il cognome non contengano caratteri speciali
+    if (!preg_match("/^[a-zA-Z\s]+$/", $name))  $errors['name'] = "Name can only contain letters and spaces.";
+    
+    if (!preg_match("/^[a-zA-Z\s]+$/", $surname))   $errors['surname'] = "Surname can only contain letters and spaces.";
+    
+    //controllo che il motivo non contenga caratteri speciali
+    if (!preg_match("/^[a-zA-Z0-9\s]+$/", $reason))  $errors['reason'] = "Reason can only contain letters, numbers and spaces.";
+    
+    // Controllo che l'importo sia un numero valido
+    if (!is_numeric($amount)) 
+        $errors['amount'] = "Amount must be a number.";  else {    
+        // Controllo che l'importo sia un numero positivo
+    if ($amount <= 0)  $errors['amount'] = "Amount must be greater than zero.";
+
+
+
    
     // Controllo che l'importo non superi il saldo disponibile
-    $stmt = $pdo->prepare("SELECT Balance FROM Card WHERE Id = :cardId");
-    $stmt->bindParam(':cardId', $_SESSION['idCard']);
+    $stmt = $pdo->prepare("SELECT Balance FROM Card WHERE Id = :idCard");
+    $stmt->bindParam(':idCard', $_SESSION['idCard']);
     $stmt->execute();
     $balance = $stmt->fetchColumn();
     if ($amount > $balance) {
         $errors['amount'] = "Insufficient funds. Your balance is: " . $balance;
     }
+
     // Controllo che l'IBAN sia valido (lunghezza minima di 15 caratteri)
     if (strlen($iban) < 15) {
         $errors['iban'] = "Iban must be at least 15 characters long.";      
     } else {
-        // Controllo che l'IBAN non sia già presente nel database
-        $stmt = $pdo->prepare("SELECT c.UserId FROM Card as c WHERE Iban = :iban");
+        // Controllo che l'IBAN  sia già presente nel database
+        $stmt = $pdo->prepare("SELECT c.UserId as UserId, c.Id as Id FROM Card as c WHERE Iban = :iban");
         $stmt->bindParam(':iban', $iban);
         $stmt->execute();
-
-        if ($stmt->fetchColumn() == 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$row) {
             $errors['iban'] = "Iban does not exists in Walletwise.";
         }
         else{
             
-            $userId = $stmt->fetchColumn();
-            // Controllo che l'IBAN appartenga all'utente preso dalla form
+            $creditorId = $row['UserId'];
+
+            $cardIdCreditor = $row['Id'];
+
+            //controllo che l'iban sia dell'utente corretto.
             $stmt = $pdo->prepare("SELECT * FROM usertables WHERE id = :userId");
-            $stmt->bindParam(':userId', $userId);
+            $stmt->bindParam(':userId', $creditorId);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            if($name != $user['name'] || $surname != $user['surname']){
+
+            if($name != $user['name'] && $surname != $user['surname']){
                 $errors['iban'] = "Iban does not belong to the user.";
             }
+
+            $creditorEmail = $user['email'];
         }
     }
 
-    // Controllo che il nome e il cognome non contengano caratteri speciali
-    if (!preg_match("/^[a-zA-Z\s]+$/", $name)) {
-        $errors['name'] = "Name can only contain letters and spaces.";
+    //se creditore e debitore sono uguali
+    if ($_SESSION['id'] == $creditorId) {
+        $errors['iban'] = "You cannot transfer money to yourself.";
     }
-    if (!preg_match("/^[a-zA-Z\s]+$/", $surname)) {
-        $errors['surname'] = "Surname can only contain letters and spaces.";
-    }
-    //controllo che il motivo non contenga caratteri speciali
-    if (!preg_match("/^[a-zA-Z0-9\s]+$/", $reason)) {
-        $errors['reason'] = "Reason can only contain letters, numbers and spaces.";
-    }
-    // Controllo che l'importo sia un numero valido
-    if (!is_numeric($amount)) {
-        $errors['amount'] = "Amount must be a number."; 
-    } else {    
-        // Controllo che l'importo sia un numero positivo
-        if ($amount <= 0) {
-            $errors['amount'] = "Amount must be greater than zero.";
-        }   
+   
+        
     }
     
     // Se ci sono errori, li mostro
@@ -106,45 +122,77 @@ function inputControl($pdo) {
             echo "<p style='color: red;'>$error</p>";
         }
     } else {
+    
+    	try{
+
+            $cardIdDebitor = $_SESSION["idCard"];
+            $debitorId = $_SESSION["id"];
+            $sql = "     INSERT INTO Transactions (
+                        Description, Creditor, Debitor, Income, TransactionDate, CardId, credit
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $pdo->prepare($sql);
+
+        if ($stmt === false) die("Errore nella preparazione della query.");
+        $stmt->execute([$reason, $creditorId, $debitorId, $amount, date('Y-m-d'), $cardIdDebitor, 0]);
+        $stmt->execute([$reason, $creditorId, $debitorId, $amount, date('Y-m-d'), $cardIdCreditor, 1]);
+
+        sendEmail($creditorEmail, $amount, $reason, $name, $surname);
+         header("Location: ../walletHtml.php"); 
+        }
+        catch (Exception $e) {
+           echo "Errore: " . $e->getMessage();
+        }
       
 
-    //     try {
-    //         // Inserimento nuovo obiettivo
-    //         $sql = "INSERT INTO Transactions (
-    //                     Goal, Description, StartDate, EndDate, Name,
-    //                     monthAmount, Icon, CardId, CurrentAmount, NextTransactionDate
-    //                 ) VALUES (
-    //                     :goal, :description, :startDate, :endDate, :name,
-    //                     :monthAmount, :icon, :cardId, :currentAmount, :nextTransactionDate
-    //                 )";
-                    
-    //         $stmt = $pdo->prepare($sql);
-    //         $stmt->bindParam(':goal', $goal);
-    //         $stmt->bindParam(':description', $description);
-    //         $stmt->bindParam(':startDate', $startDate);
-    //         $stmt->bindParam(':endDate', $endDate);
-    //         $stmt->bindParam(':name', $name);
-    //         $stmt->bindParam(':monthAmount', $monthAmount);
-    //         $stmt->bindParam(':icon', $icon);
-    //         $stmt->bindParam(':cardId', $_SESSION['idCard']);
-    //         $stmt->bindParam(':currentAmount', $currentAmount);
-    //         $stmt->bindParam(':nextTransactionDate', $nextTransactionDate);
-    //         $stmt->execute();
-
-    //         // Recupera l'ID dell'obiettivo appena inserito
-    //         $goalId = $pdo->lastInsertId();
-
-    //         // Registra la prima transazione
-    //         if ($startDate == date('Y-m-d')) {
-    //             $insert = $pdo->prepare("INSERT INTO SavingsTransactions (GoalId, Amount, TransactionDate) VALUES (?, ?, ?)");
-    //             $insert->execute([$goalId, $currentAmount, $startDate]);
-    //         }            
-
-    //         echo "Obiettivo creato con successo!";
-    //         header("Location: ../savingsGoalsHtml.php");  // Redirect dopo successo
-    //     } catch (Exception $e) {
-    //         echo "Errore: " . $e->getMessage();
-    //     }
     }
 }
+
+/**
+ * Send an email to the creditor to notify him of the new transfer
+ * @param string $creditorEmail Email of the creditor
+ * @param float $amount Amount of the transfer
+ * @param string $reason Reason of the transfer
+ * @param string $Creditorname Name of the creditor
+ * @param string $creditorSurname Surname of the creditor
+ */
+function sendEmail($creditorEmail, $amount, $reason, $creditorName, $creditorSurname) {
+    $to = $creditorEmail;
+    $subject = "New transfer received - Walletwise";
+    $message = "
+            <html>
+            <head>
+                <title>Account Activation</title>
+            </head>
+            <body>
+                <p>Hello {$creditorName},</p>
+                <p>You have received a new transfer from ".$_SESSION['username']." ". $_SESSION['surname']." of " . $amount . " euros for the reason: " . $reason."</p>
+            </body>
+            </html>
+        ";
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
+        $headers .= "From: no-reply@walletwise.com" . "\r\n";  
+    mail($to, $subject, $message, $headers);
+
+
+    $to = $_SESSION['email'];
+    $subject = "New transfer done - Walletwise";
+        $message = "
+            <html>
+            <head>
+                <title>Account Activation</title>
+            </head>
+            <body>
+                <p>Hello {$_SESSION['username']},</p>
+                <p>You have done a new transfer to ".$creditorName." ". $creditorSurname." of " . $amount . " euros for the reason: " . $reason."</p>
+            </body>
+            </html>
+        ";
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8" . "\r\n";
+        $headers .= "From: no-reply@walletwise.com" . "\r\n";      
+    mail($to, $subject, $message, $headers);
+}   
+   
 ?>

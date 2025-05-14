@@ -46,7 +46,7 @@ session_start();
                     unset($_SESSION['loginError']);
                 ?>
             </span>
-            <span>
+            <span class='success'>
                 <?php 
                     echo $_SESSION['successRegistration'] ?? '';
                     unset($_SESSION['successRegistration']);

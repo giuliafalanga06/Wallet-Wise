@@ -161,7 +161,7 @@ if (!isset($_SESSION["username"])) {
          <div class='newTransfer'>
          <h3>Set a new instant bank transfer</h3>
          <br>
-            <form class='Transfer' method='post' action='php/formTransfer.php' enctype='multipart/form-data'>
+                        <form class='Transfer' method='post' action='php/formTransfer.php' enctype='multipart/form-data'>
                <div style='display: flex; gap: 1rem; align-items: flex-end;'>
                   <div class='form__div' style='flex: 1;'>
                      <input type='text' name='name' class='form__input' placeholder=' '>
@@ -173,25 +173,17 @@ if (!isset($_SESSION["username"])) {
                   </div>
                </div>
 
+      
                <div style='display: flex; gap: 1rem;'>
                   <div class='form__div' style='flex: 1;'>
                      <input type='text'  name='iban' class='form__input' placeholder=' '>
                      <label class='form__label'>Beneficiary's Iban</label>
-                  </div>
-               </div>
-         
-               <div style='display: flex; gap: 1rem;'>
-               <div class='form__div' style='flex: 1;'>
-                     <input type='text' id='email' name='email' class='form__input' placeholder=' '>
-                     <label class='form__label'>Beneficiary's email </label>
                   </div>
 
                   <div class='form__div' style='flex: 1;'>
                      <input type='number' id='amount' name='amount' class='form__input' placeholder=' '>
                      <label class='form__label'>Amount</label>
                   </div>
-
-                 
                </div>
 
                <div style='display: flex; gap: 1rem;'>
@@ -200,6 +192,7 @@ if (!isset($_SESSION["username"])) {
                   <label class='form__label'>Reason for payment</label>
                   </div>
                </div>
+               
                <div class="button-container">
                         <a class="CancelTransfer">Cancel</a>
                         <input type="submit" value="Save" name="submit" class="saveTransfer">

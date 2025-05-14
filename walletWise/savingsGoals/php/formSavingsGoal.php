@@ -84,6 +84,20 @@ function inputControl($pdo) {
     if (!empty($goal) && !empty($monthAmount) && $monthAmount >= $goal) 
         $errors['monthAmount'] = "Il campo 'Month Amount' deve essere minore di 'Goal Amount'.";
 
+
+    //monthAmount deve essere minore del balance della carta
+    $sql = "SELECT Balance FROM Card WHERE Id = :cardId";
+    $stmt = $pdo->prepare($sql);    
+    $stmt->bindParam(':cardId', $_SESSION["idCard"], PDO::PARAM_STR);
+    $stmt->execute();
+    $balance = $stmt->fetchColumn();
+    if (!empty($monthAmount) && $monthAmount > $balance) {
+        $errors['monthAmount'] = "Il campo 'Month Amount' deve essere minore del saldo della carta.";
+    }
+    //il campo 'Goal Amount' deve essere minore di 1/3 del balance della carta
+    if (!empty($goal) && $goal > ($balance / 3)) {
+        $errors['goal'] = "Il campo 'Goal Amount' deve essere minore di 1/3 del saldo della carta.";
+    }
     // Se ci sono errori, li mostro
     if (count($errors) > 0) {
         foreach ($errors as $error) {
@@ -136,8 +150,18 @@ function inputControl($pdo) {
 
             // Registra la prima transazione
             if ($startDate == date('Y-m-d')) {
-                $insert = $pdo->prepare("INSERT INTO SavingsTransactions (GoalId, Amount, TransactionDate) VALUES (?, ?, ?)");
-                $insert->execute([$goalId, $currentAmount, $startDate]);
+                $insert = $pdo->prepare("INSERT INTO SavingsTransactions (GoalId, Amount, TransactionDate, Credit, CardId) VALUES (?, ?, ?, ?, ?)");
+                $insert->execute([$goalId, $currentAmount, $startDate, 0, $_SESSION['idCard']]);
+
+
+                $sql = "INSERT INTO Transactions (
+                            Description, Debitor, Income, TransactionDate, CardId, credit
+                        ) VALUES (?, ?, ?, ?, ?, ?)";
+
+                $stmt = $pdo->prepare($sql);
+                $reason = "Payment savings goals: " . $name;
+                $stmt->execute([$reason, $_SESSION['id'], $currentAmount, date('Y-m-d'), $_SESSION['idCard'], 0]);
+
             }            
 
             echo "Obiettivo creato con successo!";
