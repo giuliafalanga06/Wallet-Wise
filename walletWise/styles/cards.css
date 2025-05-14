@@ -14,7 +14,7 @@
 /* ---CSS CARDS ---*/
   .cardsWrapper{
     position: relative;
-    max-width: 22rem;
+    max-width: 25rem;
     margin: 0 auto;
   }
 
@@ -70,7 +70,7 @@
   }
   .credit-card {
     width: 310px;
-    height: 200px;
+    height: 210px;
     background: linear-gradient(135deg, #1e5799, #2989d8c1, #207bcacc);
     color: white;
     border-radius: 15px;

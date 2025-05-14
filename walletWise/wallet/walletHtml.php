@@ -138,11 +138,13 @@ if (!isset($_SESSION["username"])) {
                            <div class='chip'></div>
                            <div class='logo'>Wise</div>
                         </div>
+                        <br>
                         <div class='card-number'><?php echo $iban;?></div>
+                        <br>
                         <div class='card-footer'>
                            <div class='card-holder'>
                               <span>Titolare</span>
-                              <p> <?php echo$_SESSION['username'];?></p>
+                              <p> <?php echo$_SESSION['username'] . " ". $_SESSION['surname'];?></p>
                            </div>
                            <div class='expires'>
                               <span>Scadenza</span>

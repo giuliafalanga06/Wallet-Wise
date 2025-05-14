@@ -21,8 +21,20 @@ if (!isset($_SESSION["username"])) {
         $dbName = $stmt->fetchColumn();
         /*echo "Connesso al database: " . $dbName . "<br>";*/
 
+
+        //balance di card
+        $sql = "SELECT Balance FROM Card WHERE Id = :CardId";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':CardId', $_SESSION["idCard"], PDO::PARAM_STR);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $balance = $row['Balance'];
+
+
+
 //------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
-session_start();
+
+
         try {
             $sql = "SELECT * FROM SavingsGoal where CardId = :CardId  AND NextTransactionDate >= CURDATE() AND month(NextTransactionDate) = month(CURDATE())ORDER BY Id;";
             $stmt = $pdo->prepare($sql);

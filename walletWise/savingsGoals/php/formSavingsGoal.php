@@ -115,12 +115,14 @@ function inputControl($pdo) {
        // se start date è now
         if ($startDate == date('Y-m-d')) {
             $currentAmount = $monthAmount;
+            $nextTransactionDate = date('Y-m-d', strtotime($startDate . ' + 1 month'));
         }
         else{
+            $nextTransactionDate = $startDate;
             $currentAmount = 0;
         }
 
-        $nextTransactionDate = date('Y-m-d', strtotime($startDate . ' +1 month'));
+        
 
         try {
             // Inserimento nuovo obiettivo
