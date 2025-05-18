@@ -39,8 +39,8 @@ body {
     font-family: 'Public Sans';
 }
 .immagineSfondo{
-    width: 85%;
-    height: 85%;
+    width: 70%;
+    height: auto;
     padding-top: 100px;
 }
 
@@ -112,13 +112,245 @@ h1>a:hover,
 h2>a:hover {
     color: var(--second-color);
 }
+.logoWW{
+    width: 120px;
+    height: auto;
+}
 .logo{
     display: flex;
     flex-direction: row;
     align-items: center;
+    
 }
 #titolo{
     padding-left: 5px;
+    font-size: 20px;
+    color: var(--text-color)
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+:root {
+    --header-height: 3.5rem;
+  
+    /*--- Colors ---*/
+    --first-color: hsl(193, 86%, 34%);
+    --second-color: hsl(193, 100%, 55%);
+    --title-color: hsl(228, 18%, 16%);
+    --text-color: hsl(228, 8%, 56%);
+    --body-color: hsl(228, 100%, 99%);
+    --shadow-color: hsla(228, 80%, 4%, .1);
+    --card-color: hsla(193, 86%, 34%, 0.542);
+    
+    /*--- Font and typography ---*/
+    --body-font: 'Public Sans', sans-serif;
+    --heading-font: 'Montserrat', sans-serif;
+    --normal-font-size: .938rem;
+    --smaller-font-size: .75rem;
+    --tiny-font-size: .75rem;
+  
+    /*--- Font weight ---*/
+    --font-light: 300;
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+  
+    /*--- z index ---*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    
+    /*--- Text shadows ---*/
+    --text-shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+    --text-shadow-medium: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* ... (keep all your existing styles until the main section) ... */
+
+main {
+    display: flex;
+    flex-direction: column-reverse;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-bottom: 20%;
+}
+
+main>div {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+
+.titolohomeWW {
+    font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive font size */
+    font-weight: var(--font-bold);
+    font-family: var(--heading-font);
+    color: var(--title-color);
+    margin-bottom: 0.25rem; /* Ridotto da 0.5rem */
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    text-shadow: var(--text-shadow-medium);
+    background: linear-gradient(to right, var(--first-color), var(--second-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fadeInUp 1s ease-out;
+}
+
+.sottotioloHome {
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    color: var(--text-color);
+    width: 75%;
+    font-weight: var(--font-medium);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    animation: fadeIn 1.5s ease-out;
+    margin-top: 0;
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 0.9; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section headings */
+section>div:first-child>h2 {
+    font-family: var(--heading-font);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: var(--font-bold);
+    color: var(--title-color);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+}
+
+section>div:first-child>p {
+    font-size: clamp(1rem, 1.25vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+/* Feature cards */
+.cont1>h2 {
+    font-family: var(--heading-font);
+    font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color);
+    margin: 1rem 0 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.cont1>h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(to right, var(--first-color), var(--second-color));
+    border-radius: 3px;
+}
+
+.cont1>p {
+    font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+button {
+    padding: 12px 30px;
+    color: white;
+    border-radius: 30px;
+    background: linear-gradient(to right, var(--first-color), var(--second-color));
+    border: none;
+    font-family: var(--heading-font);
+    font-weight: var(--font-semi-bold);
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--second-color), var(--first-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+button:hover::before {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media only screen and (min-width: 912px) {
+    main>div {
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .titolohomeWW {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        line-height: 1.1;
+        max-width: 80%;
+    }
+    
+    .sottotioloHome {
+        font-size: clamp(1.25rem, 1.75vw, 1.75rem);
+        text-align: left;
+        max-width: 70%;
+    }
+    
+    section>div:first-child>h2 {
+        text-align: left;
+        max-width: 100%;
+    }
+    
+    section>div:first-child>p {
+        text-align: left;
+        max-width: 60%;
+        margin-left: 0;
+    }
+}
+
+/* Add smooth transitions for all text elements */
+h1, h2, h3, h4, h5, h6, p, a, span {
+    transition: color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
 button {
@@ -150,6 +382,7 @@ nav {
     top: 0;
     width: 100%;
     box-shadow: 0 4px 8px 0 hsla(0, 0%, 0%, 0.2), 0 6px 20px 0 hsla(0, 0%, 0%, 0.19);
+    z-index: 1000;
 }
 
 nav>figure {
@@ -274,7 +507,6 @@ nav>button {
 main {
     display: flex;
     flex-direction: column-reverse;
-    background-image: url("../images/bg-intro-mobile.svg");
     background-repeat: no-repeat;
     background-size: contain;
     padding-bottom: 20%;
@@ -333,7 +565,7 @@ section>div:first-child>h2 {
 }
 
 section>div:first-child>h2>a:hover {
-    color: hsl(136, 65%, 51%);
+    color: var(--second-color);
 }
 
 section>div:first-child>p {
@@ -816,7 +1048,6 @@ footer>ul>li>a:hover {
 
     main {
         flex-direction: row;
-        background-image: url("../images/bg-intro-desktop.svg");
         background-size: 52% 75%;
         background-position: center right;
         margin-right: -10%;
@@ -833,12 +1064,13 @@ footer>ul>li>a:hover {
         align-items: flex-start;
         margin-left: 5%;
         margin-top: -10px;
+        width: 65%;
     }
 
     main>div>h1 {
         text-align: start;
         font-size: 30px;
-        max-width: 50%;
+        max-width: 100%;
     }
 
     main>div>p {
@@ -992,6 +1224,8 @@ footer>ul>li>a:hover {
 
     nav {
         padding-left: 10%;
+        padding-top: 0px;
+        padding-bottom: 0px;
     }
 
     nav>button {
@@ -1015,7 +1249,7 @@ footer>ul>li>a:hover {
 
     main {
         margin-top: -128px;
-        margin-bottom: -145px;
+        margin-bottom: -88px;
         padding-left: 5%;
     }
 
@@ -1024,7 +1258,7 @@ footer>ul>li>a:hover {
     }
 
     main>div>h1 {
-        max-width: 40%;
+        max-width: 80%;
     }
 
     main>div>p {
@@ -1037,6 +1271,7 @@ footer>ul>li>a:hover {
         padding-left: 10%;
         padding-right: 5%;
         padding-bottom: 6%;
+        
     }
 
     section>div:first-child {

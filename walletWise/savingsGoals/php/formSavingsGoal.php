@@ -14,31 +14,39 @@ $sql = "SELECT DATABASE()";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $dbName = $stmt->fetchColumn();
+
 echo "Connesso al database: " . $dbName . "<br>";
 
+
+echo "POST data: ";
+print_r($_POST);
+echo "<br>";
 //------INSERIMENTO DEL NEW SAVINGS GOAL NEL DATABASE ------
-if (isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     inputControl($pdo);
     exit();
 }
 
+
+
 // Funzione per gestire il caricamento dell'icona
-function insertIcon($pdo): string {
+function insertIcon($pdo): string
+{
     $sql = "SELECT MAX(id) FROM SavingsGoal";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $id = $stmt->fetchColumn();
     if (isset($_POST['submit'])) {
         $dir = getcwd();
-        if(is_dir($dir)){
+        if (is_dir($dir)) {
             $iconDir = opendir($dir);
             $tmpName = $_FILES['icon']['tmp_name'];
             $explode = explode(".", $_FILES['icon']['name']);
             $ext = end($explode);
-            $name = ($id+1).'.'.$ext;
+            $name = ($id + 1) . '.' . $ext;
             $path = "../../images/" . $name;
             move_uploaded_file($tmpName, $path);
-            echo 'tmp: '.$tmpName.'<br>path: '.$path.'<br>ext:'.$ext.'<br>name: '.$name;
+            echo 'tmp: ' . $tmpName . '<br>path: ' . $path . '<br>ext:' . $ext . '<br>name: ' . $name;
         }
     }
     closeDir($iconDir);
@@ -46,7 +54,8 @@ function insertIcon($pdo): string {
 }
 
 // Funzione per la validazione dei dati
-function inputControl($pdo) {
+function inputControl($pdo)
+{
     // Recupero i dati dal form
     $goal = $_POST['goalAmount'];
     $description = $_POST['description'];
@@ -60,8 +69,10 @@ function inputControl($pdo) {
     $form = [];
 
     // Controllo che tutti i campi obbligatori siano stati compilati
-    if (empty($goal)) $errors['goal'] = "Il campo 'Goal Amount' è obbligatorio.";
-    if (empty($description)) $errors['description'] = "Il campo 'Description' è obbligatorio.";
+    if (empty($goal))
+        $errors['goal'] = "Il campo 'Goal Amount' è obbligatorio.";
+    if (empty($description))
+        $errors['description'] = "Il campo 'Description' è obbligatorio.";
     if (empty($startDate)) {
         $errors['startDate'] = "Il campo 'Start Date' è obbligatorio.";
         $form['startDate'] = $startDate;
@@ -76,21 +87,25 @@ function inputControl($pdo) {
         }
     }
 
-    if (empty($name)) $errors['name'] = "Il campo 'Name' è obbligatorio.";
-    if (empty($monthAmount)) $errors['monthAmount'] = "Il campo 'Month Amount' è obbligatorio.";
-    if (empty($icon)) $errors['icona'] = "Il campo 'icona' è obbligatorio.";
+    if (empty($name))
+        $errors['name'] = "Il campo 'Name' è obbligatorio.";
+    if (empty($monthAmount))
+        $errors['monthAmount'] = "Il campo 'Month Amount' è obbligatorio.";
+    if (empty($icon))
+        $errors['icona'] = "Il campo 'icona' è obbligatorio.";
 
     // Controllo che 'Month Amount' sia minore di 'Goal Amount'
-    if (!empty($goal) && !empty($monthAmount) && $monthAmount >= $goal) 
+    if (!empty($goal) && !empty($monthAmount) && $monthAmount >= $goal)
         $errors['monthAmount'] = "Il campo 'Month Amount' deve essere minore di 'Goal Amount'.";
 
 
     //monthAmount deve essere minore del balance della carta
     $sql = "SELECT Balance FROM Card WHERE Id = :cardId";
-    $stmt = $pdo->prepare($sql);    
+    $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':cardId', $_SESSION["idCard"], PDO::PARAM_STR);
     $stmt->execute();
     $balance = $stmt->fetchColumn();
+
     if (!empty($monthAmount) && $monthAmount > $balance) {
         $errors['monthAmount'] = "Il campo 'Month Amount' deve essere minore del saldo della carta.";
     }
@@ -111,18 +126,17 @@ function inputControl($pdo) {
         $mesi = $rateIntere + ($residuo > 0 ? 1 : 0);
         // Calcola la end date come un mese prima dell'ultima rata
         $endDate = date('Y-m-d', strtotime($startDate . ' + ' . ($mesi - 1) . ' months'));
-       
-       // se start date è now
+
+        // se start date è now
         if ($startDate == date('Y-m-d')) {
             $currentAmount = $monthAmount;
             $nextTransactionDate = date('Y-m-d', strtotime($startDate . ' + 1 month'));
-        }
-        else{
+        } else {
             $nextTransactionDate = $startDate;
             $currentAmount = 0;
         }
 
-        
+
 
         try {
             // Inserimento nuovo obiettivo
@@ -133,7 +147,7 @@ function inputControl($pdo) {
                         :goal, :description, :startDate, :endDate, :name,
                         :monthAmount, :icon, :cardId, :currentAmount, :nextTransactionDate
                     )";
-                    
+
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':goal', $goal);
             $stmt->bindParam(':description', $description);
@@ -164,10 +178,12 @@ function inputControl($pdo) {
                 $reason = "Payment savings goals: " . $name;
                 $stmt->execute([$reason, $_SESSION['id'], $currentAmount, date('Y-m-d'), $_SESSION['idCard'], 0]);
 
-            }            
+            }
 
             echo "Obiettivo creato con successo!";
-            header("Location: ../savingsGoalsHtml.php");  // Redirect dopo successo
+            $_SESSION['goal_added'] = true;
+            header("Location: ../savingsGoalsHtml.php");
+            exit();  // Redirect dopo successo
         } catch (Exception $e) {
             echo "Errore: " . $e->getMessage();
         }

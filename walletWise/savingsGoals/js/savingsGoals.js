@@ -40,8 +40,6 @@ $(document).ready(function() {
       $('.modifyGoal').show();
       $('.overlay2').show();
   }); 
- 
-
   
     const goal = $('.goalAmount')[0] ||100;
     goalTxt = goal.textContent;
@@ -67,23 +65,6 @@ $(document).ready(function() {
     if (ctx) {
         new Chart(ctx, config);
     }
-
-
-
-    // Calcolare la data di fine
-    // const form = document.querySelector('form');
-    // if (form) {
-    //     form.addEventListener('submit', function(event) {
-    //         if (!document.querySelector('#monthAmount').value && document.querySelector('#startDate').value && document.querySelector('#goalAmount').value) {
-    //             const startDate = new Date(document.querySelector('#startDate').value);
-    //             const endDateMonth = parseInt(document.querySelector('#goalAmount').value) / parseInt(document.querySelector('#monthAmount').value);
-    //             startDate.setMonth(startDate.getMonth() + endDateMonth);
-    //             document.querySelector('#endDate').value = startDate.toISOString().split('T')[0];
-    //         }
-    //     });
-    // }
-
-
   
     radios.forEach(radio => {
       radio.addEventListener('click', removeCheckradio);

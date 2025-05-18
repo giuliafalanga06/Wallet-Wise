@@ -68,8 +68,17 @@ if (!isset($_SESSION["username"])) {
                 ";
             }
             // query per ottenere i dati
-            $stmt = $pdo->prepare(" SELECT NewBalance, Date FROM logTransactions WHERE CardId = :cardId  ORDER BY  Id ASC LIMIT 10;
-            ");
+            $stmt = $pdo->prepare("
+    SELECT NewBalance, Date
+    FROM (
+        SELECT NewBalance, Date, Id
+        FROM logTransactions
+        WHERE CardId = :cardId
+        ORDER BY Id DESC
+        LIMIT 10
+    ) AS last10
+    ORDER BY Id ASC
+");
             $stmt->execute([':cardId' => $_SESSION["idCard"]]);
             $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

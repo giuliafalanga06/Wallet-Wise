@@ -212,10 +212,10 @@ if (!isset($_SESSION["username"])) {
             <h3 class="inv-subtitle">Guida agli Investimenti Automatici</h3>
             
             <div class="inv-education-tabs">
-               <button class="inv-tab-btn active" onclick="openTab(event, 'inv-basics')">Concetti Base</button>
-               <button class="inv-tab-btn" onclick="openTab(event, 'inv-strategies')">Strategie</button>
-               <button class="inv-tab-btn" onclick="openTab(event, 'inv-platforms')">Piattaforme</button>
-               <button class="inv-tab-btn" onclick="openTab(event, 'inv-faq')">FAQ</button>
+               <button class="inv-tab-btn active" data-tab="inv-basics">Concetti Base</button>
+               <button class="inv-tab-btn" data-tab="inv-strategies">Strategie</button>
+               <button class="inv-tab-btn" data-tab="inv-platforms">Piattaforme</button>
+               <button class="inv-tab-btn" data-tab="inv-faq">FAQ</button>
             </div>
 
             <!-- Tab 1: Concetti Base -->
@@ -377,12 +377,6 @@ if (!isset($_SESSION["username"])) {
                      <p>Dipende dalla piattaforma. Alcune offrono strategie predefinite, altre permettono un alto grado di personalizzazione, inclusi fattori ESG e preferenze di rischio.</p>
                   </div>
                </div>
-               
-               <div class="inv-contact-box">
-                  <h5>Hai altre domande?</h5>
-                  <p>Contatta il nostro team di esperti per una consulenza personalizzata.</p>
-                  <button class="inv-contact-btn">Contatta un Esperto</button>
-               </div>
             </div>
          </section>
 
@@ -475,6 +469,44 @@ if (!isset($_SESSION["username"])) {
          });
       }
     
+   </script>
+   <script>
+      // Gestione tab migliorata
+      document.addEventListener('DOMContentLoaded', function() {
+         const tabButtons = document.querySelectorAll('.inv-tab-btn');
+         const tabContents = document.querySelectorAll('.inv-tab-content');
+         
+         tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+               const tabId = this.getAttribute('data-tab');
+               
+               // Rimuovi classe active da tutti i bottoni
+               tabButtons.forEach(btn => btn.classList.remove('active'));
+               // Nascondi tutti i contenuti
+               tabContents.forEach(content => content.style.display = 'none');
+               
+               // Aggiungi classe active al bottone cliccato
+               this.classList.add('active');
+               // Mostra il contenuto correlato
+               document.getElementById(tabId).style.display = 'block';
+            });
+         });
+         
+         // Gestione accordion
+         const accButtons = document.querySelectorAll('.inv-accordion-btn');
+         accButtons.forEach(button => {
+            button.addEventListener('click', function() {
+               this.classList.toggle('active');
+               const panel = this.nextElementSibling;
+               
+               if (panel.style.maxHeight) {
+                  panel.style.maxHeight = null;
+               } else {
+                  panel.style.maxHeight = panel.scrollHeight + 'px';
+               }
+            });
+         });
+      });
    </script>
 </body>
 </html>

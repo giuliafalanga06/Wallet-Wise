@@ -42,6 +42,7 @@
                 $reason = "Elimination of savings goals: " . $name;
                 $stmt->execute([$reason, $_SESSION['id'], $currentAmount, date('Y-m-d'), $_SESSION['idCard'], 1]);
 
+                $_SESSION['goal_deleted'] = true;
     header("Location: ../savingsGoalsHtml.php");
 
 

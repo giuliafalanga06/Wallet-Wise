@@ -4,7 +4,7 @@ session_start();
 
 // Controlla se l'utente è loggato
 if (!isset($_SESSION["username"])) {
-   header("Location: ../login/login.html");
+   header("Location: ../login/login.php");
    exit();
 }
 
@@ -92,6 +92,29 @@ $html = "
       <title>Walletwise | Savings Goal Detail</title>
    </head>
    <body>
+";
+if (isset($_SESSION['goal_modified'])) {
+    $html .= '
+        <div class="success-banner" id="successBanner">
+          <i class="ri-checkbox-circle-fill"></i>
+          Saving goals successfully modified
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            const banner = document.getElementById("successBanner");
+            setTimeout(() => banner.classList.add("active"), 100);
+            setTimeout(() => {
+              banner.classList.remove("active");
+              setTimeout(() => banner.remove(), 500);
+            }, 3000);
+          });
+        </script>
+    ';
+    unset($_SESSION['goal_modified']);
+}
+
+$html .= "
+
       <!-----HEADER ----->
       <header class='header' id='header'>
          <div class='header__container'>
@@ -205,7 +228,7 @@ $html = "
               
                <?php include 'php/savingsGoals.php';?>
                
-                <img src='https://walletwise.altervista.org/walletWise/images/icone/$icon' style=\"border-radius: 50%; width: 100px; height: 100px; margin-right: 10px;\">
+                <img src='https://walletwise.altervista.org/walletWise/images/icone/$icon' style=\"border-radius: 50%; width: 120px; height: 120px; margin-right: 10px;\">
                
                 <div>                
                   <p>Description: $description</p>
@@ -236,88 +259,105 @@ $html = "
          <div class='modifyGoal'>
                   <h3>Set a new Savings Goal</h3>
                   <br>
-                  <form class='goalForm' method='post' action='php/modifySavingsGoals.php?id=$id'' enctype='multipart/form-data'>
+                  <form class='goalFormModify'id='modifyGoalForm' method='post' action='php/modifySavingsGoals.php?id=$id' enctype='multipart/form-data'>
 
-                     <div style='display: flex; gap: 1rem; align-items: flex-end;'>
-
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='text' name='name' value='$name' class='form__input' placeholder=' '>
-                           <label class='form__label'>Goal Name</label>
-                        </div>
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='date' id='startDate'  name='startDate' value='$startDate' disabled class='form__input'>
-                           <label class='form__label'>Start Date</label>
-                        </div>
-
-                        
-                     </div>
-                     <div style='display: flex; gap: 1rem;'>
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='text'  name='description' value='$description'class='form__input' placeholder=' '>
-                           <label class='form__label'>Goal Description</label>
-                        </div>
-                     </div>
                
-                     <div style='display: flex; gap: 1rem;'>
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='number' id='goalAmount' name='goalAmount' value='$goalAmount' class='form__input' placeholder=' '>
-                           <label class='form__label'>Goal Amount</label>
+                     <div style='display: flex; gap: 1rem; align-items: flex-start;'>
+                        <div style='flex: 1;'>
+                           <div class='form__div'>
+                              <input type='text' name='name' class='form__input' placeholder=' ' value='$name'>
+                              <label class='form__label'>Goal Name</label>
+                           </div>
+                           <div class=\"error-container\" data-field=\"name\"></div>
                         </div>
-
-                        <div class='form__div' style='flex: 1;'>
-                           <input type='number' id='monthAmount' name='monthAmount'value='$monthAmount' class='form__input' placeholder=' '>
-                           <label class='form__label'>Month Amount</label>
+                        <div style='flex: 1;'>
+                           <div class='form__div'>
+                              <input type='date' id='startDate' name='startDate' class='form__input' placeholder=' ' value='$startDate' disabled>
+                              <label class='form__label'>Start Date</label>
+                           </div>
+                           <div class=\"error-container\" data-field=\"startDate\"></div>
                         </div>
-               
-                        
                      </div>
-
                      
+                     <div style='display: flex; gap: 1rem;'>
+                        <div style='flex: 1;'>
+                           <div class='form__div'>
+                              <input type='text' name='description' class='form__input' placeholder=' ' value='$description'>
+                              <label class='form__label'>Goal Description</label>
+                           </div>
+                           <div class=\"error-container\" data-field=\"description\"></div>
+                        </div>
+                     </div>
+
+                     <div style='display: flex; gap: 1rem;'>
+                        <div style='flex: 1;'>
+                           <div class='form__div'>
+                              <input type='number' id='goalAmount' name='goalAmount' class='form__input' placeholder=' ' step=\"0.01\" min=\"0\" value='$goalAmount'>
+                              <label class='form__label'>Goal Amount</label>
+                           </div>
+                           <div class=\"error-container\" data-field=\"goalAmount\"></div>
+                        </div>
+
+                        <div style='flex: 1;'>
+                           <div class='form__div'>
+                              <input type='number' id='monthAmount' name='monthAmount' class='form__input' placeholder=' ' step=\"0.01\" min=\"0\" value='$monthAmount'>
+                              <label class='form__label'>Month Amount</label>
+                           </div>
+                           <div class=\"error-container\" data-field=\"monthAmount\"></div>
+                        </div>
+                     </div>
+
                      <div class=\"icone\">
                         <label>
                            <input type=\"radio\" name=\"icona\" value=\"travel.png\" $checkedTravel>
-                           <img src=\"../images/icone/travel.png\" alt=\"Icona 3\">   
+                           <img src=\"../images/icone/travel.png\" alt=\"Icona travel\">   
                         </label> 
                         <label>
                            <input type=\"radio\" name=\"icona\" value=\"car.png\" $checkedCar>
-                           <img src=\"../images/icone/car.png\" alt=\"Icona 3\">   
+                           <img src=\"../images/icone/car.png\" alt=\"Icona car\">   
                         </label> 
                         <label>
                            <input type=\"radio\" name=\"icona\" value=\"people.png\" $checkedPeople>
-                           <img src=\"../images/icone/people.png\" alt=\"Icona 3\">
+                           <img src=\"../images/icone/people.png\" alt=\"Icona people\">
                         </label>
                         <label>
-                           <input type=\"radio\" name=\"icona\" value=\"food.png\" $checkedFood >
-                           <img src=\"../images/icone/food.png\" alt=\"Icona 3\">   
+                           <input type=\"radio\" name=\"icona\" value=\"food.png\" $checkedFood>
+                           <img src=\"../images/icone/food.png\" alt=\"Icona food\">   
                         </label> 
                         <label>
                            <input type=\"radio\" name=\"icona\" value=\"pc.png\" $checkedPc>
-                           <img src=\"../images/icone/pc.png\" alt=\"Icona 3\">
+                           <img src=\"../images/icone/pc.png\" alt=\"Icona pc\">
                         </label>
                         <label>
                            <input type=\"radio\" name=\"icona\" value=\"home.png\" $checkedHome>
-                           <img src=\"../images/icone/home.png\" alt=\"Icona 3\">
+                           <img src=\"../images/icone/home.png\" alt=\"Icona home\">
                         </label>
                         <label>
                            <input type=\"radio\" name=\"icona\" value=\"games.png\" $checkedGames>
-                           <img src=\"../images/icone/games.png\" alt=\"Icona 3\">
+                           <img src=\"../images/icone/games.png\" alt=\"Icona games\">
                         </label>
                         <label>
                            <input type=\"radio\" name=\"icona\" value=\"books.png\" $checkedBooks>
-                           <img src=\"../images/icone/books.png\" alt=\"Icona 3\">
+                           <img src=\"../images/icone/books.png\" alt=\"Icona books\">
                         </label>
+                     </div>
+                     <div class=\"error-container\" data-field=\"icona\"></div>
                      
-                     </div>
                      <div class=\"button-container\">
-                        <a class=\"CancelGoalDetails\">Cancel</a>
-                        <input type=\"submit\" value=\"Save\" name=\"submit\" class=\"saveGoal\">
+                         <a class=\"CancelGoalDetails\">Cancel</a>
+                        <a  name='submitModify' class=\"saveGoal\">Save</a>
                      </div>
+                     
+                     <!-- Campo nascosto per il valore del saldo della carta -->
+                     <input type=\"hidden\" id=\"cardBalance\" value=\"<?php echo $balance; ?>\">
                   </form>
                </div>
       </main>
       <!-----MAIN JS ----->
+      <script src='js/savingsGoalsFormModify.js'></script>
       <script src='../src/home.js'></script>
       <script src='js/savingsGoals.js'></script>
+      
 
       <!-----MAIN PHP ----->
 

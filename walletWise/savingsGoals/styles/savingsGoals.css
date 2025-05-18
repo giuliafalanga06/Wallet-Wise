@@ -1,4 +1,26 @@
+.success-banner {
+    position: fixed;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+.success-banner.active {
+    top: 20px;
+    opacity: 1;
+}
 
 .newGoalBtn{
     position: absolute;
@@ -222,4 +244,12 @@ a{
     box-shadow: 0 0 8px var(--first-color);
 }
   
+.form__div {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
 
+.error-message{
+    color: red;
+}

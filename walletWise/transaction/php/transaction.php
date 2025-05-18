@@ -34,7 +34,7 @@
             SELECT *
             FROM Transactions
             WHERE CardId = :CardId
-            ORDER BY TransactionDate DESC; ";
+            ORDER BY Id DESC; ";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':CardId', $_SESSION["idCard"], PDO::PARAM_STR);

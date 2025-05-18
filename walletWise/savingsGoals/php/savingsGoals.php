@@ -63,6 +63,12 @@
         $dbName = $stmt->fetchColumn();
         /*echo "Connesso al database: " . $dbName . "<br>";*/
 
+           $sql = "SELECT Balance FROM Card WHERE Id = :cardId";
+   $stmt = $pdo->prepare($sql);    
+   $stmt->bindParam(':cardId', $_SESSION["idCard"], PDO::PARAM_STR);
+   $stmt->execute();
+   $balance = $stmt->fetchColumn();
+
 //------SELEZIONE DEI SAVINGS GOALS INSERITI NEL DATABASE ------   
 session_start();
         try {

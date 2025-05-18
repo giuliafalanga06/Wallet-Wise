@@ -24,19 +24,44 @@
     --overlay-bg: rgba(0, 0, 0, 0.85);
   }
 
-  /* Stili per la sezione educativa */
+  
+
+/* Stili per la sezione educativa */
 .inv-education-section {
   background: #ffffff;
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.inv-education-section h3, 
+.inv-education-section h4, 
+.inv-education-section h5 {
+  color: var(--first-color);
+  margin-bottom: 1rem;
+}
+
+.inv-education-section h3 {
+  font-size: 1.5rem;
+}
+
+.inv-education-section h4 {
+  font-size: 1.3rem;
+}
+
+.inv-education-section h5 {
+  font-size: 1.1rem;
 }
 
 .inv-education-tabs {
   display: flex;
   border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .inv-tab-btn {
@@ -48,11 +73,18 @@
   color: #666;
   position: relative;
   transition: all 0.3s ease;
+  font-size: 1rem;
+  border-radius: 6px 6px 0 0;
+}
+
+.inv-tab-btn:hover {
+  background: #f0f4f8;
 }
 
 .inv-tab-btn.active {
-  color: #2a52be;
+  color: var(--first-color);
   font-weight: 600;
+  background: #f0f4f8;
 }
 
 .inv-tab-btn.active:after {
@@ -62,17 +94,20 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: #2a52be;
+  background: var(--first-color);
 }
 
 .inv-tab-content {
   display: none;
   animation: fadeIn 0.5s ease;
+  padding: 0 5px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.inv-tab-content p, 
+.inv-tab-content li {
+  font-size: 1.05rem;
+  color: #333;
+  margin-bottom: 0.8rem;
 }
 
 /* Stili per le card dei tipi di investimento */
@@ -87,7 +122,7 @@
   background: #f8f9fa;
   border-radius: 10px;
   padding: 20px;
-  border-left: 4px solid #2a52be;
+  border-left: 4px solid var(--first-color);
   transition: transform 0.3s ease;
 }
 
@@ -98,10 +133,11 @@
 
 .inv-type-card h5 {
   margin-top: 0;
-  color: #2a52be;
+  color: var(--first-color);
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 1.1rem;
 }
 
 .inv-type-card ul {
@@ -110,35 +146,41 @@
 }
 
 /* Stili per box e accordion */
-.inv-benefits-box, .inv-implementation-box, .inv-selection-criteria {
+.inv-benefits-box, 
+.inv-implementation-box, 
+.inv-selection-criteria {
   background: #f0f4f8;
   padding: 20px;
   border-radius: 10px;
   margin: 20px 0;
+  font-size: 1.05rem;
 }
 
-.inv-benefits-box h5, .inv-implementation-box h5, .inv-selection-criteria h5 {
+.inv-benefits-box h5, 
+.inv-implementation-box h5, 
+.inv-selection-criteria h5 {
   margin-top: 0;
-  color: #2a52be;
+  color: var(--first-color);
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .inv-accordion-btn {
-  width: 100%;
+  width: 96%;
   text-align: left;
-  padding: 15px;
+  padding: 15px 20px;
   background: #f8f9fa;
   border: none;
   border-radius: 8px;
-  margin: 5px 0;
+  margin: 8px 0;
   cursor: pointer;
   font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
 .inv-accordion-btn:hover {
@@ -146,8 +188,16 @@
 }
 
 .inv-accordion-btn.active {
-  background: #2a52be;
+  background: var(--first-color);
   color: white;
+}
+
+.inv-accordion-btn i {
+  transition: transform 0.3s ease;
+}
+
+.inv-accordion-btn.active i {
+  transform: rotate(180deg);
 }
 
 .inv-accordion-panel {
@@ -157,16 +207,19 @@
   transition: max-height 0.3s ease;
   background: white;
   border-radius: 0 0 8px 8px;
+  font-size: 1.05rem;
 }
 
-.inv-accordion-panel ul, .inv-accordion-panel ol {
-  padding-left: 20px;
+.inv-accordion-panel ul, 
+.inv-accordion-panel ol {
+  padding-left: 25px;
 }
 
 /* Stili per la tabella piattaforme */
 .inv-platforms-table {
   overflow-x: auto;
   margin: 20px 0;
+  font-size: 1.05rem;
 }
 
 .inv-platforms-table table {
@@ -174,15 +227,17 @@
   border-collapse: collapse;
 }
 
-.inv-platforms-table th, .inv-platforms-table td {
+.inv-platforms-table th, 
+.inv-platforms-table td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #e0e0e0;
 }
 
 .inv-platforms-table th {
-  background: #2a52be;
+  background: var(--first-color);
   color: white;
+  font-weight: 500;
 }
 
 .inv-platforms-table tr:nth-child(even) {
@@ -191,7 +246,7 @@
 
 /* Stili per il box contatti */
 .inv-contact-box {
-  background: #2a52be;
+  background: var(--first-color);
   color: white;
   padding: 25px;
   border-radius: 10px;
@@ -206,14 +261,15 @@
 
 .inv-contact-btn {
   background: white;
-  color: #2a52be;
+  color: var(--first-color);
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 15px;
+  font-size: 1rem;
 }
 
 .inv-contact-btn:hover {
@@ -221,18 +277,58 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Stili per tema scuro */
+/* ==================== */
+/* TEMA SCURO MIGLIORATO */
+/* ==================== */
 .dark-theme .inv-education-section,
 .dark-theme .inv-type-card,
 .dark-theme .inv-benefits-box,
 .dark-theme .inv-implementation-box,
 .dark-theme .inv-selection-criteria {
-  background: #2d3748;
+  background: var(--body-color);
+  color: var(--text-color);
+}
+
+.dark-theme .inv-education-section h3,
+.dark-theme .inv-education-section h4,
+.dark-theme .inv-education-section h5 {
+  color: var(--second-color);
+}
+
+.dark-theme .inv-tab-content p,
+.dark-theme .inv-tab-content li {
   color: #e2e8f0;
 }
 
 .dark-theme .inv-type-card {
-  border-left-color: #4f7cff;
+  border-left-color: var(--first-color);
+  background: var(--body-color);
+}
+
+.dark-theme .inv-type-card h5 {
+  color: var(--second-color);
+}
+
+.dark-theme .inv-type-card ul {
+  color: #cbd5e0;
+}
+
+.dark-theme .inv-tab-btn {
+  color: #cbd5e0;
+  background: transparent;
+}
+
+.dark-theme .inv-tab-btn:hover {
+  background: #4a5568;
+}
+
+.dark-theme .inv-tab-btn.active {
+  color: var(--second-color);
+  background: #4a5568;
+}
+
+.dark-theme .inv-tab-btn.active:after {
+  background: var(--second-color);
 }
 
 .dark-theme .inv-accordion-btn {
@@ -244,17 +340,46 @@
   background: #3c4556;
 }
 
+.dark-theme .inv-accordion-btn.active {
+  background: var(--second-color);
+  color: white;
+}
+
+.dark-theme .inv-accordion-panel {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
 .dark-theme .inv-platforms-table tr:nth-child(even) {
   background: #4a5568;
+  color: #e2e8f0;
 }
 
-.dark-theme .inv-tab-btn {
-  color: #cbd5e0;
+.dark-theme .inv-platforms-table td {
+  color: #e2e8f0;
 }
 
-.dark-theme .inv-tab-btn.active {
-  color: #4f7cff;
+.dark-theme .inv-platforms-table th {
+  background: var(--second-color);
+  color: white;
 }
+
+.dark-theme .inv-contact-box {
+  background: var(--second-color);
+  color: white;
+}
+
+.dark-theme .inv-contact-btn {
+  background: white;
+  color: var(--second-color);
+}
+
+
+
+
+
+
+
   
   /* Stili per l'overlay del grafico */
   .market-chart-overlay {
@@ -328,6 +453,7 @@
     margin: 0 auto;
     padding: 20px;
   }
+  
   
   .ss-header {
     background: linear-gradient(135deg, var(--first-color), var(--second-color));

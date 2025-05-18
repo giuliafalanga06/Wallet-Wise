@@ -141,7 +141,7 @@ if (!isset($_SESSION["username"])) {
                <div class="content">
                   <div class="left-div">
                      <div class="top-left">
-                     <p>SALDO : €<?php echo number_format($balance, 2); ?></p>
+                     <p>Balance : €<?php echo number_format($balance, 2); ?></p>
                      </div>
                      <div class="bottom-left">
                         <?php echo $valori; ?>  
