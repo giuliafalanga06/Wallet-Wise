@@ -51,7 +51,11 @@ $(document).ready(function() {
             data: [100 - (currentAmountTxt / goalTxt * 100), currentAmountTxt / goalTxt * 100], 
             backgroundColor: ['hsla(193, 86.10%, 33.90%, 0.18)','hsl(193, 86%, 34%)'], 
         }], 
-    }; 
+        options: {
+          responsive: true,
+          maintainAspectRatio: false, // <-- fondamentale};
+    } 
+  };
     // Configurazione del grafico
     const config = { 
         type: 'doughnut', 

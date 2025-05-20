@@ -26,7 +26,7 @@ if (!isset($_SESSION["username"])) {
    <link rel='stylesheet' href='../styles/input.css'>
    <link rel="stylesheet" href="../styles/home.css">
    <link rel="stylesheet" href="../styles/cards.css">
-
+    <link rel='icon' type='image/png' sizes='32x32' href='../images/un_logo_con_W_W.png'>
 
    <title>Walletwise | Wallet</title>
 </head>
@@ -55,6 +55,7 @@ if (!isset($_SESSION["username"])) {
    <!-----HEADER ----->
    <header class="header" id="header">
       <div class="header__container">
+         
          <a href="#" class="header__logo">
             <img id="logo" src="../images/un_logo_con_W_W.png" alt="logo">
             <span>Wallet Wise</span>
@@ -206,7 +207,7 @@ if (!isset($_SESSION["username"])) {
                      <input type='text' name='name' class='form__input' placeholder=' '>
                      <label class='form__label'>Beneficiary's Name</label>
                   </div>
-                  <div class="error-container" data-field="name">   </div>
+                  <div class="error-container" data-field="name">   </div><br>
                </div>
                   
                           
@@ -215,7 +216,7 @@ if (!isset($_SESSION["username"])) {
                      <input type='text' id='surname' name='surname' class='form__input' placeholder=' '>
                      <label class='form__label'>Beneficiary's surname</label>
                   </div>
-                  <div class="error-container" data-field="surname">   </div>
+                  <div class="error-container" data-field="surname">   </div><br>
                </div>
                
             </div>
@@ -227,7 +228,7 @@ if (!isset($_SESSION["username"])) {
                         <input type='text' name='iban' class='form__input' placeholder=' '>
                         <label class='form__label'>Beneficiary's Iban</label>
                      </div>
-                     <div class="error-container" data-field="iban">   </div>
+                     <div class="error-container" data-field="iban">   </div><br>
                   </div>
 
                   <div style='flex: 1;'>
@@ -235,7 +236,7 @@ if (!isset($_SESSION["username"])) {
                         <input type='number' id='amount' name='amount' class='form__input' placeholder=' '>
                         <label class='form__label'>Amount</label>
                      </div>
-                     <div class="error-container" data-field="amount">   </div>
+                     <div class="error-container" data-field="amount">   </div><br>
                   </div>
                </div>
 
@@ -245,7 +246,7 @@ if (!isset($_SESSION["username"])) {
                         <input type='text' id='reason' name='reason' class='form__input' placeholder=' '>
                         <label class='form__label'>Reason for payment</label>
                      </div>
-                     <div class="error-container" data-field="reason">   </div>
+                     <div class="error-container" data-field="reason">   </div><br>
                   </div>
                </div>
 

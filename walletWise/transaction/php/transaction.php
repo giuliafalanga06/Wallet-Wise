@@ -67,7 +67,7 @@
                             <td>$description</td>
                             <td>$creditorData</td>
                             <td>$debitorData</td>
-                            <td style='color:$color'>$income</td>
+                            <td style='color:$color'>€$income</td>
                             <td>$date</td>
                         </tr>";
                 

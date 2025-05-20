@@ -12,6 +12,7 @@ if (!isset($_SESSION["username"])) {
 <!DOCTYPE html>
    <html lang="en">
    <head>
+       <link rel='icon' type='image/png' sizes='32x32' href='../images/un_logo_con_W_W.png'>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

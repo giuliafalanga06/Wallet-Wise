@@ -52,7 +52,7 @@ $dbName = $stmt->fetchColumn();
    $checkedBooks = ($icon == 'books.png') ? 'checked' : '';
 
    
-   $sql = "SELECT * FROM SavingsTransactions WHERE GoalId = '$id';";
+   $sql = "SELECT * FROM SavingsTransactions WHERE GoalId = '$id' order by TransactionDate desc;";
    $stmt = $pdo->prepare($sql);
    $stmt->execute();
    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -228,20 +228,38 @@ $html .= "
               
                <?php include 'php/savingsGoals.php';?>
                
-                <img src='https://walletwise.altervista.org/walletWise/images/icone/$icon' style=\"border-radius: 50%; width: 120px; height: 120px; margin-right: 10px;\">
-               
-                <div>                
-                  <p>Description: $description</p>
-                  <p>Start date: $startDate</p>
-                  <p>End date: $endDate</p>
-
-                  <p>Goal amount: <span class='goalAmount'>$goalAmount<span></p>
-                  <p>Month amount: $monthAmount</p>
-                  <p>Current amount: <span class='currentAmount'>$currentAmount</span></p>
-                </div>
-
-                <div><canvas class='coursesDoughnutChart'></canvas></div>
-                
+                           
+                  <table style=\"border-collapse: collapse; width: 30%;\">
+                  <tr>
+                     <td><strong>Type</strong></td>
+                      <td style=\"text-align: center; margin: auto;\"><img src='https://walletwise.altervista.org/walletWise/images/icone/$icon' style=\"border-radius: 50%; width: 100px;  \"></td>
+                  </tr>
+                  <tr>
+                     <td><strong>Description</strong></td>
+                     <td>$description</td>
+                  </tr>
+                  <tr>
+                     <td><strong>Start date</strong></td>
+                     <td>$startDate</td>
+                  </tr>
+                  <tr>
+                     <td><strong>End date</strong></td>
+                     <td>$endDate</td>
+                  </tr>
+                  <tr>
+                     <td><strong>Goal amount</strong></td>
+                     <td><span class=\"goalAmount\">$goalAmount</span></td>
+                  </tr>
+                  <tr>
+                     <td><strong>Month amount</strong></td>
+                     <td>$monthAmount</td>
+                  </tr>
+                  <tr>
+                     <td><strong>Current amount</strong></td>
+                     <td><span class=\"currentAmount\">$currentAmount</span></td>
+                  </tr>
+                  </table>
+                <div><canvas id='coursesDoughnutChart' class='coursesDoughnutChart'></canvas></div>       
                
             </div>
             $valori

@@ -53,15 +53,16 @@
 .goals > div > div:last-child {
     flex: 1 1 500px;
     margin-left: 100px;
-    max-width: 200px;
+    max-width: 300px;
     display: flex;
     justify-content: end;
     align-items:end;
+    margin-top: 50px;
 }
 
 .coursesDoughnutChart {
-    width: 100% !important;
-    max-width: 200px;
+    width: 150% !important;
+    max-width: 500px;
     height: auto !important;
     margin-top: 0;
 }

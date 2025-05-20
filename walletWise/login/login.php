@@ -15,6 +15,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Walletwise | Login</title>
+     <link rel='icon' type='image/png' sizes='32x32' href='../images/un_logo_con_W_W.png'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="styles/login.css">
 </head>
@@ -24,8 +25,8 @@ session_start();
             <div class="logo">
                 <img src="../images/un_logo_con_W_W.png" alt="Logo"  class="logo-image">
             </div>
-            <h1>Benvenuto</h1>
-            <p class="subtitle">Accedi al tuo account</p>
+            <h1>Welcome back!</h1>
+            <p class="subtitle">Log In in your account</p>
         </div>
     
         <div class="login-form">
@@ -59,12 +60,12 @@ session_start();
                         <polyline points="10 17 15 12 10 7"></polyline>
                         <line x1="15" y1="12" x2="3" y2="12"></line>
                     </svg>
-                    Accedi
+                    Log in
                 </button>
 
             </form>
         <div class="login-footer">
-            <p>Non hai un account? <a href="signUp.php">Registrati</a></p>
+            <p>Do you not have an account? <a href="signUp.php">Sign Up!</a></p>
         </div>
     </div>
 </body>
