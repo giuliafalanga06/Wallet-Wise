@@ -1,0 +1,763 @@
+:root {
+    /* Tema chiaro (default) */
+    --first-color: hsl(193, 77%, 40%);
+    --second-color: hsl(193, 100%, 55%);
+    --title-color: hsl(228, 18%, 16%);
+    --text-color: hsl(228, 8%, 56%);
+    --body-color: hsl(228, 100%, 99%);
+    --card-color: hsl(0, 0%, 100%);
+    --border-color: hsl(228, 20%, 92%);
+    --shadow-color: hsla(228, 80%, 4%, 0.1);
+    --overlay-bg: rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Tema scuro - solo cambiamento di colori */
+  .dark-theme {
+    --first-color: hsl(193, 100%, 55%);
+    --second-color: hsl(193, 86%, 34%);
+    --title-color: hsl(0, 0%, 90%);
+    --text-color: hsl(228, 8%, 70%);
+    --body-color: hsl(228, 18%, 16%);
+    --card-color: hsl(228, 18%, 20%);
+    --border-color: hsl(228, 18%, 25%);
+    --shadow-color: hsla(228, 80%, 4%, 0.3);
+    --overlay-bg: rgba(0, 0, 0, 0.85);
+  }
+
+  
+
+/* Stili per la sezione educativa */
+.inv-education-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.inv-education-section h3, 
+.inv-education-section h4, 
+.inv-education-section h5 {
+  color: var(--first-color);
+  margin-bottom: 1rem;
+}
+
+.inv-education-section h3 {
+  font-size: 1.5rem;
+}
+
+.inv-education-section h4 {
+  font-size: 1.3rem;
+}
+
+.inv-education-section h5 {
+  font-size: 1.1rem;
+}
+
+.inv-education-tabs {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.inv-tab-btn {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: #666;
+  position: relative;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  border-radius: 6px 6px 0 0;
+}
+
+.inv-tab-btn:hover {
+  background: #f0f4f8;
+}
+
+.inv-tab-btn.active {
+  color: var(--first-color);
+  font-weight: 600;
+  background: #f0f4f8;
+}
+
+.inv-tab-btn.active:after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--first-color);
+}
+
+.inv-tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+  padding: 0 5px;
+}
+
+.inv-tab-content p, 
+.inv-tab-content li {
+  font-size: 1.05rem;
+  color: #333;
+  margin-bottom: 0.8rem;
+}
+
+/* Stili per le card dei tipi di investimento */
+.inv-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.inv-type-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  border-left: 4px solid var(--first-color);
+  transition: transform 0.3s ease;
+}
+
+.inv-type-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.inv-type-card h5 {
+  margin-top: 0;
+  color: var(--first-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.inv-type-card ul {
+  padding-left: 20px;
+  color: #555;
+}
+
+/* Stili per box e accordion */
+.inv-benefits-box, 
+.inv-implementation-box, 
+.inv-selection-criteria {
+  background: #f0f4f8;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  font-size: 1.05rem;
+}
+
+.inv-benefits-box h5, 
+.inv-implementation-box h5, 
+.inv-selection-criteria h5 {
+  margin-top: 0;
+  color: var(--first-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inv-accordion-btn {
+  width: 96%;
+  text-align: left;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border: none;
+  border-radius: 8px;
+  margin: 8px 0;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.inv-accordion-btn:hover {
+  background: #e9ecef;
+}
+
+.inv-accordion-btn.active {
+  background: var(--first-color);
+  color: white;
+}
+
+.inv-accordion-btn i {
+  transition: transform 0.3s ease;
+}
+
+.inv-accordion-btn.active i {
+  transform: rotate(180deg);
+}
+
+.inv-accordion-panel {
+  padding: 0 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: white;
+  border-radius: 0 0 8px 8px;
+  font-size: 1.05rem;
+}
+
+.inv-accordion-panel ul, 
+.inv-accordion-panel ol {
+  padding-left: 25px;
+}
+
+/* Stili per la tabella piattaforme */
+.inv-platforms-table {
+  overflow-x: auto;
+  margin: 20px 0;
+  font-size: 1.05rem;
+}
+
+.inv-platforms-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.inv-platforms-table th, 
+.inv-platforms-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.inv-platforms-table th {
+  background: var(--first-color);
+  color: white;
+  font-weight: 500;
+}
+
+.inv-platforms-table tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* Stili per il box contatti */
+.inv-contact-box {
+  background: var(--first-color);
+  color: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.inv-contact-box h5 {
+  margin-top: 0;
+  font-size: 1.3em;
+}
+
+.inv-contact-btn {
+  background: white;
+  color: var(--first-color);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.inv-contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== */
+/* TEMA SCURO MIGLIORATO */
+/* ==================== */
+.dark-theme .inv-education-section,
+.dark-theme .inv-type-card,
+.dark-theme .inv-benefits-box,
+.dark-theme .inv-implementation-box,
+.dark-theme .inv-selection-criteria {
+  background: var(--body-color);
+  color: var(--text-color);
+}
+
+.dark-theme .inv-education-section h3,
+.dark-theme .inv-education-section h4,
+.dark-theme .inv-education-section h5 {
+  color: var(--second-color);
+}
+
+.dark-theme .inv-tab-content p,
+.dark-theme .inv-tab-content li {
+  color: #e2e8f0;
+}
+
+.dark-theme .inv-type-card {
+  border-left-color: var(--first-color);
+  background: var(--body-color);
+}
+
+.dark-theme .inv-type-card h5 {
+  color: var(--second-color);
+}
+
+.dark-theme .inv-type-card ul {
+  color: #cbd5e0;
+}
+
+.dark-theme .inv-tab-btn {
+  color: #cbd5e0;
+  background: transparent;
+}
+
+.dark-theme .inv-tab-btn:hover {
+  background: #4a5568;
+}
+
+.dark-theme .inv-tab-btn.active {
+  color: var(--second-color);
+  background: #4a5568;
+}
+
+.dark-theme .inv-tab-btn.active:after {
+  background: var(--second-color);
+}
+
+.dark-theme .inv-accordion-btn {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
+.dark-theme .inv-accordion-btn:hover {
+  background: #3c4556;
+}
+
+.dark-theme .inv-accordion-btn.active {
+  background: var(--second-color);
+  color: white;
+}
+
+.dark-theme .inv-accordion-panel {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
+.dark-theme .inv-platforms-table tr:nth-child(even) {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
+.dark-theme .inv-platforms-table td {
+  color: #e2e8f0;
+}
+
+.dark-theme .inv-platforms-table th {
+  background: var(--second-color);
+  color: white;
+}
+
+.dark-theme .inv-contact-box {
+  background: var(--second-color);
+  color: white;
+}
+
+.dark-theme .inv-contact-btn {
+  background: white;
+  color: var(--second-color);
+}
+
+
+
+
+
+
+
+  
+  /* Stili per l'overlay del grafico */
+  .market-chart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .market-chart-overlay.show {
+    display: flex;
+  }
+  
+  .market-chart-container {
+    background: var(--card-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    width: 800px;
+    box-shadow: 0 0 20px var(--shadow-color);
+  }
+  
+  .cancelChartBtn {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: var(--first-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 96%;
+  }
+  
+  .cancelChartBtn:hover {
+    filter: brightness(90%);
+  }
+  
+  /* Assicurati che il grafico TradingView sia responsive */
+  .tradingview-widget-container {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  
+  #tradingview_chart {
+    width: 100%;
+    height: 500px;
+  }
+  
+  /* SmartSave - Namespaced Styles */
+  .ss-body {
+    background-color: var(--body-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+  }
+  
+  .ss-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  
+  .ss-header {
+    background: linear-gradient(135deg, var(--first-color), var(--second-color));
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px var(--shadow-color);
+  }
+  
+  .ss-title {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .ss-title-highlight {
+    color: white;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
+  .ss-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+  
+  .ss-simulator-card {
+    background-color: var(--card-color);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px -10px var(--shadow-color);
+    overflow: hidden;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(5px);
+  }
+  
+  .ss-simulator-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px -10px var(--shadow-color);
+  }
+  
+  .ss-simulator-controls, .ss-simulator-results {
+    padding: 35px;
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .ss-simulator-controls {
+    background: linear-gradient(135deg, var(--first-color), var(--second-color));
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ss-input-group {
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .ss-input-label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+    color: rgba(255,255,255,0.9);
+  }
+  
+  .ss-range-input {
+    width: 100%;
+    height: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    outline: none;
+    margin-bottom: 15px;
+  }
+  
+  .ss-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  
+  .ss-select-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--card-color);
+    color: var(--title-color);
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 10px var(--shadow-color);
+  }
+  
+  .ss-value-display {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+  
+  .ss-primary-btn {
+    background: linear-gradient(to right, var(--first-color), var(--second-color));
+    color: white;
+    border: none;
+    padding: 16px 25px;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+  }
+  
+  .ss-results-title {
+    color: var(--title-color);
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  
+  .ss-chart-container {
+    height: 280px;
+    margin-bottom: 35px;
+  }
+  
+  .ss-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
+  .ss-summary-item {
+    flex: 1;
+    min-width: 160px;
+    background-color: var(--card-color);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    border: 1px solid var(--border-color);
+  }
+  
+  .ss-summary-label {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .ss-summary-saldo{
+    display: block;
+    font-size: 0.95rem;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  
+  .ss-summary-value {
+    font-size: 1.5rem;
+    color: var(--title-color);
+    font-weight: 700;
+    display: block;
+  }
+
+  .ss-saldo-finale{
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 700;
+    display: block;
+  }
+  
+  .ss-highlight {
+    background: linear-gradient(to right, var(--second-color), var(--first-color));
+    color: white;
+    box-shadow: 0 0 15px hsla(193, 100%, 55%, 0.3);
+  }
+  
+  .ss-section-title {
+    color: var(--title-color);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+  }
+  
+  .ss-info-card {
+    background-color: var(--card-color);
+    border-radius: 14px;
+    box-shadow: 0 8px 25px -5px var(--shadow-color);
+    margin-bottom: 25px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+  
+  .ss-info-header {
+    padding: 22px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-color);
+  }
+  
+  .ss-info-title {
+    color: var(--title-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .ss-info-content {
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  .ss-info-content.ss-active {
+    padding: 0 25px 25px;
+    max-height: 2000px;
+  }
+  
+  .ss-info-text {
+    margin-bottom: 16px;
+    line-height: 1.7;
+    color: var(--text-color);
+  }
+  
+  .ss-example {
+    background-color: var(--body-color);
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 18px;
+    border-left: 4px solid var(--second-color);
+    box-shadow: inset 0 0 0 1px var(--border-color);
+  }
+  
+  .ss-risk-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 25px;
+  }
+  
+  .ss-risk-type {
+    flex: 1;
+    min-width: 200px;
+    background-color: var(--card-color);
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    border: 1px solid var(--border-color);
+  }
+  
+  .ss-risk-title {
+    color: var(--first-color);
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  
+  .ss-footer {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 70px;
+    background: var(--title-color);
+    color: white;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .ss-simulator-card {
+      flex-direction: column;
+    }
+    
+    .ss-risk-types {
+      flex-direction: column;
+    }
+  }
+
+  

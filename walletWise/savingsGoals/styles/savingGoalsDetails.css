@@ -1,0 +1,170 @@
+.success-banner {
+    position: fixed;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.success-banner.active {
+    top: 20px;
+    opacity: 1;
+}
+
+.goals {
+    padding: 80px;
+    border-radius: 1rem;
+    width: 100%;
+    box-shadow: 0 2px 24px var(--shadow-color);
+    background-color: var(--body-color);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.goals > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.goals > div > div:first-child {
+    flex: 1 1 300px;
+    max-width: 500px;
+    text-align: left;
+    justify-content: start;
+    position: relative;
+}
+
+.goals > div > div:last-child {
+    flex: 1 1 500px;
+    margin-left: 100px;
+    max-width: 300px;
+    display: flex;
+    justify-content: end;
+    align-items:end;
+    margin-top: 50px;
+}
+
+.coursesDoughnutChart {
+    width: 150% !important;
+    max-width: 500px;
+    height: auto !important;
+    margin-top: 0;
+}
+
+.goalAmount, .currentAmount {
+    font-weight: bold;
+}
+
+.goalAmount {
+    color: var(--warning-color);
+}
+
+.currentAmount {
+    color: var(--success-color);
+}
+
+h1 {
+    text-align: center;
+    color: var(--first-color);
+    font-weight: 600;
+}
+
+.btnSGD {
+    position: absolute;
+    top: 130px;  
+    margin-right: 10px;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-speed);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--first-color);
+}
+
+.btnSGD:hover {
+    filter: brightness(85%);
+}
+
+.btnSGD + .btnSGD {
+    left: 150px;
+}
+
+@media screen and (max-width: 1150px) {
+    .btnSGD {
+        top: 85px;
+    }
+
+    .goals > div {
+        flex-direction: column;
+        align-items: center;
+    }
+} 
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    background: var(--body-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+table th, table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--white-color);
+}
+
+table th {
+    background-color: var(--first-color);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.3px;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Effetto hover più morbido */
+table tr:hover td {
+    background-color: hsla(193, 86%, 34%, 0.104);
+}
+
+/* Arrotondamento angoli header */
+table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+/* Spaziature laterali più ampie */
+table th:first-child, table td:first-child {
+    padding-left: 24px;
+}
+table th:last-child, table td:last-child {
+    padding-right: 24px;
+}
